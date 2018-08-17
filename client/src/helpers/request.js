@@ -7,7 +7,7 @@ const Request = function (url) {
 Request.prototype.get = function (onComplete) {
   return fetch(this.url)
     .then((response) => {
-      response.json()});
+      return response.json()});
 
 };
 
@@ -20,7 +20,7 @@ Request.prototype.get = function (onComplete) {
      }
      const data = JSON.parse(this.responseText)
 
-     console.log("data:", data);
+
      onComplete(data);
    });
    xhr.send();

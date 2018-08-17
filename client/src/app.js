@@ -1,19 +1,25 @@
-const DarkSky = require('./models/darkSky.js');
-const ListView = require('./views/list_view.js');
+const DarkSky = require('./models/dark_sky.js');
+const ResultView = require('./views/result_view.js');
 const MapView = require('./views/map_view.js');
-
+const InputFormView = require('./views/input_form_view.js');
 
 
 document.addEventListener('DOMContentLoaded', ()=> {
   console.log("Java script loaded");
-const darkSKy = new DarkSky();
-darkSKy.bindEvents();
+const dateForm = document.querySelector('form');
+const inputFormView = new InputFormView(dateForm);
+inputFormView.bindEvents();
+
+const darkSky = new DarkSky();
+darkSky.bindEvents();
+
 const map = document.querySelector('#mapid');
 const mapView = new MapView(map);
 mapView.bindEvents();
+
 const weather = document.querySelector('div#weather')
-const listView = new ListView(weather);
-listView.bindEvents();
+const resultView = new ResultView(weather);
+resultView.bindEvents();
 
 
 })

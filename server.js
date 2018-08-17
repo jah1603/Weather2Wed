@@ -12,12 +12,18 @@ app.get('/', function(req, res){
 });
 
 app.get('/weather/:location/:date' , function(req, res){
-  const location = "23.4162,25.6628";
-  const date = "1534494903";
-  const url = `https://api.darksky.net/forecast/${API_KEY}/${location},${date}`
+    const location = req.params.location;
+    const date = req.params.date;
+
+  const url = `https://api.darksky.net/forecast/${API_KEY}/${location},${date}`;
+  
   fetch(url)
   .then(res =>  res.json())
-  .then(data => res.json(data));
+  .then(data => res.json(data))
+  .catch((err) =>{
+    console.log(err);
+  })
+
 
 })
 

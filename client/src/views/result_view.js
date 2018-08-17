@@ -1,15 +1,15 @@
 const PubSub = require('../helpers/pub_sub.js');
-const DarkSky = require('../models/darkSky.js');
+const DarkSky = require('../models/dark_sky.js');
 
-const ListView = function (container) {
+const ResultView = function (container) {
   this.container = container;
   this.darkSky = new DarkSky();
 }
 
 
 
-ListView.prototype.bindEvents = function () {
-  PubSub.subscribe('DarkSky:weatherReady', (evt)=>{
+ResultView.prototype.bindEvents = function () {
+  PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
 
     console.log(evt.detail);
     const weatherReport = document.createElement("H3");
@@ -18,9 +18,6 @@ ListView.prototype.bindEvents = function () {
     this.container.appendChild(weatherReport);
   })
 
-
 };
 
-
-
-module.exports = ListView;
+module.exports = ResultView;
