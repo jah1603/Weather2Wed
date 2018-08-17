@@ -15,7 +15,7 @@ InputFormView.prototype.handleSubmit = function (evt) {
   evt.preventDefault();
   console.log(evt.target.location.value);
   const newSearch = this.createSearch(evt.target);
-  PubSub.publish('ResultView:search-submitted', newSearch);
+  PubSub.publish('InputFormView:search-submitted', newSearch);
   evt.target.reset();
 };
 
