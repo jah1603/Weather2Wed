@@ -19,22 +19,19 @@ InputFormView.prototype.handleSubmit = function (evt) {
   evt.target.reset();
 };
 
-InputFormView.prototype.convertDateToMillisecondsSince1970 = function (form) {
+InputFormView.prototype.convertDateToSecondsSince1970 = function (form) {
   const dateSearched = form.date.value;
-  const dateSearchedInMilliseconds = Date.parse(dateSearched);
-  const referenceDate = new Date('1970-12-25T00:00:00')
-  const referenceDateInMilliseconds = Date.parse(referenceDate);
-  const urlInputMilliseconds = dateSearchedInMilliseconds - referenceDateInMilliseconds;
-  return urlInputMilliseconds;
+  const dateSearchedInSeconds = Date.parse(dateSearched) / 1000;
+  return dateSearchedInSeconds;
 };
 
 InputFormView.prototype.createSearch = function (form) {
 
-const millisecondsForUrl = this.convertDateToMillisecondsSince1970(form);
+const secondsForUrl = this.convertDateToSecondsSince1970(form);
 
 const newSearch = {
   location: form.location.value,
-  date: millisecondsForUrl
+  date: secondsForUrl
 }
 console.log(newSearch);
 return newSearch;
