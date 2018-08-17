@@ -9,6 +9,6 @@ app.get('/', function(req, res){
   res.sendFile('index.html');
 });
 
-app.listen(3000, function(){
+app.listen(port, function(){
   console.log('Our app is running on http://localhost:' + port))
 });
