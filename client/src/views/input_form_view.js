@@ -22,10 +22,9 @@ InputFormView.prototype.handleSubmit = function (evt) {
 InputFormView.prototype.convertDateToMilliseconds = function (form) {
   const dateSearched = form.date.value;
   const dateSearchedInMilliseconds = Date.parse(dateSearched);
-  console.log(dateSearchedInMilliseconds);
-  const referenceDate = new Date('D2012-02-10T13:19:11+0000')
+  const referenceDate = new Date('1970-12-25T00:00:00')
   const referenceDateInMilliseconds = Date.parse(referenceDate);
-  const urlInputMilliseconds = dateSearched - referenceDate;
+  const urlInputMilliseconds = dateSearchedInMilliseconds - referenceDateInMilliseconds;
   return urlInputMilliseconds;
 };
 
@@ -37,6 +36,7 @@ const newSearch = {
   location: form.location.value,
   date: millisecondsForUrl
 }
+console.log(newSearch);
 return newSearch;
 };
 
