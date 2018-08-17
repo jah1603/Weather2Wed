@@ -19,7 +19,7 @@ InputFormView.prototype.handleSubmit = function (evt) {
   evt.target.reset();
 };
 
-InputFormView.prototype.convertDateToMilliseconds = function (form) {
+InputFormView.prototype.convertDateToMillisecondsSince1970 = function (form) {
   const dateSearched = form.date.value;
   const dateSearchedInMilliseconds = Date.parse(dateSearched);
   const referenceDate = new Date('1970-12-25T00:00:00')
@@ -30,7 +30,7 @@ InputFormView.prototype.convertDateToMilliseconds = function (form) {
 
 InputFormView.prototype.createSearch = function (form) {
 
-const millisecondsForUrl = this.convertDateToMilliseconds(form);
+const millisecondsForUrl = this.convertDateToMillisecondsSince1970(form);
 
 const newSearch = {
   location: form.location.value,
