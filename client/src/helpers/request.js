@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 const Request = function (url) {
   this.url = url;
 };

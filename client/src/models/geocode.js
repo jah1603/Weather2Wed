@@ -3,25 +3,23 @@ const PubSub = require('../helpers/pub_sub.js');
 
 
 
-const DarkSky = function (){
+const Geocode = function (){
   this.data = null;
 
 }
 
 
-DarkSky.prototype.bindEvents = function () {
-  //Subscribe to request
-  const location = "23.4162,25.6628"
-  const seconds = "1534494903"
-  this.getWeatherData(location, seconds);
+Geocode.prototype.bindEvents = function () {
+  //Subscribe to user input -
+
+  //this.getLocation(location);
 
 
 };
 
 
-DarkSky.prototype.getWeatherData = function (location, seconds) {
-
-  const url = `http://localhost:8080/weather/${location}/${seconds}`
+Geocode.prototype.getLocation = function (input) {
+  const url = `https://geocode.xyz/${input},region=UK?json=1`
   console.log(url);
   const request = new Request (url);
   request.getAll((data)=>{
