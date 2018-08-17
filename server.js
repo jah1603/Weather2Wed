@@ -25,19 +25,20 @@ app.get('/weather/:location/:date' , function(req, res){
 
 })
 
-// app.get('/location/:input/' , function(req, res){
-//     const input = req.params.input;
-//
-//
-//   const url = `http://api.geograph.org.uk/syndicator.php?key=[1d6edee685]&location=${input}&format=JSON`;
-//   fetch(url)
-//   .then(res =>  res.json())
-//   .then(data => res.json(data))
-//   .catch((err) =>{
-//     console.log(err);
-//   })
-//
-// })
+app.get('/longlat/:input/' , function(req, res){
+    const input = req.params.input;
+
+
+  const url = `http://api.geograph.org.uk/syndicator.php?key=[1d6edee685]&location=${input}&format=JSON`;
+  console.log(url);
+  fetch(url)
+  .then(res =>  res.json())
+  .then(data => res.json(data))
+  .catch((err) =>{
+    console.log(err);
+  })
+
+})
 
 
 

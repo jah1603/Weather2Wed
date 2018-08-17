@@ -12,8 +12,9 @@ ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
 
     console.log(evt.detail);
+    this.container.innerHTML = "";
     const weatherReport = document.createElement("H3");
-    weatherReport.textContent = evt.detail.hourly.summary;
+    weatherReport.textContent = evt.detail.currently.summary;
 
     this.container.appendChild(weatherReport);
   })
