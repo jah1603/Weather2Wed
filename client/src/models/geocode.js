@@ -37,7 +37,8 @@ Geocode.prototype.getLocation = function (location) {
   const request = new Request (url);
   request.get()
   .then((data)=>{
-    console.log("thie location:",data.items[0]);
+    console.log(data);
+    console.log("location:",data.items[0]);
 
     //latitude the longititude
     const lat = parseFloat(data.items[0].lat);

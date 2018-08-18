@@ -28,19 +28,19 @@ InputFormView.prototype.convertDateToSecondsSince1970 = function (form) {
 
   console.log(dateSearchedInSeconds);
   PubSub.publish('InputFormView:date-ready', dateSearchedInSeconds);
-  
+
 };
 
 InputFormView.prototype.createSearch = function (form) {
 
 const secondsForUrl = this.convertDateToSecondsSince1970(form);
-
-const newSearch = {
-  location: form.location.value,
-  date: secondsForUrl
-}
-
-return newSearch;
+//
+// const newSearch = {
+//   location: form.location.value,
+//   date: secondsForUrl
+// }
+// 
+// return newSearch;
 };
 
 module.exports = InputFormView;
