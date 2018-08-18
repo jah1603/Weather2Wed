@@ -16,6 +16,7 @@ app.get('/weather/:location/:date' , function(req, res){
     const date = req.params.date;
 
   const url = `https://api.darksky.net/forecast/${API_KEY}/${location},${date}`;
+  console.log(url);
   fetch(url)
   .then(res =>  res.json())
   .then(data => res.json(data))
@@ -27,10 +28,20 @@ app.get('/weather/:location/:date' , function(req, res){
 
 app.get('/longlat/:input/' , function(req, res){
     const input = req.params.input;
+    var matches = input.match(/\d+/g);
+
+    console.log(matches === null);
+    if (matches === null){
+      var url = `http://api.geograph.org.uk/syndicator.php?key=[1d6edee685]&text=${input}&format=JSON`
+    }else{
+      var url = `http://api.geograph.org.uk/syndicator.php?key=[1d6edee685]&location=${input}&format=JSON`;
+    }
+
+    console.log(url);
 
 
-  const url = `http://api.geograph.org.uk/syndicator.php?key=[1d6edee685]&location=${input}&format=JSON`;
-  console.log(url);
+
+
   fetch(url)
   .then(res =>  res.json())
   .then(data => res.json(data))

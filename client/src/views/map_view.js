@@ -9,11 +9,10 @@ const MapView = function (container) {
 
 
 MapView.prototype.bindEvents = function () {
-//55.9533,3.1883
 PubSub.subscribe("Geocode:location-ready", (evt)=>{
   this.container.innerHTML = "";
   console.log(evt.detail);
-  const position = evt.detail;
+  position = evt.detail;
   console.log([position]);
   var mymap = L.map('mapid').setView(position, 13);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -33,11 +32,18 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
     shadowAnchor: [0, 0],  // the same for the shadow
     popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
   })
-  L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("I am a good icon.");
+  // L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("i am not a great icon");
 
 
 
 })
+
+// var map = L.map('map-preview').setView([48.46477, 7.88112], 15);
+// mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+// L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; ' + mapLink + ' Contributors', maxZoom: 18,}).addTo(map);
+// var marker = L.marker([48.46477, 7.88112]).addTo(map);
+// map.scrollWheelZoom.disable();
+
 
 
 // this.container.appendChild(mymap)
