@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', ()=> {
+
 const curvedSlider = function(){
   this.data = null;
 }
@@ -55,4 +57,4 @@ rangeEl.addEventListener('input', moveThumb)
 drawCurve()
 drawThumb(percent)
 
-module.exports.curvedSlider;
+})
