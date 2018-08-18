@@ -37,14 +37,15 @@ Geocode.prototype.getLocation = function (location) {
   const request = new Request (url);
   request.get()
   .then((data)=>{
-    console.log(data.items[0]);
+    console.log("thie location:",data.items[0]);
+
     //latitude the longititude
-    const lat = parseInt(data.items[0].lat);
-    const long = parseInt(data.items[0].long);
+    const lat = parseFloat(data.items[0].lat);
+    const long = parseFloat(data.items[0].long);
     console.log(long);
     const position = [lat,long];
     //const position = `${data.items[0].lat},${data.items[0].long}`
-    console.log(position);
+    console.log("position is:",position);
 
   PubSub.publish('Geocode:location-ready', position);
   })
