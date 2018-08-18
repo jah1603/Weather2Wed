@@ -35,8 +35,9 @@ const drawCurve = () => {
 
 const drawThumb = percent => {
 	let pos = getQuadraticBezierXYatPercent(curve, percent)
-  document.getElementById('value').textContent = percent * 365
 
+  document.getElementById('value').textContent = 1534599694 + percent * (1566135694 - 1534599694)
+  console.log(percent);
   thumbEl.setAttribute('cx', pos.x)
   thumbEl.setAttribute('cy', pos.y)
   console.log(thumbEl);
@@ -44,7 +45,7 @@ const drawThumb = percent => {
 
 const moveThumb = e => {
   console.log(e.target.value)
-  percent = e.target.value / 365
+  percent = (1566135694 - e.target.value) / (1566135694 - 1534599694)
   drawThumb(percent)
 }
 
