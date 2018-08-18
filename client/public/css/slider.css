@@ -1,5 +1,7 @@
 body {
   background-color: white;
+  overflow-x:visible;
+  overflow-y:visible;
 }
 
 *,
@@ -54,6 +56,7 @@ body {
 svg#slider{
   display: block;
   margin:auto;
+  overflow: visible;
 }
 
 path#curve{
