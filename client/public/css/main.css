@@ -1,1 +1,8 @@
-#mapid { height: 70vw ; }
+#mapid {
+    width: 400px;
+    height: 400px;
+    border-radius: 200px;
+    position: relative;
+    z-index: 500
+  }
+  /* height: 70vw ; } */
