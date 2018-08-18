@@ -24,15 +24,12 @@ InputFormView.prototype.handleSubmit = function (evt) {
 };
 
 InputFormView.prototype.convertDateToSecondsSince1970 = function (form) {
-   const newYearsDay2019 = 1546300800;
+   const newYearsDay2019 = 1483228800;
 
   const dateSearched = form.range.valueAsNumber + newYearsDay2019; // time in seconds since 1970
   console.log("date searched:",dateSearched);
 
-  const dateSearchedInSeconds = Date.parse(dateSearched) / 1000;
-
-  console.log(dateSearchedInSeconds);
-  PubSub.publish('InputFormView:date-ready', dateSearchedInSeconds);
+  PubSub.publish('InputFormView:date-ready', dateSearched);
 
 };
 
