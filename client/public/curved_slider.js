@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', ()=> {
-
 const curvedSlider = function(){
   this.data = null;
 }
@@ -40,6 +39,7 @@ const drawThumb = percent => {
 
   thumbEl.setAttribute('cx', pos.x)
   thumbEl.setAttribute('cy', pos.y)
+  console.log(thumbEl);
 }
 
 const moveThumb = e => {

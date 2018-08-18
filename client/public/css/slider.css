@@ -1,0 +1,48 @@
+body {
+  background-color: white;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.wrap {
+  margin: 0 auto;
+  width: 2500px;
+}
+
+.slider-container {
+  width: 100%;
+}
+
+#range {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  top: 50px;
+  opacity: 0;
+}
+#range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 50px;
+  background: #ccc;
+  cursor: pointer;
+}
+#range::-moz-range-thumb {
+  width: 40px;
+  height: 50px;
+  background: #ccc;
+  cursor: pointer;
+}
+
+#value {
+  font-family: sans-serif;
+  color: #fff;
+}
