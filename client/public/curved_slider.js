@@ -11,7 +11,7 @@ const curve = {
   endx: 450,
   endy: 50
 }
-let percent = 0.5
+let percent = 0
 
 let curveEl = document.getElementById('curve')
 let thumbEl = document.getElementById('thumb')
@@ -48,7 +48,7 @@ const drawThumb = percent => {
 
   const seconds = 1514818906 + percent * 31536000;
   const dateToDisplay = new Date(seconds * 1000);
-   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+   var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
    var month = months[dateToDisplay.getMonth()];
    var date = dateToDisplay.getDate();
 

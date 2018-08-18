@@ -48,3 +48,19 @@ body {
   font-family: sans-serif;
   color: gold;
 }
+
+svg#slider{
+  display: block;
+  margin:auto;
+}
+
+path#curve{
+  display: block;
+  position: relative;
+  left:30%;
+  overflow: auto;
+}
+
+div#value{
+  text-align: center;
+}
