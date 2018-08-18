@@ -46,7 +46,7 @@ const drawThumb = percent => {
 
 	let pos = getQuadraticBezierXYatPercent(curve, percent)
 
-  const seconds = 1534599694 + percent * 31536000;
+  const seconds = 1514818906 + percent * 31536000;
   const dateToDisplay = new Date(seconds * 1000);
    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
    var month = months[dateToDisplay.getMonth()];
