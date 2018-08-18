@@ -39,11 +39,13 @@ Geocode.prototype.getLocation = function (location) {
   .then((data)=>{
     console.log(data.items[0]);
     //latitude the longititude
-    console.log(data.items[0].lat);
-    console.log(data.items[0].long);
-    const position = `${data.items[0].lat},${data.items[0].long}`
+    const lat = parseInt(data.items[0].lat);
+    const long = parseInt(data.items[0].long);
+    console.log(long);
+    const position = [lat,long];
+    //const position = `${data.items[0].lat},${data.items[0].long}`
     console.log(position);
-  
+
   PubSub.publish('Geocode:location-ready', position);
   })
 

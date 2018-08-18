@@ -14,6 +14,7 @@ DarkSky.prototype.bindEvents = function () {
     PubSub.subscribe("Geocode:location-ready", (evt)=>{
       console.log("Geocode:Location-ready");
       const position = evt.detail;
+      console.log("position is:", position);
       this.getWeatherData(position, date);
 
     })
@@ -21,10 +22,6 @@ DarkSky.prototype.bindEvents = function () {
     //call get weatherdata
   })
 
-
-  const location = "23.4162,25.6628"
-
-  const seconds = "1534494903"
   //this.getWeatherData(location, seconds);
 };
 
