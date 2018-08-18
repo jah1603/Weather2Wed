@@ -10,7 +10,7 @@ body {
 
 .wrap {
   margin: 0 auto;
-  width: 2500px;
+  width: 450px;
 }
 
 .slider-container {
@@ -26,6 +26,8 @@ body {
   width: 100%;
   top: 50px;
   opacity: 0;
+  color: gold;
+  background-color: gold;
 }
 #range::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -44,5 +46,5 @@ body {
 
 #value {
   font-family: sans-serif;
-  color: #fff;
+  color: gold;
 }

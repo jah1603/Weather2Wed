@@ -53,6 +53,7 @@ let rangeEl = document.getElementById('range')
 rangeEl.value = percent * 100
 rangeEl.addEventListener('input', moveThumb)
 
+
 // init
 drawCurve()
 drawThumb(percent)
