@@ -11,7 +11,7 @@ const curve = {
   endx: 450,
   endy: 50
 }
-let percent = 0.1
+let percent = 0.5
 
 let curveEl = document.getElementById('curve')
 let thumbEl = document.getElementById('thumb')
@@ -33,11 +33,31 @@ const drawCurve = () => {
   )
 }
 
+function timeConverter(UNIX_timestamp){
+ var a = new Date(UNIX_timestamp * 1000);
+ var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ var month = months[a.getMonth()];
+ var date = a.getDate();
+ var time = date + ' ' + month  ;
+ return time;
+}
+
 const drawThumb = percent => {
+
 	let pos = getQuadraticBezierXYatPercent(curve, percent)
 
-  document.getElementById('value').textContent = 1534599694 + percent * (1566135694 - 1534599694)
-  console.log(percent);
+  const seconds = 1534599694 + percent * 31536000;
+  const dateToDisplay = new Date(seconds * 1000);
+   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+   var month = months[dateToDisplay.getMonth()];
+   var date = dateToDisplay.getDate();
+
+   console.log(dateToDisplay);
+
+   const formattedDate = date + ' ' + month;
+
+  document.getElementById('value').textContent = formattedDate;
+
   thumbEl.setAttribute('cx', pos.x)
   thumbEl.setAttribute('cy', pos.y)
   console.log(thumbEl);
@@ -45,7 +65,7 @@ const drawThumb = percent => {
 
 const moveThumb = e => {
   console.log(e.target.value)
-  percent = (1566135694 - e.target.value) / (1566135694 - 1534599694)
+  percent = e.target.value / 31536000
   drawThumb(percent)
 }
 
