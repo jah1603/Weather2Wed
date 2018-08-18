@@ -13,8 +13,8 @@ const curve = {
 }
 let percent = 0
 
-let curveEl = document.getElementById('curve')
-let thumbEl = document.getElementById('thumb')
+let curveEl = document.querySelector('#curve')
+let thumbEl = document.querySelector('#thumb')
 
 // get the XY at the specified percentage along the curve
 const getQuadraticBezierXYatPercent = (curve, percent) => {
