@@ -11,7 +11,7 @@ const quadraticCurve = {
   x: 0,
   y: 150,
   controlPointX: 350,
-  controlPointY: -150,
+  controlPointY: -50,
   endPointX: 700,
   endPointY: 150
 }
