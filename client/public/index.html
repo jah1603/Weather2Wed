@@ -43,8 +43,21 @@
   <div class="slider-container">
     <input id="range" type="range" min="0" max="31449600" step="86400">
     <svg id="slider" height="50" width="450" style="text-align:center">
-      <circle id="thumb" stroke="#fff" fill="gold" r="24" />
-      <path id="curve" stroke="#191970" stroke-width="2" fill="none" align='center'/>
+      <defs>
+    <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="red"/>
+      <stop offset="12.5%"   stop-color="orange"/>
+      <stop offset="25%"   stop-color="yellow"/>
+      <stop offset="37.5%"   stop-color="green"/>
+      <stop offset="50%"   stop-color="blue"/>
+      <stop offset="62.5%"   stop-color="indigo"/>
+      <stop offset="75%"   stop-color="violet"/>
+      <stop offset="87.5%"   stop-color="#05a"/>
+      <stop offset="100%" stop-color="#0a5"/>
+    </linearGradient>
+  </defs>
+      <circle id="thumb" stroke="#fff" fill="white" r="24" />
+      <path id="curve" stroke="url(#linear)" stroke-width="2" fill="none" align='center'/>
     </svg>
   </div>
 </div>
