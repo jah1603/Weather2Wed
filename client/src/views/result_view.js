@@ -57,7 +57,16 @@ ResultView.prototype.bindEvents = function () {
     actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
     this.container.appendChild(actualSunsetTime)
     evt.detail.daily.data[0].sunriseTime = timeConverterToHours(evt.detail.daily.data[0].sunriseTime);
-console.log(evt.detail.daily.data[0].sunriseTime);
+    evt.detail.daily.data[0].temperatureHigh = farenToCelsius(evt.detail.daily.data[0].temperatureHigh);
+
+    evt.detail.daily.data[0].temperatureLow = farenToCelsius(evt.detail.daily.data[0].temperatureLow);
+
+    evt.detail.daily.data[0].temperatureHighTime =
+   timeConverterToHours(evt.detail.daily.data[0].temperatureHighTime);
+
+    evt.detail.daily.data[0].temperatureLowTime = timeConverterToHours(evt.detail.daily.data[0].temperatureLowTime);
+
+
 
     const moreInformation = new MoreInformation(this.container, evt.detail);
     moreInformation.render();
