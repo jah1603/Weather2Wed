@@ -86,13 +86,38 @@ div#value{
    transform: translateY(-5px);
  }
 }
-
-@keyframes rotate {
-    0% {transform:rotate(0deg);}
-    100% {transform:rotate(360deg);}
+@keyframes shine{
+ 10% {
+   opacity: 0.8;
+   top: -30%;
+   left: -30%;
+   transition-property: left, top, opacity;
+   transition-duration: 0.7s, 0.7s, 1s;
+   transition-timing-function: ease;
+ }
+ 100% {
+   opacity: 0.6;
+   top: -30%;
+   left: -30%;
+   transition-property: left, top, opacity;
+ }
 }
 
+@-webkit-keyframes sparkle
+{
+  0%   { stroke: #ffd710; }
+  30%  { stroke: #ffd720; }
+  40%  { stroke: #ffd680; }
+  60%  { stroke: #ffd740; }
+  100% { stroke: #ffd780; }
+}
+
+/* @keyframes rotate {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+} */
+
 #thumb {
-    animation: rotate 2s infinite;
-   animation: bounce 2s infinite;
+   stroke: #ffd700;
+   animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
