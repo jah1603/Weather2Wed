@@ -11,22 +11,23 @@ const curve = {
   endx: 450,
   endy: 50
 }
-let percent = 0.45
+let percentageAlongCurve = 0.45
 
 let curveElement = document.getElementById('curve')
 let thumbElement = document.getElementById('thumb')
 
 // returns the X and Y coordinates at the stated percentage along curve
-const getBezierQuadraticEquationXYCoordsAtPercent = (curve, percent) => {
-  let x = Math.pow(1 - percent, 2) * curve.x + 2 * (1 - percent) * percent
-    * curve.cpx + Math.pow(percent, 2) * curve.endx
-  let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent
-    * curve.cpy + Math.pow(percent, 2) * curve.endy
+const getBezierQuadraticEquationXYCoordsAtPercent = (curve, percentageAlongCurve) => {
+  let x = Math.pow(1 - percentageAlongCurve, 2) * curve.x + 2 * (1 - percentageAlongCurve) * percentageAlongCurve
+    * curve.cpx + Math.pow(percentageAlongCurve, 2) * curve.endx
+  let y = Math.pow(1 - percentageAlongCurve, 2) * curve.y + 2 * (1 - percentageAlongCurve) * percentageAlongCurve
+    * curve.cpy + Math.pow(percentageAlongCurve, 2) * curve.endy
 
   return { x, y }
 }
 
 const drawCurve = () => {
+  //sets attributes of SVG path element, where M means 'moveto' and Q denotes a quadratic Bézier equation
   curveElement.setAttribute(
     'd',
     `M${curve.x},${curve.y} Q${curve.cpx},${curve.cpy} ${curve.endx},${curve.endy}`
@@ -34,11 +35,11 @@ const drawCurve = () => {
 }
 
 
-const drawThumbUponInput = percent => {
+const drawThumbUponInput = percentageAlongCurve => {
 
-	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percent)
+	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percentageAlongCurve)
 
-  const seconds = 1514818906 + percent * 31536000;
+  const seconds = 1514818906 + percentageAlongCurve * 31536000;
   const dateToDisplay = new Date(seconds * 1000);
    var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
    var month = months[dateToDisplay.getMonth()];
@@ -60,11 +61,11 @@ const drawThumbUponInput = percent => {
 
 
 
-const drawThumb = percent => {
+const drawThumb = percentageAlongCurve => {
 
-	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percent)
+	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percentageAlongCurve)
 
-  const seconds = 1514818906 + percent * 31536000;
+  const seconds = 1514818906 + percentageAlongCurve * 31536000;
   const dateToDisplay = new Date(seconds * 1000);
    var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
    var month = months[dateToDisplay.getMonth()];
@@ -83,18 +84,18 @@ const drawThumb = percent => {
 
 const moveThumb = e => {
   console.log(e.target.value)
-  percent = e.target.value / 31536000
-  drawThumbUponInput(percent)
+  percentageAlongCurve = e.target.value / 31536000
+  drawThumbUponInput(percentageAlongCurve)
 }
 
 // event on the range input
 let rangeElement = document.getElementById('range')
-rangeElement.value = percent * 100
+rangeElement.value = percentageAlongCurve * 100
 rangeElement.addEventListener('input', moveThumb)
 
 
 // init
 drawCurve()
-drawThumb(percent)
+drawThumb(percentageAlongCurve)
 
 })
