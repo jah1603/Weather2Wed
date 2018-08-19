@@ -6,6 +6,7 @@ const InputFormView = function (form){
 
 InputFormView.prototype.bindEvents = function () {
   this.form.addEventListener('submit', (evt) => {
+    console.log(evt);
     this.handleSubmit(evt);
 
   });
@@ -17,17 +18,18 @@ InputFormView.prototype.handleSubmit = function (evt) {
   const location = evt.target.location.value;
   PubSub.publish('InputFormView:location-ready', location);
   const newSearch = this.createSearch(evt.target);
+  console.log(evt);
   PubSub.publish('InputFormView:search-submitted', newSearch);
   evt.target.reset();
 };
 
 InputFormView.prototype.convertDateToSecondsSince1970 = function (form) {
+   const newYearsDay2019 = 1483228800;
 
-  const dateSearched = form.date.value;
-  const dateSearchedInSeconds = Date.parse(dateSearched) / 1000;
+  const dateSearched = form.range.valueAsNumber + newYearsDay2019; // time in seconds since 1970
+  console.log("date searched:",dateSearched);
 
-  console.log(dateSearchedInSeconds);
-  PubSub.publish('InputFormView:date-ready', dateSearchedInSeconds);
+  PubSub.publish('InputFormView:date-ready', dateSearched);
 
 };
 
@@ -39,7 +41,7 @@ const secondsForUrl = this.convertDateToSecondsSince1970(form);
 //   location: form.location.value,
 //   date: secondsForUrl
 // }
-// 
+//
 // return newSearch;
 };
 

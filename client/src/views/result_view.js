@@ -35,6 +35,7 @@ ResultView.prototype.bindEvents = function () {
     this.container.appendChild(temperature);
 
     const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
+    console.log("rain chance", evt);
 
 
     const rainLogo = document.createElement('img');

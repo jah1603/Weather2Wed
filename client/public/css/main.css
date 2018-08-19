@@ -6,3 +6,48 @@
     z-index: 500
   }
   /* height: 70vw ; } */
+
+body{
+  background: url('http://www.darrenroberts.ca/wp-content/uploads/2017/10/winter-wedding-photos-in-the-snow-banff-national-park.jpg') no-repeat center center fixed;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+}
+}
+
+img {
+  width: 10vw;
+}
+
+h1{
+  font-size: 55px;
+  float: center;
+/* font-family: 'Futura'; */
+color: #191970;
+text-shadow: 0 0 5px #191970, 0 0 10px #191970, 0 0 20px #ccc, 0 0 30px #ccc, 0 0 40px #ccc, 0 0 55px #ccc, 0 0 75px #ccc;
+text-align: center;
+}
+
+
+
+#save{
+  width: 10vw;
+  height: 10vw;
+  background: url('https://www.cartier.com/content/dam/rcq/car/13/54/40/1/1354401.png') no-repeat ;
+  align: center;
+  vertical-align: middle;
+  border-style: none;
+
+  background-size: 10vw;
+
+}
+
+.button {
+  align: center;
+}
+
+#save:hover{
+
+
+}

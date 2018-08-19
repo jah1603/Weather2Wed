@@ -36,7 +36,7 @@ const drawCurve = () => {
 
 const drawThumb = percent => {
 
-	let position = getQuadraticBezierXYatPercent(curve, percent)
+	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percent)
 
   const seconds = 1514818906 + percent * 31536000;
   const dateToDisplay = new Date(seconds * 1000);

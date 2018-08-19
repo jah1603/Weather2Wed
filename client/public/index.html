@@ -5,7 +5,6 @@
     <title>Weather2Wed</title>
 
 
-
   <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Libre+Barcode+39+Extended+Text|Syncopate" rel="stylesheet">
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" />
@@ -27,39 +26,44 @@
     <script src="js/bundle.js">
     </script>
   </head>
+  <h1>Weather2Wed</h1>
   <body>
+
+
   <div class="wrapper">
   <form id="items-form">
 
-           <input type="text" id="location" placeholder="Enter Location..." value=""/>
+           <input type="text" id="location" align='center' placeholder="Enter Location..." value=""/>
 
-           <label for=“date”>Date:</label>
-          <input type="date" id="date" value="2018-08-17" min="1970-12-25" max="2050-08-17"/>
 
-           <input type="submit" id="save" value="Enter"/>
 
-       </form>
   </div>
   <h3 align='center'>Choose a date</h3>
   <div class="wrap">
   <div class="slider-container">
     <input id="range" type="range" min="0" max="31449600" step="86400">
     <svg id="slider" height="50" width="450" style="text-align:center">
-      <circle id="thumb" stroke="#fff" fill="gold" r="16" />
-      <path id="curve" stroke="#191970" stroke-width="4" fill="none" align='center'/>
+      <circle id="thumb" stroke="#fff" fill="gold" r="24" />
+      <path id="curve" stroke="#191970" stroke-width="2" fill="none" align='center'/>
     </svg>
   </div>
 </div>
 <script src = "curved_slider.js"></script>
 <br>
 <div id="value"></div>
+<div class="button">
+  <input type="submit" id="save" value="Click" align="center"/>
+
+</div>
+
+</form>
 
 
 
 <!-- <div class="map-wrapper">
   <div id="map-preview" class=" img-circle"></div> -->
 
-  <div id="weather">The weather in [place] is</div>
+  <div id="weather"></div>
  <div id="mapid"></div>
 <!-- </div> -->
 
