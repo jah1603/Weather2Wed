@@ -55,6 +55,8 @@ const drawThumbUponInput = percent => {
   console.log(thumbElement);
 }
 
+
+
 const drawThumb = percent => {
 
 	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percent)
