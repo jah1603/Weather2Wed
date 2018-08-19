@@ -1,5 +1,6 @@
 const PubSub = require('../helpers/pub_sub.js');
 const DarkSky = require('../models/dark_sky.js');
+const MoreInformation= require('./more_information_view.js');
 
 const ResultView = function (container) {
   this.container = container;
@@ -12,7 +13,7 @@ ResultView.prototype.bindEvents = function () {
 
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
 
-    console.log(evt.detail);
+
     this.container.innerHTML = "";
     const weatherReport = document.createElement("H3");
 
@@ -35,7 +36,7 @@ ResultView.prototype.bindEvents = function () {
     this.container.appendChild(temperature);
 
     const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
-    console.log("rain chance", evt);
+
 
 
     const rainLogo = document.createElement('img');
@@ -55,6 +56,11 @@ ResultView.prototype.bindEvents = function () {
     const actualSunsetTime = document.createElement('p');
     actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
     this.container.appendChild(actualSunsetTime)
+    evt.detail.daily.data[0].sunriseTime = timeConverterToHours(evt.detail.daily.data[0].sunriseTime);
+console.log(evt.detail.daily.data[0].sunriseTime);
+
+    const moreInformation = new MoreInformation(this.container, evt.detail);
+    moreInformation.render();
 
 
 
@@ -90,12 +96,19 @@ function farenToCelsius(faren){
 function timeConverterToHours(UNIX_timestamp){
 var a = new Date(UNIX_timestamp * 1000);
 
-var hour = a.getHours()-12;
+var hour = a.getHours(); // makes time easier to read (presumes wedding is pm!)
 var min = a.getMinutes();
-var time = hour + ' ' + min + 'pm'  ;
+if (min < 10){
+  min = `0${min}`;
+}
+if (hour > 12){
+var time = hour-12 + ':' + min + ' pm'  ;
+}else{
+var time = hour + ':' + min + ' am'  ;
+}
+console.log(hour);
 return time;
 }
-
 
 
 
