@@ -9,11 +9,11 @@ const curvedSlider = function(){
 // Defines the parameters of the quadratic curve along which the selector ring will travel
 const quadraticCurve = {
   x: 0,
-  y: 150,
+  y: -50,
   controlPointX: 350,
-  controlPointY: -50,
+  controlPointY: -350,
   endPointX: 700,
-  endPointY: 150
+  endPointY: -50
 }
 let percentageAlongCurve = 0.50 // Point on the curve where the selector ring sits initially
 

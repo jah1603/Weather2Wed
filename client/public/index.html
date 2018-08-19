@@ -36,12 +36,12 @@
            <input type="text" id="location" align='center' placeholder="Enter Location..." value=""/>
 
 
-
   </div>
+  <br>
   <div class="wrap">
   <div class="slider-container">
     <input id="range" type="range" min="0" max="31449600" step="86400"  required>
-    <svg id="slider" height="150" width="700" style="text-align:center">
+    <svg id="slider" height="200px" width="700px">
       <defs>
     <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%"   stop-color="red"/>
@@ -55,7 +55,7 @@
   </defs>
       <circle id="ring" class="bounce" stroke-width="6" fill="none" r="26" />
       <defs>
-    <linearGradient id="ring" 0deg, 360deg>
+    <linearGradient id="ring">
       <stop offset="0%"   stop-color="#8f6B29"/>
       <stop offset="33.33%"   stop-color="#FDE08D"/>
       <stop offset="66.67%"   stop-color="#DF9F28"/>
@@ -66,8 +66,7 @@
   </div>
 </div>
 <script src = "curved_slider.js"></script>
-<br>
-<br>
+
 <br>
 <div id="value"></div>
 <div class="button">

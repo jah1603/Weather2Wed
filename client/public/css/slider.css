@@ -13,12 +13,12 @@ body {
 .wrap {
   margin: 0 auto;
   width: 700px;
-  height: 150px;
+  height: 200px;
 }
 
 .slider-container {
   width: 700px;
-  height: 150px;
+  height: 200px;
   overflow-x: visible;
   overflow-y: visible;
   align: center;
@@ -30,9 +30,10 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  width: 700px;
-  height: 150px;
-  top: 150px;
+  left: -70px;
+  width: 120%;
+  top: 0px;
+  height: 120%;
   opacity: 0;
   color: gold;
   background-color: gold;
@@ -41,13 +42,13 @@ body {
   -webkit-appearance: none;
   appearance: none;
   width: 60px;
-  height: 60px;
+  height: 200px;
   background: #ccc;
   cursor: pointer;
 }
 #range::-moz-range-thumb {
   width: 60px;
-  height: 60px;
+  height: 200px;
   background: #ccc;
   cursor: pointer;
 }
@@ -60,14 +61,11 @@ body {
 
 svg#slider{
   display: block;
-  margin:auto;
   overflow: visible;
 }
 
 path#curve{
   display: block;
-  position: relative;
-  left:30%;
   overflow: auto;
   overflow-x: visible;
   overflow-y: visible;
