@@ -3,7 +3,7 @@ const quadraticCurvedSlider = function(){
   this.data = null;
 }
 
-// This model is responsible for tracing out the SVG (scalable vector graphic) date input slider which takes the form of a quadratic curve complete with a selector ring which is used to set the desired date. Dates can be entered through a single user action (dragging the selector ring), which simplifies the use of the app.
+// This model is responsible for tracing out the SVG (scalable vector graphic) date input slider which takes the form of a quadratic curve complete with a selector ring which is used to set the desired date. Dates can thus be entered through a single user action (dragging the selector ring) instead of scrolling through a calendar, simplifying the use of the app.
 
 
 // Defines the parameters of the quadratic curve along which the selector ring will travel
@@ -80,7 +80,7 @@ const initialSelectorRingPosition = percentageAlongCurve => {
   console.log(ringElement);
 }
 
-//
+// Updates the position of the selector ring in response to the user clicking and dragging it
 const moveSelectorRing = e => {
   console.log(e.target.value)
   percentageAlongCurve = e.target.value / 31536000
