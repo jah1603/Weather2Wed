@@ -117,7 +117,7 @@ div#value{
     100% {transform:rotate(360deg);}
 } */
 
-#thumb {
+#ring {
    stroke: #ffd700;
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
