@@ -41,7 +41,7 @@
   <h3 align='center'>Choose a date</h3>
   <div class="wrap">
   <div class="slider-container">
-    <input id="range" type="range" min="0" max="31449600" step="86400">
+    <input id="range" type="range" min="0" max="31449600" step="86400" required>
     <svg id="slider" height="50" width="450" style="text-align:center">
       <defs>
     <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -54,7 +54,7 @@
       <stop offset="85.68%"   stop-color="violet"/>
     </linearGradient>
   </defs>
-      <circle id="thumb" class="bounce" stroke="url(#ring)" stroke-width="3.5" fill="url(#ring)" r="24" />
+      <circle id="thumb" class="bounce" stroke="url(#ring)" stroke-width="3.5" fill="none" r="24" />
       <defs>
     <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%"   stop-color="#8f6B29"/>
