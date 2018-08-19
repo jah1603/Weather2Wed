@@ -73,5 +73,5 @@ div#value{
 }
 
 #thumb {
-  background: url('../images/crystal_ball.jpg')
+  background-image: url('../images/crystal_ball.jpg')
 }

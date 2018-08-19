@@ -11,7 +11,7 @@ const curve = {
   endx: 450,
   endy: 50
 }
-let percent = 0
+let percent = 0.45
 
 let curveElement = document.getElementById('curve')
 let thumbElement = document.getElementById('thumb')
@@ -34,7 +34,7 @@ const drawCurve = () => {
 }
 
 
-const drawThumb = percent => {
+const drawThumbUponInput = percent => {
 
 	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percent)
 
@@ -55,10 +55,31 @@ const drawThumb = percent => {
   console.log(thumbElement);
 }
 
+const drawThumb = percent => {
+
+	let position = getBezierQuadraticEquationXYCoordsAtPercent(curve, percent)
+
+  const seconds = 1514818906 + percent * 31536000;
+  const dateToDisplay = new Date(seconds * 1000);
+   var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
+   var month = months[dateToDisplay.getMonth()];
+   var date = dateToDisplay.getDate();
+
+   console.log(dateToDisplay);
+
+   const formattedDate = date + ' ' + month;
+
+  document.getElementById('value').textContent = "Slide to choose a date";
+
+  thumbElement.setAttribute('cx', position.x)
+  thumbElement.setAttribute('cy', position.y)
+  console.log(thumbElement);
+}
+
 const moveThumb = e => {
   console.log(e.target.value)
   percent = e.target.value / 31536000
-  drawThumb(percent)
+  drawThumbUponInput(percent)
 }
 
 // event on the range input
