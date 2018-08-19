@@ -15,7 +15,7 @@ MoreInformation.prototype.render = function () {
   sunriseLogo.src = 'images/weather_icons/sunset.png';
   this.container.appendChild(sunriseLogo);
 const sunriseTime = document.createElement('p');
-sunriseTime.textContent = 'woooooo';
+sunriseTime.textContent = `Sunrise at ${this.weatherData.daily.data[0].sunriseTime}`;
 moreInfoContainer.appendChild(sunriseTime);
 
 
