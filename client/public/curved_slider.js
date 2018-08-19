@@ -17,7 +17,7 @@ let curveElement = document.getElementById('curve')
 let thumbElement = document.getElementById('thumb')
 
 // returns the X and Y coordinates at the stated percentage along curve
-const getBézierQuadraticEquationXYCoordsAtPercent = (curve, percent) => {
+const getBezierQuadraticEquationXYCoordsAtPercent = (curve, percent) => {
   let x = Math.pow(1 - percent, 2) * curve.x + 2 * (1 - percent) * percent
     * curve.cpx + Math.pow(percent, 2) * curve.endx
   let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent
@@ -50,8 +50,8 @@ const drawThumb = percent => {
 
   document.getElementById('value').textContent = formattedDate;
 
-  thumbElement.setAttribute('cx', pos.x)
-  thumbElement.setAttribute('cy', pos.y)
+  thumbElement.setAttribute('cx', position.x)
+  thumbElement.setAttribute('cy', position.y)
   console.log(thumbElement);
 }
 
@@ -62,7 +62,7 @@ const moveThumb = e => {
 }
 
 // event on the range input
-let rangeEl = document.getElementById('range')
+let rangeElement = document.getElementById('range')
 rangeElement.value = percent * 100
 rangeElement.addEventListener('input', moveThumb)
 
