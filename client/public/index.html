@@ -54,7 +54,14 @@
       <stop offset="85.68%"   stop-color="violet"/>
     </linearGradient>
   </defs>
-      <circle id="thumb" class="bounce" stroke="#D4AF37" stroke-width="3.5" fill="transparent" r="24" />
+      <circle id="thumb" class="bounce" stroke="url(#ring)" stroke-width="3.5" fill="url(#ring)" r="24" />
+      <defs>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#8f6B29"/>
+      <stop offset="33.33%"   stop-color="#FDE08D"/>
+      <stop offset="66.67%"   stop-color="#DF9F28"/>
+    </linearGradient>
+  </defs>
       <path id="curve" stroke="url(#linear)" stroke-width="2" fill="none" align='center'/>
     </svg>
   </div>

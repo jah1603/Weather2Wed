@@ -50,6 +50,9 @@ const drawThumbUponInput = percent => {
 
   document.getElementById('value').textContent = formattedDate;
 
+  document.getElementById('value').style.webkitAnimationPlayState = "paused";
+  document.getElementById('value').style.animationPlayState = "paused";
+
   thumbElement.setAttribute('cx', position.x)
   thumbElement.setAttribute('cy', position.y)
   console.log(thumbElement);
@@ -71,7 +74,7 @@ const drawThumb = percent => {
 
    const formattedDate = date + ' ' + month;
 
-  document.getElementById('value').textContent = "Slide to choose a date";
+  document.getElementById('value').textContent = "Slide ring to set a date";
 
   thumbElement.setAttribute('cx', position.x)
   thumbElement.setAttribute('cy', position.y)
