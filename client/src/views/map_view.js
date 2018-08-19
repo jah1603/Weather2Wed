@@ -31,6 +31,7 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 
 })
 
+// do we need this ---
 // var map = L.map('map-preview').setView([48.46477, 7.88112], 15);
 // mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 // L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; ' + mapLink + ' Contributors', maxZoom: 18,}).addTo(map);
