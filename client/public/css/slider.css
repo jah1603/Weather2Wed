@@ -73,10 +73,5 @@ div#value{
 }
 
 #thumb {
-  -moz-border-radius: 24/24;
-  -webkit-border-radius: 24 24;
-  border-radius: 24/24;
-  border: solid 21px "red";
-  width: 24;
-  height: 24;
+  background: url('../images/crystal_ball.jpg')
 }
