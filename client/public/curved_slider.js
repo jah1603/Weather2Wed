@@ -13,11 +13,11 @@ const curve = {
 }
 let percent = 0
 
-let curveEl = document.getElementById('curve')
-let thumbEl = document.getElementById('thumb')
+let curveElement = document.getElementById('curve')
+let thumbElement = document.getElementById('thumb')
 
-// get the XY at the specified percentage along the curve
-const getQuadraticBezierXYatPercent = (curve, percent) => {
+// returns the X and Y coordinates at the stated percentage along curve
+const getBézierQuadraticEquationXYCoordsAtPercent = (curve, percent) => {
   let x = Math.pow(1 - percent, 2) * curve.x + 2 * (1 - percent) * percent
     * curve.cpx + Math.pow(percent, 2) * curve.endx
   let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent
@@ -27,24 +27,16 @@ const getQuadraticBezierXYatPercent = (curve, percent) => {
 }
 
 const drawCurve = () => {
-  curveEl.setAttribute(
+  curveElement.setAttribute(
     'd',
     `M${curve.x},${curve.y} Q${curve.cpx},${curve.cpy} ${curve.endx},${curve.endy}`
   )
 }
 
-function timeConverter(UNIX_timestamp){
- var a = new Date(UNIX_timestamp * 1000);
- var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
- var month = months[a.getMonth()];
- var date = a.getDate();
- var time = date + ' ' + month  ;
- return time;
-}
 
 const drawThumb = percent => {
 
-	let pos = getQuadraticBezierXYatPercent(curve, percent)
+	let position = getQuadraticBezierXYatPercent(curve, percent)
 
   const seconds = 1514818906 + percent * 31536000;
   const dateToDisplay = new Date(seconds * 1000);
@@ -58,9 +50,9 @@ const drawThumb = percent => {
 
   document.getElementById('value').textContent = formattedDate;
 
-  thumbEl.setAttribute('cx', pos.x)
-  thumbEl.setAttribute('cy', pos.y)
-  console.log(thumbEl);
+  thumbElement.setAttribute('cx', pos.x)
+  thumbElement.setAttribute('cy', pos.y)
+  console.log(thumbElement);
 }
 
 const moveThumb = e => {
@@ -71,8 +63,8 @@ const moveThumb = e => {
 
 // event on the range input
 let rangeEl = document.getElementById('range')
-rangeEl.value = percent * 100
-rangeEl.addEventListener('input', moveThumb)
+rangeElement.value = percent * 100
+rangeElement.addEventListener('input', moveThumb)
 
 
 // init
