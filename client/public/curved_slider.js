@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', ()=> {
-const quadraticCurvedSlider = function(){
+const curvedSlider = function(){
   this.data = null;
 }
 
@@ -9,16 +9,16 @@ const quadraticCurvedSlider = function(){
 // Defines the parameters of the quadratic curve along which the selector ring will travel
 const quadraticCurve = {
   x: 0,
-  y: 50,
-  controlPointX: 250,
-  controlPointY: 0,
-  endPointX: 450,
-  endPointY: 50
+  y: 150,
+  controlPointX: 350,
+  controlPointY: -150,
+  endPointX: 700,
+  endPointY: 150
 }
-const percentageAlongCurve = 0.45 // Point on the curve where the selector ring sits initially
+let percentageAlongCurve = 0.50 // Point on the curve where the selector ring sits initially
 
 // Creates HTML elements for the curve and selector ring
-const quadraticCurveElement = document.querySelector('#quadraticCurve')
+const quadraticCurveElement = document.querySelector('#curve')
 const ringElement = document.querySelector('#ring')
 
 // Returns the X and Y coordinates at the stated percentage along the curve
@@ -26,7 +26,7 @@ const getBezierQuadraticEquationXYCoordsAtPercent = (quadraticCurve, percentageA
   let x = Math.pow(1 - percentageAlongCurve, 2) * quadraticCurve.x + 2 * (1 - percentageAlongCurve) * percentageAlongCurve
     * quadraticCurve.controlPointX + Math.pow(percentageAlongCurve, 2) * quadraticCurve.endPointX
   let y = Math.pow(1 - percentageAlongCurve, 2) * quadraticCurve.y + 2 * (1 - percentageAlongCurve) * percentageAlongCurve
-    * quadraticCurve.cpy + Math.pow(percentageAlongCurve, 2) * quadraticCurve.endPointY
+    * quadraticCurve.controlPointY + Math.pow(percentageAlongCurve, 2) * quadraticCurve.endPointY
 
   return { x, y }
 }
@@ -35,7 +35,7 @@ const plotQuadraticCurve = () => {
   //Sets attributes of the SVG path element, where M means 'moveto' and Q denotes a quadratic Bézier equation
   quadraticCurveElement.setAttribute(
     'd',
-    `M${quadraticCurve.x},${quadraticCurve.y} Q${quadraticCurve.controlPointX},${quadraticCurve.cpy} ${quadraticCurve.endPointX},${quadraticCurve.endPointY}`
+    `M${quadraticCurve.x},${quadraticCurve.y} Q${quadraticCurve.controlPointX},${quadraticCurve.controlPointY} ${quadraticCurve.endPointX},${quadraticCurve.endPointY}`
   )
 }
 

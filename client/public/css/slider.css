@@ -12,13 +12,14 @@ body {
 
 .wrap {
   margin: 0 auto;
-  width: 450px;
+  width: 1023px;
 }
 
 .slider-container {
-  width: 100%;
+  width: 1023px;
   overflow-x: visible;
   overflow-y: visible;
+  align: center;
 }
 
 #range {
@@ -51,6 +52,7 @@ body {
 #value {
   font-family: sans-serif;
   color: white;
+  font-size: 20px;
 }
 
 svg#slider{

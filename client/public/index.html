@@ -38,11 +38,10 @@
 
 
   </div>
-  <h3 align='center'>Choose a date</h3>
   <div class="wrap">
   <div class="slider-container">
-    <input id="range" type="range" min="0" max="31449600" step="86400" required>
-    <svg id="slider" height="50" width="450" style="text-align:center">
+    <input id="range" type="range" min="0" max="31449600" step="86400"  required>
+    <svg id="slider" height="150" width="700" style="text-align:center">
       <defs>
     <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%"   stop-color="red"/>
@@ -54,7 +53,7 @@
       <stop offset="85.68%"   stop-color="violet"/>
     </linearGradient>
   </defs>
-      <circle id="ring" class="bounce" stroke-width="3.5" fill="none" r="24" />
+      <circle id="ring" class="bounce" stroke-width="5" fill="none" r="35" />
       <defs>
     <linearGradient id="ring" 0deg, 360deg>
       <stop offset="0%"   stop-color="#8f6B29"/>
@@ -62,12 +61,12 @@
       <stop offset="66.67%"   stop-color="#DF9F28"/>
     </linearGradient>
   </defs>
-      <path id="curve" stroke="url(#linear)" stroke-width="2" fill="none" align='center'/>
+      <path id="curve" stroke="url(#linear)" stroke-width="4" fill="none" align='center'/>
     </svg>
   </div>
 </div>
 <script src = "curved_slider.js"></script>
-<br>
+
 <div id="value"></div>
 <div class="button">
   <input type="submit" id="save" value="Click" align="center"/>
