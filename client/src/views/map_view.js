@@ -19,29 +19,14 @@ MapView.prototype.bindEvents = function () {
 
 PubSub.subscribe("Geocode:location-ready", (evt)=>{
   // this.container.innerHTML = "";
-
+  console.log('working map:', evt);
   position = evt.detail;
   mymap.setView(position ,13);
   var marker = L.marker(position).addTo(mymap);
 
 })
 
-  // console.log(position);
-  // var w2wIcon = L.icon({
-  //   iconUrl: 'https://storage.needpix.com/thumbs/heart-47946_1280.png',
-  //   shadowUrl: '',
-  //
-  //   iconSize:     [38, 55], // size of the icon
-  //   shadowSize:   [50, 64], // size of the shadow
-  //   iconAnchor:   [10, -10], // point of the icon which will correspond to marker's location
-  //   shadowAnchor: [0, 0],  // the same for the shadow
-  //   popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
-  // })
-  // L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("i am not a great icon");
-
-
-
-  PubSub.subscribe('FourSquare:hotel-ready', (evt)=> {
+  PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
   hotelPosition = evt.detail;
   console.log('this log out:', evt);
 
@@ -64,6 +49,18 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 // map.scrollWheelZoom.disable();
 // this.container.appendChild(mymap)
 
+// console.log(position);
+// var w2wIcon = L.icon({
+//   iconUrl: 'https://storage.needpix.com/thumbs/heart-47946_1280.png',
+//   shadowUrl: '',
+//
+//   iconSize:     [38, 55], // size of the icon
+//   shadowSize:   [50, 64], // size of the shadow
+//   iconAnchor:   [10, -10], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [0, 0],  // the same for the shadow
+//   popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+// })
+// L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("i am not a great icon");
 
 
 };
