@@ -6,21 +6,20 @@ const ResultView = function (container) {
   this.darkSky = new DarkSky();
 }
 
+// loads icons related to weather on that date
+// TODO: target results view, use grid & resize icons
 ResultView.prototype.bindEvents = function () {
-
-
 
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
 
-    console.log(evt.detail);
     this.container.innerHTML = "";
+
     const weatherReport = document.createElement("H3");
-
     const date = timeConverter(evt.detail.daily.data[0].time);
-
     const icon = evt.detail.daily.data[0].icon;
     weatherReport.textContent = `Typically on ${date}, the weather at this location is ${evt.detail.daily.data[0].summary}`;
     this.container.appendChild(weatherReport);
+
     const weatherIcon = document.createElement('img');
     weatherIcon.src = `images/weather_icons/${icon}.png`;
     this.container.appendChild(weatherIcon);
@@ -37,34 +36,28 @@ ResultView.prototype.bindEvents = function () {
     const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
     console.log("rain chance", evt);
 
-
     const rainLogo = document.createElement('img');
     rainLogo.src = 'images/weather_icons/rain_chance.png';
     this.container.appendChild(rainLogo);
+
     const rain = document.createElement("p");
     rain.textContent = `${rainChance}%`
     this.container.appendChild(rain);
+
     const sunsetLogo = document.createElement('img');
     sunsetLogo.src = 'images/weather_icons/sunset.png';
     this.container.appendChild(sunsetLogo);
 
-
     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
     const betterSunsetTime = timeConverterToHours(sunsetTime);
-    console.log(betterSunsetTime);
+
     const actualSunsetTime = document.createElement('p');
     actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
     this.container.appendChild(actualSunsetTime)
 
-
-
-
-
-
-
   })
 
-
+// should time converter, farenToCelsius & timeConverter be in their own js file?
   function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -75,17 +68,11 @@ ResultView.prototype.bindEvents = function () {
   var time = date + ' ' + month  ;
   return time;
 }
-console.log(timeConverter(0));
-
-
-
 
 function farenToCelsius(faren){
   const celsius = Math.round(((faren - 32)/1.8));
   return celsius;
 }
-
-
 
 function timeConverterToHours(UNIX_timestamp){
 var a = new Date(UNIX_timestamp * 1000);
@@ -96,18 +83,6 @@ var time = hour + ' ' + min + 'pm'  ;
 return time;
 }
 
-
-
-
 };
-
-
-
-
-
-
-
-
-
 
 module.exports = ResultView;

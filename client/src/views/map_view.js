@@ -1,19 +1,14 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-
 const MapView = function (container) {
   this.container = container;
-
 }
 
-
-
+// creates map on input from user
 MapView.prototype.bindEvents = function () {
 PubSub.subscribe("Geocode:location-ready", (evt)=>{
   this.container.innerHTML = "";
-  console.log(evt.detail);
   position = evt.detail;
-  console.log([position]);
   var mymap = L.map('mapid').setView(position, 13);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -34,22 +29,16 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
   })
   // L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("i am not a great icon");
 
-
-
 })
 
+// do we need this ---
 // var map = L.map('map-preview').setView([48.46477, 7.88112], 15);
 // mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 // L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; ' + mapLink + ' Contributors', maxZoom: 18,}).addTo(map);
 // var marker = L.marker([48.46477, 7.88112]).addTo(map);
 // map.scrollWheelZoom.disable();
-
-
-
 // this.container.appendChild(mymap)
 
 };
-
-
 
 module.exports = MapView;
