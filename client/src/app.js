@@ -5,6 +5,7 @@ const InputFormView = require('./views/input_form_view.js');
 const Geocode = require('./models/geocode.js')
 const FourSquare = require('./models/four_square.js');
 
+
 document.addEventListener('DOMContentLoaded', ()=> {
 
 const dateForm = document.querySelector('form');

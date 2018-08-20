@@ -24,19 +24,16 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 
 })
 
-  PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
+PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
 
-    for (var i = 0; i < evt.detail.response.venues.length; i++){
-      const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
-      const hotelName = evt.detail.response.venues[i].name;
-      var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelName}`);
+   for (var i = 0; i < evt.detail.response.venues.length; i++){
+     console.log("my log:", evt.detail.response.venues);
+     const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
+     const hotelName = evt.detail.response.venues[i].name;
+     var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelName}`);
 
-    }
+   }
 
-  // var marker = L.marker(hotelPosition).addTo(mymap);
-  // var marker = L.marker(hotelPosition).addTo(mymap);
-  // var marker = L.marker(hotelPosition).addTo(mymap);
-  // var marker = L.marker(hotelPosition).addTo(mymap);
 
 });
 
