@@ -26,6 +26,6 @@ const darkSky = new DarkSky();
 darkSky.bindEvents();
 
 const fourSquare = new FourSquare();
-fourSquare.getEventData();
+fourSquare.bindEvents();
 
 })

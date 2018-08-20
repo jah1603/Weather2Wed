@@ -8,12 +8,9 @@ const FourSquare = function (){
 FourSquare.prototype.bindEvents = function () {
    PubSub.subscribe("Geocode:location-ready", (evt)=>{
      const position = evt.detail;
-     this.getWeatherData(position);
+     this.getEventData(position);
    })
-   //call get weatherdata
- })
 
- //this.getWeatherData(location, seconds);
 };
 
 FourSquare.prototype.getEventData = function (location) {
@@ -22,7 +19,7 @@ FourSquare.prototype.getEventData = function (location) {
    request.get()
    .then((data)=>{
    this.data = data;
-
+   console.log(data);
    })
 
   };

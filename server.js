@@ -49,10 +49,10 @@ app.get('/longlat/:input/' , function(req, res){
 
 })
 
-app.get('/hotel/:location/' , function(req, res){
+app.get('/hotel/:location' , function(req, res){
   const location = req.params.location;
 
-  const url = `https://api.foursquare.com/v2/venues/search?client_id=${foufour_square_client_key}&client_secret=${four_square_secret_key}&v=20180323&limit=5&ll=${location}&query=hotel`;
+  const url = `https://api.foursquare.com/v2/venues/search?client_id=${four_square_client_key}&client_secret=${four_square_secret_key}&v=20180323&limit=5&ll=${location}&query=hotel`;
   console.log(url);
   fetch(url)
   .then(res =>  res.json())
