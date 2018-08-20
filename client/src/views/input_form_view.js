@@ -8,6 +8,8 @@ const InputFormView = function (form){
 InputFormView.prototype.bindEvents = function () {
   this.form.addEventListener('submit', (evt) => {
     this.handleSubmit(evt);
+    //require result_view
+    //
   });
 };
 
@@ -32,20 +34,10 @@ InputFormView.prototype.createSearch = function (form) {
 const secondsForUrl = this.convertDateToSecondsSince1970(form);
 };
 
-// Button:
-// InputFormView.prototype.button = function () {
-//   const btn = document.getElementById('save');
-//
-//   btn.addEventListener('click', function send () {
-//     btn.classList.add('is-loading');
-//
-//     // fake API call
-//     setTimeout( () => {
-//       btn.classList.add('is-success');
-//       btn.classList.remove('is-loading');
-//       btn.removeEventListener('click', send);
-//     }, 4000);
-//   });
+
+
+
+
 
 
 
