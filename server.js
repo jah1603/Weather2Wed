@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const fetch = require('node-fetch')
 const API_KEY = require('./api_key.js');
+const four_square_client_key = require('./four_square_client_key.js');
+const four_square_secret_key = require('./four_square_secret_key.js');
 
 var port = process.env.PORT || 8080;
 
@@ -27,7 +29,7 @@ app.get('/weather/:location/:date' , function(req, res){
 
 })
 
-// route for geograph map api 
+// route for geograph map api
 app.get('/longlat/:input/' , function(req, res){
     const input = req.params.input;
     var matches = input.match(/\d+/g);
@@ -47,6 +49,19 @@ app.get('/longlat/:input/' , function(req, res){
 
 })
 
+app.get('/hotel/:location/' , function(req, res){
+  const location = req.params.location;
+
+  const url = `https://api.foursquare.com/v2/venues/search?client_id=${foufour_square_client_key}&client_secret=${four_square_secret_key}&v=20180323&limit=5&ll=${location}&query=hotel`;
+  console.log(url);
+  fetch(url)
+  .then(res =>  res.json())
+  .then(data => res.json(data))
+  .catch((err) =>{
+    console.log(err);
+  })
+
+})
 
 
 app.listen(port, function(){

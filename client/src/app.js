@@ -3,6 +3,7 @@ const ResultView = require('./views/result_view.js');
 const MapView = require('./views/map_view.js');
 const InputFormView = require('./views/input_form_view.js');
 const Geocode = require('./models/geocode.js')
+const FourSquare = require('./models/four_square.js');
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
@@ -23,5 +24,8 @@ resultView.bindEvents();
 
 const darkSky = new DarkSky();
 darkSky.bindEvents();
+
+const fourSquare = new FourSquare();
+fourSquare.getEventData();
 
 })
