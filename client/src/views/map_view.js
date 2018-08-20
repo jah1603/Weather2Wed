@@ -21,20 +21,8 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
   // this.container.innerHTML = "";
 
   position = evt.detail;
-  console.log([position]);
-  // var mymap = L.map('mapid').setView(position, 13);
-  // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-  //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  //     maxZoom: 18,
-  //     id: 'mapbox.streets',
-  //     accessToken: 'pk.eyJ1Ijoic2ZyMTk4MSIsImEiOiJjamt3dXN4ZjQwMXhqM3Zuc3k2YzIzZ2NhIn0.seZTJewmJSw7dqlgaEV6-Q'
-  // }).addTo(mymap);
-
 
   mymap.setView(position ,13);
-
-
-
 
   var marker = L.marker(position).addTo(mymap);
 
