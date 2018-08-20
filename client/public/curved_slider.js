@@ -52,7 +52,7 @@ const updateSelectorRingPositionUponInput = percentageAlongCurve => {
    var month = months[dateToDisplay.getMonth()];
    var date = dateToDisplay.getDate();
 
-   console.log(dateToDisplay);
+   
 
    const formattedDate = `Date selected: ${date} ${month}`;
 
@@ -64,7 +64,7 @@ const updateSelectorRingPositionUponInput = percentageAlongCurve => {
 
   ringElement.setAttribute('cx', position.x)
   ringElement.setAttribute('cy', position.y)
-  console.log(ringElement);
+
 }
 
 
@@ -77,12 +77,12 @@ const initialSelectorRingPosition = percentageAlongCurve => {
 
   ringElement.setAttribute('cx', position.x) //Sets selector ring X position
   ringElement.setAttribute('cy', position.y) //Sets selector ring Y position
-  console.log(ringElement);
+
 }
 
 // Updates the position of the selector ring in response to the user clicking and dragging it
 const moveSelectorRing = e => {
-  console.log(e.target.value)
+
   percentageAlongCurve = e.target.value / 31536000
   updateSelectorRingPositionUponInput(percentageAlongCurve)
 }
