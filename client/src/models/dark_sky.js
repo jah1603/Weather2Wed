@@ -66,7 +66,7 @@ DarkSky.prototype.getRainProbability = function (location, seconds) {
       request.get()
       .then((data)=>{
       this.data = data;
-      rainChanceArray.push(this.data.daily.data[0].precipProbability);
+       rainChanceArray.push(this.data.daily.data[0].precipProbability);
        })
      }
 
