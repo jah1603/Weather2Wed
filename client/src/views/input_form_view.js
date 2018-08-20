@@ -23,7 +23,7 @@ InputFormView.prototype.handleSubmit = function (evt) {
 
 // changes date into seconds since epoch time
 InputFormView.prototype.convertDateToSecondsSince1970 = function (form) {
-  const newYearsDay2019 = 1546350923;
+  const newYearsDay2019 = 1546300800;
   const dateSearched = form.range.valueAsNumber + newYearsDay2019; // time in seconds since 1970
   PubSub.publish('InputFormView:date-ready', dateSearched);
 };

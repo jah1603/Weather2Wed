@@ -40,7 +40,9 @@ const precipProbArray = this.getRainProbability(location,seconds);
 //
 // }
 
-
+DarkSky.prototype.arrayElementNotUndefined = function (element) {
+  return element !== undefined;
+};
 
 DarkSky.prototype.getRainProbability = function (location, seconds) {
   const secondsInYear = 31536000
@@ -58,26 +60,44 @@ DarkSky.prototype.getRainProbability = function (location, seconds) {
 
 
   var rainChanceArray = [];
-   for (i = startPoint2015; i <= unixYears; i+=secondsInYear ){
+   for (i = startPoint2015; i <= Date.now()/1000; i+= secondsInYear ){
      const url = `http://localhost:8080/weather/${location}/${i}`
       const request = new Request (url);
       request.get()
       .then((data)=>{
       this.data = data;
       rainChanceArray.push(this.data.daily.data[0].precipProbability);
+       })
+     }
 
-       });
+     // .then((data) =>{
+     for (var i = 0; i < (rainChanceArray.length - 1); i++){
+       if (rainChanceArray[i] !== undefined){
+         console.log(rainChanceArray[i]);
+       }
+     }
+   // }
+   // );
 
-     };
-console.log(rainChanceArray);
-var total = 0;
-for(var z = 0; z < rainChanceArray.length; z++) {
-   total += rainChanceArray[z];
-}
-var avg = total / rainChanceArray.length;
-const rainProbability = avg * 100;
 
-console.log("rain probability is ",rainProbability);
+
+console.log("rain chance:", rainChanceArray);
+
+
+// const stuff = function(){
+// for (var i = 0; i < (rainChanceArray.length - 1); i++){
+//   console.log("Hi");
+//   if (rainChanceArray[i] !== undefined){
+//     console.log("Hi2");
+//   }
+// }
+// }
+
+// reduce(reducer, 0);
+
+
+
+
 
 
 
