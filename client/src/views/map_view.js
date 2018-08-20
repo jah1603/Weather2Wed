@@ -21,9 +21,7 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
   // this.container.innerHTML = "";
 
   position = evt.detail;
-
   mymap.setView(position ,13);
-
   var marker = L.marker(position).addTo(mymap);
 
 })
@@ -43,8 +41,9 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 
 
 
-PubSub.subcribe('FourSquare:hotel-ready'(evt)=>{
+  PubSub.subscribe('FourSquare:hotel-ready', (evt)=> {
   hotelPosition = evt.detail;
+  console.log('this log out:', evt);
 
   mymap.setView(hotelPosition ,13);
 
@@ -54,18 +53,7 @@ PubSub.subcribe('FourSquare:hotel-ready'(evt)=>{
   var marker = L.marker(hotelPosition).addTo(mymap);
   var marker = L.marker(hotelPosition).addTo(mymap);
 
-}
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 // do we need this ---
