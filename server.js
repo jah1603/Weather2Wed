@@ -46,7 +46,7 @@ app.get('/longlat/:input/' , function(req, res){
   .catch((err) =>{
     console.log(err);
   })
-
+   
 })
 
 app.get('/hotel/:location' , function(req, res){
