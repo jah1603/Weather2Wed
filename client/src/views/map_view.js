@@ -18,8 +18,6 @@ MapView.prototype.bindEvents = function () {
 
 
 PubSub.subscribe("Geocode:location-ready", (evt)=>{
-  // this.container.innerHTML = "";
-  console.log('working map:', evt);
   position = evt.detail;
   mymap.setView(position ,13);
   var marker = L.marker(position).addTo(mymap);
@@ -27,16 +25,18 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 })
 
   PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
-  hotelPosition = evt.detail;
-  console.log('this log out:', evt);
 
-  mymap.setView(hotelPosition ,13);
+    for (var i = 0; i < evt.detail.response.venues.length; i++){
+      const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
+      const hotelName = evt.detail.response.venues[i].name;
+      var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelName}`);
 
-  var marker = L.marker(hotelPosition).addTo(mymap);
-  var marker = L.marker(hotelPosition).addTo(mymap);
-  var marker = L.marker(hotelPosition).addTo(mymap);
-  var marker = L.marker(hotelPosition).addTo(mymap);
-  var marker = L.marker(hotelPosition).addTo(mymap);
+    }
+
+  // var marker = L.marker(hotelPosition).addTo(mymap);
+  // var marker = L.marker(hotelPosition).addTo(mymap);
+  // var marker = L.marker(hotelPosition).addTo(mymap);
+  // var marker = L.marker(hotelPosition).addTo(mymap);
 
 });
 

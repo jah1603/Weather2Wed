@@ -19,7 +19,6 @@ FourSquare.prototype.getEventData = function (location) {
    request.get()
    .then((data)=>{
    this.data = data;
-   console.log('this data:', data);
 
    PubSub.publish('FourSquare:hotel-ready', this.data);
    })
