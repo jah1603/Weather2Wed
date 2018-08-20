@@ -25,6 +25,10 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
   mymap.setView(position ,13);
 
   var marker = L.marker(position).addTo(mymap);
+  var marker = L.marker(position).addTo(mymap);
+  var marker = L.marker(position).addTo(mymap);
+  var marker = L.marker(position).addTo(mymap);
+  var marker = L.marker(position).addTo(mymap);
 
 
   console.log(position);
