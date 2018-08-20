@@ -9,7 +9,7 @@ const MapView = function (container) {
 
 
 MapView.prototype.bindEvents = function () {
-  
+
   var mymap = L.map('mapid').setView([55.952535,-3.191916], 13);
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -35,7 +35,13 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 
 
   mymap.setView(position ,13);
+
+
+
+
   var marker = L.marker(position).addTo(mymap);
+
+  
   console.log(position);
   var w2wIcon = L.icon({
     iconUrl: 'https://storage.needpix.com/thumbs/heart-47946_1280.png',

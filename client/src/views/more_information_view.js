@@ -41,10 +41,6 @@ moreInfoContainer.appendChild(tempSummary);
 
 
 
-//
-// const humidityLogo = document.createElement('img');
-// humidityLogo.src = 'images/weather_icons/moon.png';
-// moreInfoContainer.appendChild(humidityLogo);
 
 const humidity = document.createElement('p');
 humidity.textContent = `humidity: ${this.weatherData.daily.data[0].humidity}`;
