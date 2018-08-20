@@ -54,7 +54,7 @@ const updateSelectorRingPositionUponInput = percentageAlongCurve => {
 
    console.log(dateToDisplay);
 
-   const formattedDate = date + ' ' + month;
+   const formattedDate = `Date selected: ${date} ${month}`;
 
   // Prints out the date currently selected (but not necessarily submitted) below the curved date slider input, providing feedback to the user
   document.querySelector('#value').textContent = formattedDate;
