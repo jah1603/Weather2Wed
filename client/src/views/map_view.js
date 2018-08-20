@@ -30,8 +30,8 @@ PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
      console.log("my log:", evt.detail.response.venues);
      const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
      const hotelName = evt.detail.response.venues[i].name;
-     var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelName}`);
-
+     const hotelAddress = evt.detail.response.venues[i].location.address;
+     var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelName}, ${hotelAddress}`);
    }
 
 
