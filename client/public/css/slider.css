@@ -75,6 +75,11 @@ div#value{
   text-align: center;
 }
 
+div#slideLocation{
+  text-align:center;
+  color: white;
+}
+
 @keyframes bounce {
  0%, 20%, 60%, 100% {
    -webkit-transform: translateY(0);

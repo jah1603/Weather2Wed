@@ -54,10 +54,11 @@ const updateSelectorRingPositionUponInput = percentageAlongCurve => {
 
    console.log(dateToDisplay);
 
-   const formattedDate = `Date selected: ${date} ${month}`;
+   const formattedDate = `${date} ${month}`;
 
   // Prints out the date currently selected (but not necessarily submitted) below the curved date slider input, providing feedback to the user
   document.querySelector('#value').textContent = formattedDate;
+
 
   document.querySelector('#value').style.webkitAnimationPlayState = "paused";
   document.querySelector('#value').style.animationPlayState = "paused";
@@ -74,6 +75,8 @@ const initialSelectorRingPosition = percentageAlongCurve => {
 	let position = getBezierQuadraticEquationXYCoordsAtPercent(quadraticCurve, percentageAlongCurve) //Finds the coordinates of the ring's starting position
 
   document.querySelector('#value').textContent = "Slide ring to set a date";
+    document.querySelector('#slideLocation').textContent = "Enter a location";
+
 
   ringElement.setAttribute('cx', position.x) //Sets selector ring X position
   ringElement.setAttribute('cy', position.y) //Sets selector ring Y position
