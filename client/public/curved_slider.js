@@ -54,7 +54,30 @@ const updateSelectorRingPositionUponInput = percentageAlongCurve => {
 
    console.log(dateToDisplay);
 
-   const formattedDate = `${date} ${month}`;
+   if (date == 3) {
+    var formattedDate = `${date}rd of ${month}`
+} else if (date == 2) {
+    var formattedDate = `${date}nd of ${month}`
+}
+else if (date == 1) {
+    var formattedDate = `${date}st of ${month}`
+}
+else if (date == 21) {
+    var formattedDate = `${date}st of ${month}`
+}
+else if (date == 31) {
+    var formattedDate = `${date}st of ${month}`
+}
+else if (date == 22) {
+    var formattedDate = `${date}nd of ${month}`
+}
+else if (date == 23) {
+    var formattedDate = `${date}rd of ${month}`
+}
+  else {
+    var formattedDate = `${date}th of ${month}`
+}
+   // const formattedDate = `${date} ${month}`;
 
   // Prints out the date currently selected (but not necessarily submitted) below the curved date slider input, providing feedback to the user
   document.querySelector('#value').textContent = formattedDate;
