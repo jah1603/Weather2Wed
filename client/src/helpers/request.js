@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const Request = function (url) {
   this.url = url;
 };
+
 //fetch(request, {mode: 'cors'});
 Request.prototype.get = function (onComplete) {
   return fetch(this.url)
@@ -25,7 +26,5 @@ Request.prototype.get = function (onComplete) {
    });
    xhr.send();
  };
-
-
 
 module.exports = Request;

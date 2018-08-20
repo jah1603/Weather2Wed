@@ -11,6 +11,7 @@ app.get('/', function(req, res){
   res.sendFile('index.html');
 });
 
+// route for darksky data overcoming CORS issue
 app.get('/weather/:location/:date' , function(req, res){
     const location = req.params.location;
     const date = req.params.date;
@@ -26,6 +27,7 @@ app.get('/weather/:location/:date' , function(req, res){
 
 })
 
+// route for geograph map api 
 app.get('/longlat/:input/' , function(req, res){
     const input = req.params.input;
     var matches = input.match(/\d+/g);

@@ -3,50 +3,50 @@ const curvedSlider = function(){
   this.data = null;
 }
 
-const curve = {
+// This model is responsible for tracing out the SVG (scalable vector graphic) date input slider which takes the form of a quadratic curve complete with a selector ring which is used to set the desired date. This way, dates can be entered through a single user action (dragging the selector ring) instead of scrolling through a calendar, simplifying the use of the app.
+
+
+// Defines the parameters of the quadratic curve along which the selector ring will travel
+const quadraticCurve = {
   x: 0,
-  y: 50,
-  cpx: 250,
-  cpy: 0,
-  endx: 450,
-  endy: 50
+  y: -50,
+  controlPointX: 350,
+  controlPointY: -350,
+  endPointX: 700,
+  endPointY: -50
 }
-let percent = 0
+let percentageAlongCurve = 0.50 // Point on the curve where the selector ring sits initially
 
-let curveEl = document.querySelector('#curve')
-let thumbEl = document.querySelector('#thumb')
+// Creates HTML elements for the curve and selector ring
+const quadraticCurveElement = document.querySelector('#curve')
+const ringElement = document.querySelector('#ring')
 
-// get the XY at the specified percentage along the curve
-const getQuadraticBezierXYatPercent = (curve, percent) => {
-  let x = Math.pow(1 - percent, 2) * curve.x + 2 * (1 - percent) * percent
-    * curve.cpx + Math.pow(percent, 2) * curve.endx
-  let y = Math.pow(1 - percent, 2) * curve.y + 2 * (1 - percent) * percent
-    * curve.cpy + Math.pow(percent, 2) * curve.endy
+// Returns the X and Y coordinates at the stated percentage along the curve
+const getBezierQuadraticEquationXYCoordsAtPercent = (quadraticCurve, percentageAlongCurve) => {
+  let x = Math.pow(1 - percentageAlongCurve, 2) * quadraticCurve.x + 2 * (1 - percentageAlongCurve) * percentageAlongCurve
+    * quadraticCurve.controlPointX + Math.pow(percentageAlongCurve, 2) * quadraticCurve.endPointX
+  let y = Math.pow(1 - percentageAlongCurve, 2) * quadraticCurve.y + 2 * (1 - percentageAlongCurve) * percentageAlongCurve
+    * quadraticCurve.controlPointY + Math.pow(percentageAlongCurve, 2) * quadraticCurve.endPointY
 
   return { x, y }
 }
 
-const drawCurve = () => {
-  curveEl.setAttribute(
+const plotQuadraticCurve = () => {
+  //Sets attributes of the SVG path element, where M means 'moveto' and Q denotes a quadratic Bézier equation
+  quadraticCurveElement.setAttribute(
     'd',
-    `M${curve.x},${curve.y} Q${curve.cpx},${curve.cpy} ${curve.endx},${curve.endy}`
+    `M${quadraticCurve.x},${quadraticCurve.y} Q${quadraticCurve.controlPointX},${quadraticCurve.controlPointY} ${quadraticCurve.endPointX},${quadraticCurve.endPointY}`
   )
 }
 
-function timeConverter(UNIX_timestamp){
- var a = new Date(UNIX_timestamp * 1000);
- var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
- var month = months[a.getMonth()];
- var date = a.getDate();
- var time = date + ' ' + month  ;
- return time;
-}
+// Automatically moves the selector ring in response to user input
+const updateSelectorRingPositionUponInput = percentageAlongCurve => {
 
-const drawThumb = percent => {
+	let position = getBezierQuadraticEquationXYCoordsAtPercent(quadraticCurve, percentageAlongCurve)
 
-	let pos = getQuadraticBezierXYatPercent(curve, percent)
+// Mapping the value of the range input to the dates in one year based on the Julian calendar, using UNIX time
 
-  const seconds = 1514818906 + percent * 31536000;
+  const seconds = 1514818906 + percentageAlongCurve * 31536000;
   const dateToDisplay = new Date(seconds * 1000);
    var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
    var month = months[dateToDisplay.getMonth()];
@@ -54,29 +54,47 @@ const drawThumb = percent => {
 
    console.log(dateToDisplay);
 
-   const formattedDate = date + ' ' + month;
+   const formattedDate = `Date selected: ${date} ${month}`;
 
-  document.getElementById('value').textContent = formattedDate;
+  // Prints out the date currently selected (but not necessarily submitted) below the curved date slider input, providing feedback to the user
+  document.querySelector('#value').textContent = formattedDate;
 
-  thumbEl.setAttribute('cx', pos.x)
-  thumbEl.setAttribute('cy', pos.y)
-  console.log(thumbEl);
+  document.querySelector('#value').style.webkitAnimationPlayState = "paused";
+  document.querySelector('#value').style.animationPlayState = "paused";
+
+  ringElement.setAttribute('cx', position.x)
+  ringElement.setAttribute('cy', position.y)
+  console.log(ringElement);
 }
 
-const moveThumb = e => {
+
+// Defines the default (i.e. starting) position of the selector ring and displays an explanatory prompt to the user telling them how to set the date
+const initialSelectorRingPosition = percentageAlongCurve => {
+
+	let position = getBezierQuadraticEquationXYCoordsAtPercent(quadraticCurve, percentageAlongCurve) //Finds the coordinates of the ring's starting position
+
+  document.querySelector('#value').textContent = "Slide ring to set a date";
+
+  ringElement.setAttribute('cx', position.x) //Sets selector ring X position
+  ringElement.setAttribute('cy', position.y) //Sets selector ring Y position
+  console.log(ringElement);
+}
+
+// Updates the position of the selector ring in response to the user clicking and dragging it
+const moveSelectorRing = e => {
   console.log(e.target.value)
-  percent = e.target.value / 31536000
-  drawThumb(percent)
+  percentageAlongCurve = e.target.value / 31536000
+  updateSelectorRingPositionUponInput(percentageAlongCurve)
 }
 
-// event on the range input
-let rangeEl = document.getElementById('range')
-rangeEl.value = percent * 100
-rangeEl.addEventListener('input', moveThumb)
+// Adds an event listener which updates the ring selector's position whenever the input value of the date range changes (i.e. when the user slides between different dates)
+const rangeElement = document.querySelector('#range')
+rangeElement.value = percentageAlongCurve * 100
+rangeElement.addEventListener('input', moveSelectorRing)
 
 
-// init
-drawCurve()
-drawThumb(percent)
+// Initializes the curve and selector ring, the latter being updated constantly in response to user input
+plotQuadraticCurve()
+initialSelectorRingPosition(percentageAlongCurve)
 
 })

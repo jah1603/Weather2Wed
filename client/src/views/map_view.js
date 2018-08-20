@@ -1,13 +1,10 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-
 const MapView = function (container) {
   this.container = container;
-
 }
 
-
-
+// creates map on input from user
 MapView.prototype.bindEvents = function () {
 
   var mymap = L.map('mapid').setView([55.952535,-3.191916], 13);
@@ -41,7 +38,7 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 
   var marker = L.marker(position).addTo(mymap);
 
-  
+
   console.log(position);
   var w2wIcon = L.icon({
     iconUrl: 'https://storage.needpix.com/thumbs/heart-47946_1280.png',
@@ -55,22 +52,16 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
   })
   // L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("i am not a great icon");
 
-
-
 })
 
+// do we need this ---
 // var map = L.map('map-preview').setView([48.46477, 7.88112], 15);
 // mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 // L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; ' + mapLink + ' Contributors', maxZoom: 18,}).addTo(map);
 // var marker = L.marker([48.46477, 7.88112]).addTo(map);
 // map.scrollWheelZoom.disable();
-
-
-
 // this.container.appendChild(mymap)
 
 };
-
-
 
 module.exports = MapView;

@@ -12,13 +12,16 @@ body {
 
 .wrap {
   margin: 0 auto;
-  width: 450px;
+  width: 700px;
+  height: 200px;
 }
 
 .slider-container {
-  width: 100%;
+  width: 700px;
+  height: 200px;
   overflow-x: visible;
   overflow-y: visible;
+  align: center;
 }
 
 #range {
@@ -27,8 +30,10 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  width: 100%;
-  top: 50px;
+  left: -70px;
+  width: 120%;
+  top: -20px;
+  height: 120%;
   opacity: 0;
   color: gold;
   background-color: gold;
@@ -36,33 +41,31 @@ body {
 #range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 40px;
-  height: 50px;
+  width: 100px;
+  height: 240px;
   background: #ccc;
   cursor: pointer;
 }
 #range::-moz-range-thumb {
-  width: 40px;
-  height: 50px;
+  width: 100px;
+  height: 240px;
   background: #ccc;
   cursor: pointer;
 }
 
 #value {
   font-family: sans-serif;
-  color: gold;
+  color: white;
+  font-size: 20px;
 }
 
 svg#slider{
   display: block;
-  margin:auto;
   overflow: visible;
 }
 
 path#curve{
   display: block;
-  position: relative;
-  left:30%;
   overflow: auto;
   overflow-x: visible;
   overflow-y: visible;
@@ -70,4 +73,54 @@ path#curve{
 
 div#value{
   text-align: center;
+}
+
+@keyframes bounce {
+ 0%, 20%, 60%, 100% {
+   -webkit-transform: translateY(0);
+   transform: translateY(0);
+ }
+ 40% {
+   -webkit-transform: translateY(-10px);
+   transform: translateY(-10px);
+ }
+ 80% {
+   -webkit-transform: translateY(-5px);
+   transform: translateY(-5px);
+ }
+}
+/* @keyframes shine{
+ 10% {
+   opacity: 0.8;
+   top: -30%;
+   left: -30%;
+   transition-property: left, top, opacity;
+   transition-duration: 0.7s, 0.7s, 1s;
+   transition-timing-function: ease;
+ }
+ 100% {
+   opacity: 0.6;
+   top: -30%;
+   left: -30%;
+   transition-property: left, top, opacity;
+ }
+} */
+
+@-webkit-keyframes sparkle
+{
+  0%   { stroke: #ffd710; }
+  30%  { stroke: #ffd720; }
+  40%  { stroke: #ffd680; }
+  60%  { stroke: #ffd740; }
+  100% { stroke: #ffd780; }
+}
+
+/* @keyframes rotate {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+} */
+
+#ring {
+   stroke: #ffd700;
+   animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
