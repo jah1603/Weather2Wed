@@ -20,8 +20,9 @@ FourSquare.prototype.getEventData = function (location) {
    .then((data)=>{
    this.data = data;
    console.log('this data:', data);
-   })
+
    PubSub.publish('FourSquare:hotel-ready', this.data);
+   })
   };
 
   module.exports = FourSquare;
