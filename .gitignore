@@ -3,3 +3,5 @@ npm-debug.log
 bundle.js
 api_key.js
 geo_key.js
+four_square_secret_key.js
+four_square_client_key.js

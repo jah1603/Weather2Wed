@@ -18,29 +18,28 @@ MapView.prototype.bindEvents = function () {
 
 
 PubSub.subscribe("Geocode:location-ready", (evt)=>{
-  // this.container.innerHTML = "";
-
   position = evt.detail;
-
   mymap.setView(position ,13);
-
   var marker = L.marker(position).addTo(mymap);
 
-
-  console.log(position);
-  var w2wIcon = L.icon({
-    iconUrl: 'https://storage.needpix.com/thumbs/heart-47946_1280.png',
-    shadowUrl: '',
-
-    iconSize:     [38, 55], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [10, -10], // point of the icon which will correspond to marker's location
-    shadowAnchor: [0, 0],  // the same for the shadow
-    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
-  })
-  // L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("i am not a great icon");
-
 })
+
+  PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
+
+    for (var i = 0; i < evt.detail.response.venues.length; i++){
+      const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
+      const hotelName = evt.detail.response.venues[i].name;
+      var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelName}`);
+
+    }
+
+  // var marker = L.marker(hotelPosition).addTo(mymap);
+  // var marker = L.marker(hotelPosition).addTo(mymap);
+  // var marker = L.marker(hotelPosition).addTo(mymap);
+  // var marker = L.marker(hotelPosition).addTo(mymap);
+
+});
+
 
 // do we need this ---
 // var map = L.map('map-preview').setView([48.46477, 7.88112], 15);
@@ -49,6 +48,20 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
 // var marker = L.marker([48.46477, 7.88112]).addTo(map);
 // map.scrollWheelZoom.disable();
 // this.container.appendChild(mymap)
+
+// console.log(position);
+// var w2wIcon = L.icon({
+//   iconUrl: 'https://storage.needpix.com/thumbs/heart-47946_1280.png',
+//   shadowUrl: '',
+//
+//   iconSize:     [38, 55], // size of the icon
+//   shadowSize:   [50, 64], // size of the shadow
+//   iconAnchor:   [10, -10], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [0, 0],  // the same for the shadow
+//   popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+// })
+// L.marker(position, {icon: w2wIcon}).addTo(mymap).bindPopup("i am not a great icon");
+
 
 };
 
