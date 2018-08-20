@@ -11,7 +11,7 @@ const quadraticCurve = {
   x: 0,
   y: -50,
   controlPointX: 350,
-  controlPointY: -350,
+  controlPointY: -150,
   endPointX: 700,
   endPointY: -50
 }
@@ -74,9 +74,7 @@ const initialSelectorRingPosition = percentageAlongCurve => {
 
 	let position = getBezierQuadraticEquationXYCoordsAtPercent(quadraticCurve, percentageAlongCurve) //Finds the coordinates of the ring's starting position
 
-  document.querySelector('#value').textContent = "Slide ring to set a date";
-    document.querySelector('#slideLocation').textContent = "Enter a location";
-
+  document.querySelector('#value').textContent = "Slide to select your wedding date";
 
   ringElement.setAttribute('cx', position.x) //Sets selector ring X position
   ringElement.setAttribute('cy', position.y) //Sets selector ring Y position

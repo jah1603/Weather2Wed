@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: #3d495b;
   overflow-x:visible;
   overflow-y:visible;
 }
@@ -13,12 +13,12 @@ body {
 .wrap {
   margin: 0 auto;
   width: 700px;
-  height: 200px;
+  height: 100px;
 }
 
 .slider-container {
   width: 700px;
-  height: 200px;
+  height: 100px;
   overflow-x: visible;
   overflow-y: visible;
   align: center;
@@ -75,10 +75,6 @@ div#value{
   text-align: center;
 }
 
-div#slideLocation{
-  text-align:center;
-  color: white;
-}
 
 @keyframes bounce {
  0%, 20%, 60%, 100% {

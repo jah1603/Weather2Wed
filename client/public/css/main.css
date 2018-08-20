@@ -14,11 +14,18 @@ flex-direction: column;
 }
 
 #location {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center; */
   text-align: center;
+  position: relative;
+  left: 50%;
+  width: 350px;
+  height: 30px;
+  margin-left: -175px;
+  font-size: 15px;
 }
 
 /* .slide-bar{
@@ -45,8 +52,7 @@ flex-direction: column;
   /* height: 70vw ; } */
 
 body{
-  background: url('https://mavsocial-wpengine.netdna-ssl.com/wp-content/uploads/2016/10/MavBackground-Grey-Geo.png') no-repeat center center fixed;
- -webkit-background-size: cover;
+  background-color: DarkBlue;
  -moz-background-size: cover;
  -o-background-size: cover;
  background-size: cover;
@@ -81,7 +87,8 @@ text-align: center;
 }
 
 .button {
-  align: center;
+  left: 50%;
+
   /* position: absolute;
   top:50%;
   left:50%;
@@ -90,6 +97,9 @@ text-align: center;
   width: 130px;
   height: 40px;
   text-align: center;
+  position: relative;
+  left: 50%;
+  margin-left: -65px;
 }
 
 
