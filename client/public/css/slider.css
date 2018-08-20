@@ -81,12 +81,12 @@ div#value{
    transform: translateY(0);
  }
  40% {
-   -webkit-transform: translateY(-10px);
-   transform: translateY(-10px);
- }
- 80% {
    -webkit-transform: translateY(-5px);
    transform: translateY(-5px);
+ }
+ 80% {
+   -webkit-transform: translateY(-2.5px);
+   transform: translateY(-2.5px);
  }
 }
 /* @keyframes shine{
@@ -106,14 +106,14 @@ div#value{
  }
 } */
 
-@-webkit-keyframes sparkle
+/* @-webkit-keyframes sparkle
 {
   0%   { stroke: #ffd710; }
   30%  { stroke: #ffd720; }
   40%  { stroke: #ffd680; }
   60%  { stroke: #ffd740; }
   100% { stroke: #ffd780; }
-}
+} */
 
 /* @keyframes rotate {
     0% {transform:rotate(0deg);}
@@ -121,6 +121,6 @@ div#value{
 } */
 
 #ring {
-   stroke: #ffd700;
+   stroke: forestgreen;
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
