@@ -89,7 +89,7 @@ div#value{
    transform: translateY(-5px);
  }
 }
-@keyframes shine{
+/* @keyframes shine{
  10% {
    opacity: 0.8;
    top: -30%;
@@ -104,7 +104,7 @@ div#value{
    left: -30%;
    transition-property: left, top, opacity;
  }
-}
+} */
 
 @-webkit-keyframes sparkle
 {
