@@ -17,8 +17,9 @@ app.get('/weather/:location/:date' , function(req, res){
     const location = req.params.location;
     const date = req.params.date;
 
+
   const url = `https://api.darksky.net/forecast/${API_KEY}/${location},${date}`;
-//  console.log(url);
+  console.log(url);
   fetch(url)
   .then(res =>  res.json())
   .then(data => res.json(data))
