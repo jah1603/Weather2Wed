@@ -129,7 +129,7 @@ ResultView.prototype.bindEvents = function () {
 // should time converter, farenToCelsius & timeConverter be in their own js file?
   function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var month = months[a.getMonth()];
   var date = a.getDate();
   var hour = a.getHours();
