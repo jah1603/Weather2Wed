@@ -29,9 +29,18 @@ PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
    for (var i = 0; i < evt.detail.response.venues.length; i++){
      console.log("my log:", evt.detail.response.venues);
      const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
+     var hotelDetails = '';
      const hotelName = evt.detail.response.venues[i].name;
+     hotelDetails += `${hotelName} `;
+     if (evt.detail.response.venues[i].location.address){
      const hotelAddress = evt.detail.response.venues[i].location.address;
-     var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelName}, ${hotelAddress}`);
+     hotelDetails += `${hotelAddress} `;
+   }
+     if (evt.detail.response.venues[i].location.postalCode){
+     const hotelPostcode = evt.detail.response.venues[i].location.postalCode;
+     hotelDetails += `${hotelPostcode}`
+   }
+     var marker = L.marker(hotelPosition).addTo(mymap).bindPopup(`${hotelDetails}`);
    }
 
 
