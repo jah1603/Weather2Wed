@@ -31,9 +31,13 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
 
   // If the user searches for a month of the year which comes before the current month in the calendar, this method automatically converts it into the same month and day one year ahead. This means that the moon phase will always predict future data, no matter when the app is used.
 
-  return dateForCalculations.valueOf() / (1000*60*60*24) - 0.5 + this.year1970InJulianCalendarDays;
+  //The long term in brackets is the number of milliseconds in a day.
 
-  // Must convert the date into calendar days since the year 2000, as this is the year that the data on planet positions was taken from.
+  return (dateForCalculations.valueOf() / (1000*60*60*24) - 0.5 + this.year1970InJulianCalendarDays) - 2451545;
+
+  // We must convert the date into calendar days since the year 2000, as this is the year that the data on planet positions was taken from.
+
+  // 2451545 is the year 2000 in Julian days.
 };
 
 moonPhaseMethods.prototype.calculateMoonPhase = function (date) {
