@@ -10,6 +10,7 @@ const GEO_KEY = require('./geo_key.js');
 var port = process.env.PORT || 8080;
 
 app.use(express.static('client/public'))
+app.use(express.static('client/src'))
 
 app.get('/', function(req, res){
   res.sendFile('index.html');
