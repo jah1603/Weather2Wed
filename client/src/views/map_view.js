@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
+const LEAFLET_TOKEN = require('../../../leaflet_token.js');
 
 const MapView = function (container) {
   this.container = container;
@@ -13,7 +14,7 @@ MapView.prototype.bindEvents = function () {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
       id: 'mapbox.streets',
-      accessToken: 'pk.eyJ1Ijoic2ZyMTk4MSIsImEiOiJjamt3dXN4ZjQwMXhqM3Zuc3k2YzIzZ2NhIn0.seZTJewmJSw7dqlgaEV6-Q'
+      accessToken: LEAFLET_TOKEN
   }).addTo(this.map);
 
 

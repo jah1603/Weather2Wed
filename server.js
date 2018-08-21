@@ -4,6 +4,8 @@ const fetch = require('node-fetch')
 const API_KEY = require('./api_key.js');
 const four_square_client_key = require('./four_square_client_key.js');
 const four_square_secret_key = require('./four_square_secret_key.js');
+const GEO_KEY = require('./geo_key.js');
+
 
 var port = process.env.PORT || 8080;
 
@@ -35,9 +37,9 @@ app.get('/longlat/:input/' , function(req, res){
     var matches = input.match(/\d+/g);
 
     if (matches === null){
-      var url = `http://api.geograph.org.uk/syndicator.php?key=[1d6edee685]&text=${input}&format=JSON`
+      var url = `http://api.geograph.org.uk/syndicator.php?key=[GEO_KEY]&text=${input}&format=JSON`
     }else{
-      var url = `http://api.geograph.org.uk/syndicator.php?key=[1d6edee685]&location=${input}&format=JSON`;
+      var url = `http://api.geograph.org.uk/syndicator.php?key=[GEO_KEY]&location=${input}&format=JSON`;
     }
 
   fetch(url)
@@ -46,7 +48,7 @@ app.get('/longlat/:input/' , function(req, res){
   .catch((err) =>{
     console.log(err);
   })
-   
+
 })
 
 app.get('/hotel/:location' , function(req, res){
