@@ -42,7 +42,7 @@ ResultView.prototype.bindEvents = function () {
 
     const header = document.createElement('h2');
     const date = timeConverter(evt.detail.daily.data[0].time);
-    header.textContent = `Typically on ${date}, the weather at this location is ${evt.detail.daily.data[0].summary}`;
+    header.textContent = `Typical weather for ${date}: ${evt.detail.daily.data[0].summary}`;
     modalHeader.appendChild(header);
     // END CREATE MODAL CONTENT
 
