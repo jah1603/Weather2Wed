@@ -15,16 +15,19 @@
 
 /* Modal Content */
 .modal-content {
+    position: relative;
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    font-family: 'Raleway', sans-serif;
 }
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -32,9 +35,23 @@
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: red;
     text-decoration: none;
     cursor: pointer;
+}
+
+.modal-header {
+   padding: 2px 16px;
+   background-color: #4aceb5;
+   color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+   padding: 2px 16px;
+   background-color:  #4aceb5;
+   color: white;
 }
 /* ABOVE THIS LINE IS MODAL BOX  */
 
@@ -147,6 +164,8 @@ text-align: center;
 }
 
 #save:hover{
+  /* border-color: #4aceb5; */
+}
 
 
 }
