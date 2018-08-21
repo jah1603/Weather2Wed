@@ -132,9 +132,34 @@ ResultView.prototype.bindEvents = function () {
   var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   var month = months[a.getMonth()];
   var date = a.getDate();
+
+  if (date == 3) {
+   var formattedDate = `${date}rd`
+} else if (date == 2) {
+   var formattedDate = `${date}nd`
+}
+else if (date == 1) {
+   var formattedDate = `${date}st`
+}
+else if (date == 21) {
+   var formattedDate = `${date}st`
+}
+else if (date == 31) {
+   var formattedDate = `${date}st`
+}
+else if (date == 22) {
+   var formattedDate = `${date}nd`
+}
+else if (date == 23) {
+   var formattedDate = `${date}rd`
+}
+ else {
+   var formattedDate = `${date}th`
+}
+
   var hour = a.getHours();
   var min = a.getMinutes();
-  var time = date + ' ' + month  ;
+  var time = 'the ' + formattedDate + ' of ' + month  ;
   return time;
 }
 
