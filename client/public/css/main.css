@@ -60,15 +60,10 @@ img {
   height: 500px;
   flex-flow: auto;
   justify-content: space-around;
-flex-direction: column;
+  flex-direction: column;
 }
 
 #location {
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center; */
   text-align: center;
   position: relative;
   left: 50%;
@@ -100,12 +95,12 @@ flex-direction: column;
   /* height: 70vw ; } */
 
 body{
-  background-color: DarkBlue;
+  background-color: #8e8f91;
  -moz-background-size: cover;
  -o-background-size: cover;
  background-size: cover;
 }
-}
+
 
 /* img {
   width: 10vw;
@@ -129,19 +124,12 @@ text-align: center;
   align: center;
   vertical-align: middle;
   border-style: none;
-
   background-size: 10vw;
 
 }
 
 .button {
   left: 50%;
-
-  /* position: absolute;
-  top:50%;
-  left:50%;
-  margin-left: -65px;
-  margin-top: -20px; */
   width: 130px;
   height: 40px;
   text-align: center;
@@ -150,8 +138,6 @@ text-align: center;
   margin-left: -65px;
 
 }
-
-
 
 #save:hover{
 
