@@ -134,7 +134,7 @@ ResultView.prototype.bindEvents = function () {
   PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
     let x = Date.now();
 
-      console.log("Ran this many times:", x);
+      console.log("Ran at these times:", x);
 
 
       for (var i = 0; i < evt.detail.response.venues.length; i++){

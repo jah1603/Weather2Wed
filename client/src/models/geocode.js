@@ -8,8 +8,8 @@ const Geocode = function (){
 // listens for input
 Geocode.prototype.bindEvents = function () {
   PubSub.subscribe('InputFormView:location-ready', (evt) => {
-    console.log("GEOCODE GETS:",evt.detail[1]);
-    const longLat = evt.detail[0];
+
+
     this.getLocationAndDate(evt.detail);
   });
 };
@@ -26,7 +26,6 @@ Geocode.prototype.bindEvents = function () {
 
 //gets location from api
 Geocode.prototype.getLocationAndDate = function (locationAndDate) {
-  console.log("Location is:",locationAndDate);
   const url = `http://localhost:8080/longlat/${locationAndDate[0]}`
   const request = new Request (url);
   request.get()
@@ -35,9 +34,7 @@ Geocode.prototype.getLocationAndDate = function (locationAndDate) {
   const long = parseFloat(data.items[0].long);
   const position = [lat,long];
   const date = locationAndDate[1];
-
-  positionAndDate = [position, date];
-  console.log("IT IS HERE:", positionAndDate);
+  const positionAndDate = [position, date];
 
 
   PubSub.publish('Geocode:location-ready', positionAndDate);

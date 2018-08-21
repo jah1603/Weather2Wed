@@ -10,7 +10,6 @@ FourSquare.prototype.bindEvents = function () {
 
      PubSub.subscribe("ResultView:map-request", (evt)=>{
        const position = evt.detail;
-       console.log("This has been Published a lot of times?");
        this.getEventData(position);
       })
 
@@ -18,15 +17,11 @@ FourSquare.prototype.bindEvents = function () {
 
 FourSquare.prototype.getEventData = function (location) {
   const url = `http://localhost:8080/hotel/${location}`
-
   const request = new Request (url);
    request.get()
    .then((data)=>{
    this.data = data;
-
-   console.log("This is being called");
    PubSub.publish('FourSquare:hotel-ready', this.data);
-   console.log(this.data);
    })
   };
 
