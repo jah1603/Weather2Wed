@@ -70,7 +70,7 @@ ResultView.prototype.bindEvents = function () {
 
     const temperature = document.createElement('p');
     temperature.classList.add("temperature_day")
-    temperature.textContent = `${temp}C`
+    temperature.textContent = `${temp}°C`
     averageDailyTemperature.appendChild(temperature);
     dailyAverage.appendChild(averageDailyTemperature);
     resultsTable.appendChild(dailyAverage);
