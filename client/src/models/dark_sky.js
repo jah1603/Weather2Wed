@@ -24,13 +24,13 @@ DarkSky.prototype.getWeatherData = function (location, seconds) {
   const url = `http://localhost:8080/weather/${location}/${seconds}`
   const request = new Request (url);
   //TODO: write comment var precipProbability = this.getRainProbability(location, seconds);
-const precipProbArray = this.getRainProbability(location,seconds);
-console.log("The array",precipProbArray);
+//const precipProbArray = this.getRainProbability(location,seconds);
+//console.log("The array",precipProbArray);
   request.get()
   .then((data)=>{
   this.data = data;
-  this.data.currently.pressure = precipProbArray;
-  console.log(this.data);
+  // this.data.currently.pressure = precipProbArray;
+  console.log("ONE");
   //this.data something add prob into
   PubSub.publish('DarkSky:weather-ready', this.data);
   })
@@ -55,7 +55,7 @@ DarkSky.prototype.getRainProbability = async function (location, seconds) {
   console.log("unixYears is",unixYears);
   const positionInYear = ((seconds - unixYears) - secondsInTwelveDays);
   console.log("position in year:",positionInYear);
-  console.log(years);
+
 
 //TODO: please note to limit the number of requests to DarkSky during development we are iterating a lower than optimum numbers of times for our result
   const startPoint2015 = positionInYear + (secondsInYear * 45);
@@ -64,7 +64,7 @@ DarkSky.prototype.getRainProbability = async function (location, seconds) {
   const midnightToday = new Date(Date.now());
   midnightToday.setHours(0,0,0,0);
   const loopStoppingPoint = midnightToday.getTime()/1000;
-  console.log("midnight in lots of seconds:", loopStoppingPoint);
+
 
    for (i = startPoint2015; i <= 1534847848; i+= secondsInYear ){
      secondsArray.push(i);
