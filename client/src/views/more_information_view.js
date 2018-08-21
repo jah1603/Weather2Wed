@@ -19,13 +19,13 @@ MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
     var moonPhaseName = 'full_moon.jpg'
   }
   else if(this.weatherData.daily.data[0].moonPhase <= 0.667 && this.weatherData.daily.data[0].moonPhase > 0.50){
-    var moonPhaseName = 'waning_gibbous.jpg'
+    var moonPhaseName = 'waxing_gibbous.jpg'
   }
   else if(this.weatherData.daily.data[0].moonPhase <= 0.833 && this.weatherData.daily.data[0].moonPhase > 0.667){
     var moonPhaseName = 'last_quarter.jpg'
   }
   else if(this.weatherData.daily.data[0].moonPhase < 1 && this.weatherData.daily.data[0].moonPhase >= 0.833 ){
-    var moonPhaseName = 'half_moon.jpg'
+    var moonPhaseName = 'waning_gibbous.jpg'
   }
   else{
     var moonPhaseName = 'waning_crescent.jpg'
