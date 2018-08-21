@@ -5,13 +5,31 @@ const MoreInformation = function(container, weatherData) {
   this.weatherData = weatherData;
 };
 
-MoreInformation.prototype.convertMoonPhaseNumberToName = function () {
+MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
   if (this.weatherData.daily.data[0].moonPhase < 0.125 && this.weatherData.daily.data[0].moonPhase >= 0){
     var moonPhaseName = 'new_moon.jpg'
   }
-  elseif(this.weatherData.daily.data[0].moonPhase < 0.125 && this.weatherData.daily.data[0].moonPhase >= 0){
+  else if(this.weatherData.daily.data[0].moonPhase < 0.25 && this.weatherData.daily.data[0].moonPhase >= 0.125){
     
   }
+  else if(this.weatherData.daily.data[0].moonPhase < 0.375 && this.weatherData.daily.data[0].moonPhase >= 0.25){
+
+  }
+  else if(this.weatherData.daily.data[0].moonPhase < 0.50 && this.weatherData.daily.data[0].moonPhase >= 0.375){
+
+  }
+  else if(this.weatherData.daily.data[0].moonPhase < 0.625 && this.weatherData.daily.data[0].moonPhase >= 0.50){
+
+  }
+  else if(this.weatherData.daily.data[0].moonPhase < 0.75 && this.weatherData.daily.data[0].moonPhase >= 0.0.625){
+
+  }
+  else if(this.weatherData.daily.data[0].moonPhase < 0.875 && this.weatherData.daily.data[0].moonPhase >= 0.75){
+  }
+  else{
+    var moonPhaseName = 'waning_crescent.jpg'
+  }
+  return moonPhaseName;
 };
 
 MoreInformation.prototype.render = function() {
