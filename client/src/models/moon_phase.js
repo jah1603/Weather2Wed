@@ -17,6 +17,13 @@ moonPhaseMethods.prototype.convertDateEnteredByUserToNextInstanceOfThatDateInRea
   if (weddingDate < currentDateAtMidnight){
     var dateForCalculations = currentDateAtMidnight + 31557600;
   }
+  else {
+    var dateForCalculations = currentDateAtMidnight
+  };
+
+  // If the user searches for a month of the year which comes before the current month, this method automatically converts into the equivalent month and day one year ahead. This means that the moon phase will always predict future data.
+
+
 };
 
 moonPhaseMethods.prototype.calculateMoonPhase = function () {
