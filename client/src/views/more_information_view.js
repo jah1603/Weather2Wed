@@ -33,6 +33,34 @@ MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
   return moonPhaseName;
 };
 
+MoreInformation.prototype.convertMoonPhaseNumberToName = function () {
+  if (this.weatherData.daily.data[0].moonPhase == 0){
+    var moonPhaseName = 'New moon'
+  }
+  else if(this.weatherData.daily.data[0].moonPhase <= 0.167 && this.weatherData.daily.data[0].moonPhase > 0){
+    var moonPhaseName = 'Waxing crescent moon'
+  }
+  else if(this.weatherData.daily.data[0].moonPhase <= 0.33 && this.weatherData.daily.data[0].moonPhase > 0.167){
+    var moonPhaseName = 'First quarter moon'
+  }
+  else if(this.weatherData.daily.data[0].moonPhase == 0.50){
+    var moonPhaseName = 'Full moon'
+  }
+  else if(this.weatherData.daily.data[0].moonPhase <= 0.667 && this.weatherData.daily.data[0].moonPhase > 0.50){
+    var moonPhaseName = 'Waxing gibbous moon'
+  }
+  else if(this.weatherData.daily.data[0].moonPhase <= 0.833 && this.weatherData.daily.data[0].moonPhase > 0.667){
+    var moonPhaseName = 'Last quarter moon'
+  }
+  else if(this.weatherData.daily.data[0].moonPhase < 1 && this.weatherData.daily.data[0].moonPhase >= 0.833 ){
+    var moonPhaseName = 'Waning gibbous moon'
+  }
+  else{
+    var moonPhaseName = 'Waning crescent moon'
+  }
+  return moonPhaseName;
+};
+
 MoreInformation.prototype.render = function() {
 
   const moreInfoContainer = document.createElement('div');
@@ -47,7 +75,7 @@ MoreInformation.prototype.render = function() {
   moreInfoContainer.appendChild(sunriseTime);
 
   const moonPhaseLogo = document.createElement('img');
-  moonPhaseLogo.src = 'images/weather_icons/moon.png';
+  moonPhaseLogo.src = `images/weather_icons/${this.convertMoonPhaseNumberToImageName}`;
   moreInfoContainer.appendChild(moonPhaseLogo);
   const moonPhase = document.createElement('p');
   moonPhase.textContent = `the moon phase is ${this.weatherData.daily.data[0].moonPhase}`;
