@@ -160,7 +160,7 @@ const humidityDetail = document.createElement('td');
 
   const cloudDetail = document.createElement('td');
   const cloudCover = document.createElement('p');
-  cloudCover.textContent = `Cloud cover: ${this.weatherData.daily.data[0].cloudCover*100}%`;
+  cloudCover.textContent = `Cloud cover: ${parseInt(this.weatherData.daily.data[0].cloudCover*100)}%`;
   cloudDetail.appendChild(cloudCover);
 
   cloudRow.appendChild(cloudIcon);
