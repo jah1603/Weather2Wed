@@ -134,7 +134,7 @@ ResultView.prototype.bindEvents = function () {
 
 
 // RESULTS OVERLAY PAGE
-    const moreInformation = new MoreInformation(modalBody, evt.detail);
+    const moreInformation = new MoreInformation(resultsTable, evt.detail);
     moreInformation.render();
 
 
