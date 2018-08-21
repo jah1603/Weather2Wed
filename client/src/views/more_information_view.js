@@ -25,6 +25,7 @@ MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
     var moonPhaseName = 'last_quarter.jpg'
   }
   else if(this.weatherData.daily.data[0].moonPhase < 1 && this.weatherData.daily.data[0].moonPhase >= 0.833 ){
+    var moonPhaseName = 'half_moon.jpg'
   }
   else{
     var moonPhaseName = 'waning_crescent.jpg'
