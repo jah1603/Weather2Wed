@@ -5,6 +5,15 @@ const MoreInformation = function(container, weatherData) {
   this.weatherData = weatherData;
 };
 
+MoreInformation.prototype.convertMoonPhaseNumberToName = function () {
+  if (this.weatherData.daily.data[0].moonPhase < 0.125 && this.weatherData.daily.data[0].moonPhase >= 0){
+    var moonPhaseName = 'new_moon.jpg'
+  }
+  elseif(this.weatherData.daily.data[0].moonPhase < 0.125 && this.weatherData.daily.data[0].moonPhase >= 0){
+    
+  }
+};
+
 MoreInformation.prototype.render = function() {
 
   const moreInfoContainer = document.createElement('div');

@@ -126,6 +126,7 @@ ResultView.prototype.bindEvents = function () {
 
   })
 
+
 // should time converter, farenToCelsius & timeConverter be in their own js file?
   function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -167,6 +168,8 @@ function farenToCelsius(faren){
   const celsius = Math.round(((faren - 32)/1.8));
   return celsius;
 }
+
+
 
 function timeConverterToHours(UNIX_timestamp){
 var a = new Date(UNIX_timestamp * 1000);
