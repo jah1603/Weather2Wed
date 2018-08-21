@@ -6,7 +6,11 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function () {
 
 };
 
-moonPhaseMethods.prototype.convertDateEnteredByUserToNextInstanceOfThatDateInRealTime = function (weddingDate) {
+moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function () {
+
+};
+
+moonPhaseMethods.prototype.futureProofWeddingDate = function (userWeddingDate) {
 
   const secondsPerAstronomicalYear = 31557600;
   const currentDateInUnix = Date.now();
@@ -18,10 +22,12 @@ moonPhaseMethods.prototype.convertDateEnteredByUserToNextInstanceOfThatDateInRea
     var dateForCalculations = currentDateAtMidnight + 31557600;
   }
   else {
-    var dateForCalculations = currentDateAtMidnight
+    var dateForCalculations = userWeddingDate;
   };
 
   // If the user searches for a month of the year which comes before the current month, this method automatically converts into the equivalent month and day one year ahead. This means that the moon phase will always predict future data.
+
+
 
 
 };
