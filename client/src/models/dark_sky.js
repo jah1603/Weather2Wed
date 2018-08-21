@@ -25,9 +25,12 @@ DarkSky.prototype.getWeatherData = function (location, seconds) {
   const request = new Request (url);
   //TODO: write comment var precipProbability = this.getRainProbability(location, seconds);
 const precipProbArray = this.getRainProbability(location,seconds);
+console.log("The array",precipProbArray);
   request.get()
   .then((data)=>{
   this.data = data;
+  this.data.currently.pressure = precipProbArray;
+  console.log(this.data);
   //this.data something add prob into
   PubSub.publish('DarkSky:weather-ready', this.data);
   })
@@ -44,7 +47,7 @@ DarkSky.prototype.arrayElementNotUndefined = function (element) {
   return element !== undefined;
 };
 
-DarkSky.prototype.getRainProbability = function (location, seconds) {
+DarkSky.prototype.getRainProbability = async function (location, seconds) {
   const secondsInYear = 31536000
   const years = parseInt(seconds / secondsInYear);
   const secondsInTwelveDays = (12*86400);
@@ -53,54 +56,38 @@ DarkSky.prototype.getRainProbability = function (location, seconds) {
   const positionInYear = ((seconds - unixYears) - secondsInTwelveDays);
   console.log("position in year:",positionInYear);
   console.log(years);
+
 //TODO: please note to limit the number of requests to DarkSky during development we are iterating a lower than optimum numbers of times for our result
   const startPoint2015 = positionInYear + (secondsInYear * 45);
-
-
-
-
   var rainChanceArray = [];
-   for (i = startPoint2015; i <= Date.now()/1000; i+= secondsInYear ){
-     const url = `http://localhost:8080/weather/${location}/${i}`
-      const request = new Request (url);
-      request.get()
-      .then((data)=>{
-      this.data = data;
-       rainChanceArray.push(this.data.daily.data[0].precipProbability);
-       })
-     }
+  var secondsArray = [];
+  const midnightToday = new Date(Date.now());
+  midnightToday.setHours(0,0,0,0);
+  const loopStoppingPoint = midnightToday.getTime()/1000;
+  console.log("midnight in lots of seconds:", loopStoppingPoint);
 
-     // .then((data) =>{
-     for (var i = 0; i < (rainChanceArray.length - 1); i++){
-       if (rainChanceArray[i] !== undefined){
-         console.log(rainChanceArray[i]);
-       }
-     }
-   // }
-   // );
-
-
-
-console.log("rain chance:", rainChanceArray);
-
-
-// const stuff = function(){
-// for (var i = 0; i < (rainChanceArray.length - 1); i++){
-//   console.log("Hi");
-//   if (rainChanceArray[i] !== undefined){
-//     console.log("Hi2");
-//   }
-// }
-// }
-
-// reduce(reducer, 0);
-
-
-
-
-
-
-
+   for (i = startPoint2015; i <= 1534847848; i+= secondsInYear ){
+     secondsArray.push(i);
 };
+  for(const date of secondsArray){
+    const url = `http://localhost:8080/weather/${location}/${date}`
+     const request = new Request (url);
+     await request.get()
+     .then((data)=>{
+     this.data = data;
+      rainChanceArray.push(this.data.daily.data[0].precipProbability);
+
+  })
+};
+
+
+  console.log("rain is ifnished", rainChanceArray);
+  return rainChanceArray;
+};
+
+
+
+// });
+
 
 module.exports = DarkSky;

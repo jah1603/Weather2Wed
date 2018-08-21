@@ -6,7 +6,7 @@ const Request = function (url) {
 
 //fetch(request, {mode: 'cors'});
 Request.prototype.get = function (onComplete) {
-  return fetch(this.url)
+  return fetch(this.url) 
     .then((response) => {
       return response.json()});
 
