@@ -32,14 +32,14 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
 
 moonPhaseMethods.prototype.calculateMoonPhase = function () {
 
-  const distanceBetweenEarthAndSun = 149597870; //Measured in km
+  const avgSunEarthDistance = 149597870; //Measured in km
 
-        var phi = Math.acos(Math.sin(s.dec) * Math.sin(m.dec) + Math.cos(s.dec) * Math.cos(m.dec) * Math.cos(s.ra - m.ra))
+        var phi = Math.acos(Math.sin(avgSunEarthDistance.dec) * Math.sin(m.dec) + Math.cos(avgSunEarthDistance.dec) * Math.cos(m.dec) * Math.cos(avgSunEarthDistance.ra - m.ra))
 
         var inc = Math.atan2(sdist * Math.sin(phi), m.dist - sdist * Math.cos(phi));
 
-        var angle = Math.atan2(Math.cos(s.dec) * Math.sin(s.ra - m.ra), Math.sin(s.dec) * Math.cos(m.dec) - Math.cos(s.dec) * Math.sin(m.dec) * Math.cos(s.ra - m.ra));
-        
+        var angle = Math.atan2(Math.cos(avgSunEarthDistance.dec) * Math.sin(avgSunEarthDistance.ra - m.ra), Math.sin(avgSunEarthDistance.dec) * Math.cos(m.dec) - Math.cos(avgSunEarthDistance.dec) * Math.sin(m.dec) * Math.cos(avgSunEarthDistance.ra - m.ra));
+
 
     return {
         var phase = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / Math.PI;
