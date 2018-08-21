@@ -150,13 +150,13 @@ ResultView.prototype.bindEvents = function () {
 
 
     // CREATE MODAL FOOTER
-    const footer = document.createElement('div');
-    footer.classList.add('modal-footer');
-    modalContent.appendChild(footer);
-
-    const footerText = document.createElement('h3');
-    footerText.textContent = `I'm the footer :)`;
-    footer.appendChild(footerText);
+    // const footer = document.createElement('div');
+    // footer.classList.add('modal-footer');
+    // modalContent.appendChild(footer);
+    //
+    // const footerText = document.createElement('h3');
+    // footerText.textContent = `I'm the footer :)`;
+    // footer.appendChild(footerText);
     // END CREATE MODAL FOOTER
 
 
