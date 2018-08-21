@@ -10,6 +10,27 @@ const moonPhaseMethods = function() {
 
 moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function (date) {
 
+  var solarMeanAnomaly, M = this.radian * (357.5291 + 0.98560028 * date);
+
+
+  var centreEquation = rad * (1.9148 * Math.sin(solarMeanAnomaly) + 0.02 * Math.sin(2 * solarMeanAnomaly) + 0.0003 * Math.sin(3 * solarMeanAnomaly)) //center of sun
+
+  var perihelionOfEarth = this.radian * 102.9372; //Perihelion of Earth
+
+  var eclipticLongitude = solarMeanAnomaly + perihelionOfEarth + centreEquation + Math.PI;
+
+   return {
+
+       declination: 
+
+       Math.asin(Math.sin(0) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(0) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(eclipticLongitude))
+
+       ,
+
+       rightAscension: rightAscension(L, 0)
+
+   };
+
 };
 
 moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function (date) {
@@ -29,11 +50,17 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function (date) {
     var distanceToMoonInKM = 385001 - 20905 * Math.cos(meanAnomaly);
 
     return {
-        rightAscension: Math.atan2(Math.sin(longitude) * Math.cos(axialTiltOfEarthInRadians) - Math.tan(latitude) * Math.sin(axialTiltOfEarthInRadians), Math.cos(longitude)),
 
-        declination: Math.asin(Math.sin(latitude) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(latitude) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(longitude)),
+        rightAscension:
+
+        Math.atan2(Math.sin(longitude) * Math.cos(axialTiltOfEarthInRadians) - Math.tan(latitude) * Math.sin(axialTiltOfEarthInRadians), Math.cos(longitude)),
+
+        declination:
+
+        Math.asin(Math.sin(latitude) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(latitude) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(longitude)),
 
         distance: distanceToMoonInKM
+
     };
 
 };
