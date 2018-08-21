@@ -21,13 +21,13 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function (date) {
 
    return {
 
-       declination: 
+       declination:
 
        Math.asin(Math.sin(0) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(0) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(eclipticLongitude))
 
        ,
 
-       rightAscension: rightAscension(L, 0)
+       rightAscension: Math.asin(Math.sin(0) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(0) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(eclipticLongitude))
 
    };
 
@@ -54,6 +54,7 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function (date) {
         rightAscension:
 
         Math.atan2(Math.sin(longitude) * Math.cos(axialTiltOfEarthInRadians) - Math.tan(latitude) * Math.sin(axialTiltOfEarthInRadians), Math.cos(longitude)),
+
 
         declination:
 
