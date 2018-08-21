@@ -1,16 +1,17 @@
 const PubSub = require('../helpers/pub_sub.js');
 const DarkSky = require('../models/dark_sky.js');
 const MoreInformation= require('./more_information_view.js');
+const MapView = require('./map_view.js');
 
 const ResultView = function (container) {
   this.container = container;
-  this.darkSky = new DarkSky();
 }
 
 // loads icons related to weather on that date
 // TODO: target results view, use grid & resize icons
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
+    console.log(evt.detail);
     this.container.innerHTML = "";
 
     // CREATE MODAL
@@ -41,7 +42,8 @@ ResultView.prototype.bindEvents = function () {
 
     const header = document.createElement('h2');
     const date = timeConverter(evt.detail.daily.data[0].time);
-    header.textContent = `Typical weather for ${date}: '${evt.detail.daily.data[0].summary}'`;
+
+    header.textContent = `Typical weather for ${date}: ${evt.detail.daily.data[0].summary}`;
     modalHeader.appendChild(header);
     // END CREATE MODAL CONTENT
 
@@ -50,52 +52,116 @@ ResultView.prototype.bindEvents = function () {
     modalBody.classList.add('modal-body');
     modalContent.appendChild(modalBody);
 
+    // CREATE TABLE ELEMENTS
+    const resultsTable = document.createElement('table');
+    const dailyAverage = document.createElement('tr');
+    const dailyAverageIcon = document.createElement('td');
+
     const icon = evt.detail.daily.data[0].icon;
     const weatherIcon = document.createElement('img');
     weatherIcon.src = `images/weather_icons/${icon}.png`;
-    modalBody.appendChild(weatherIcon);
-    // temperature for the afternoon
-    //const temperature = evt.detail.hourly.data[14]
+    dailyAverageIcon.appendChild(weatherIcon);
 
+    const averageDailyTemperature = document.createElement('td');
+    dailyAverage.appendChild(dailyAverageIcon);
+
+    // temperature for the afternoon
     const temp = farenToCelsius(evt.detail.hourly.data[14].temperature);
 
     const temperature = document.createElement('p');
     temperature.classList.add("temperature_day")
     temperature.textContent = `${temp}C`
-    modalBody.appendChild(temperature);
+    averageDailyTemperature.appendChild(temperature);
+    dailyAverage.appendChild(averageDailyTemperature);
+    resultsTable.appendChild(dailyAverage);
 
-    const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
+    const rainRow = document.createElement('tr');
+    const rainIcon = document.createElement('td');
 
     const rainLogo = document.createElement('img');
     rainLogo.src = 'images/weather_icons/rain_chance.png';
-    modalBody.appendChild(rainLogo);
+    rainIcon.appendChild(rainLogo);
 
+    const rainPercentage = document.createElement('td');
+    const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
     const rain = document.createElement("p");
     rain.textContent = `${rainChance}%`
-    modalBody.appendChild(rain);
+    rainPercentage.appendChild(rain);
+    rainRow.appendChild(rainIcon);
+    rainRow.appendChild(rainPercentage);
+    resultsTable.appendChild(rainRow);
+
+    const sunsetRow = document.createElement('tr');
+    const sunsetIcon = document.createElement('td');
 
     const sunsetLogo = document.createElement('img');
     sunsetLogo.src = 'images/weather_icons/sunset.png';
-    modalBody.appendChild(sunsetLogo);
+    sunsetIcon.appendChild(sunsetLogo);
 
+    const dailySunsetTime = document.createElement('td');
     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
     const betterSunsetTime = timeConverterToHours(sunsetTime);
 
     const actualSunsetTime = document.createElement('p');
     actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
-    modalBody.appendChild(actualSunsetTime)
+    dailySunsetTime.appendChild(actualSunsetTime);
+    sunsetRow.appendChild(sunsetIcon);
+    sunsetRow.appendChild(dailySunsetTime);
+    resultsTable.appendChild(sunsetRow);
+    modalBody.appendChild(resultsTable);
     // END CREATE MODAL BODY
 
-    // CREATE MODAL FOOTER
-    const footer = document.createElement('div');
-    footer.classList.add('modal-footer');
-    modalContent.appendChild(footer);
+    // Map Nesting
 
-    const footerText = document.createElement('h3');
-    footerText.textContent = `I'm the footer :)`;
-    footer.appendChild(footerText);
+    const mapArea = document.createElement('div');
+    mapArea.setAttribute("id", "mapid")
+    modalBody.appendChild(mapArea);
+    const mapView = new MapView(mapArea);
+    const latitude = evt.detail.latitude;
+    const longitude = evt.detail.longitude;
+    const position = [latitude,longitude];
+    mapView.bindEvents();
+    mapView.center(position);
+    mapView.addMarker(position);
+    PubSub.publish("ResultView:map-request", (position));
+
+
+
+  PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
+
+
+      for (var i = 0; i < evt.detail.response.venues.length; i++){
+
+        const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
+        var hotelDetails = '';
+        const hotelName = evt.detail.response.venues[i].name;
+        hotelDetails += `${hotelName} `;
+         if (evt.detail.response.venues[i].location.address){
+         const hotelAddress = evt.detail.response.venues[i].location.address;
+         hotelDetails += `${hotelAddress} `;
+       }
+         if (evt.detail.response.venues[i].location.postalCode){
+         const hotelPostcode = evt.detail.response.venues[i].location.postalCode;
+         hotelDetails += `${hotelPostcode}`
+       }
+         mapView.fourSquare(hotelPosition, hotelDetails);
+       }
+     });
+
+
+
+    // CREATE MODAL FOOTER
+    // const footer = document.createElement('div');
+    // footer.classList.add('modal-footer');
+    // modalContent.appendChild(footer);
+    //
+    // const footerText = document.createElement('h3');
+    // footerText.textContent = `I'm the footer :)`;
+    // footer.appendChild(footerText);
     // END CREATE MODAL FOOTER
 
+
+    // Pass readable time to nested view
     evt.detail.daily.data[0].sunriseTime = timeConverterToHours(evt.detail.daily.data[0].sunriseTime);
 
     evt.detail.daily.data[0].temperatureHigh = farenToCelsius(evt.detail.daily.data[0].temperatureHigh);
@@ -109,7 +175,7 @@ ResultView.prototype.bindEvents = function () {
 
 
 // RESULTS OVERLAY PAGE
-    const moreInformation = new MoreInformation(modalBody, evt.detail);
+    const moreInformation = new MoreInformation(resultsTable, evt.detail);
     moreInformation.render();
 
 
@@ -120,9 +186,6 @@ ResultView.prototype.bindEvents = function () {
     function overlayHide() {
       document.getElementById("overlay").classList.remove("show");
     }
-
-
-
 
   })
 

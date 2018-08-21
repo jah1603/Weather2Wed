@@ -23,6 +23,7 @@
     width: 80%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     font-family: 'Raleway', sans-serif;
+    overflow: auto; /* makes footer in the middle */
 }
 
 /* The Close Button */
@@ -52,6 +53,7 @@
    padding: 2px 16px;
    background-color:  #4aceb5;
    color: white;
+   overflow: auto;
 }
 /* ABOVE THIS LINE IS MODAL BOX  */
 
@@ -109,12 +111,20 @@ font-family: 'Do Hyeon', sans-serif; */
 
 
 #mapid {
-    width: 400px;
-    height: 400px;
-    border-radius: 200px;
-    position: relative;
-    z-index: 500
+    width: 40vw;
+    height: 100vh;
+    /* border-radius: 200px;
+    position: relative; */
+    z-index: 500;
+    float: right;
+
   }
+
+table {
+float: left;
+font-size: 2em;
+width: 45vh;
+}
   /* height: 70vw ; } */
 
 body{
