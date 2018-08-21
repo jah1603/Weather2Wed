@@ -67,11 +67,16 @@ img {
   text-align: center;
   position: relative;
   left: 50%;
-  width: 350px;
-  height: 30px;
-  margin-left: -175px;
-  font-size: 15px;
+  width: 500px;
+  height: 40px;
+  margin-left: -250px;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
 }
+
+/* font-family: 'Oxygen', sans-serif; */
+/* font-family: 'Comfortaa', cursive;
+font-family: 'Do Hyeon', sans-serif; */
 
 /* .slide-bar{
   position: absolute;
@@ -99,7 +104,9 @@ body{
  -moz-background-size: cover;
  -o-background-size: cover;
  background-size: cover;
+
 }
+
 
 
 /* img {
@@ -120,7 +127,7 @@ text-align: center;
 #save{
   width: 10vw;
   height: 10vw;
-  background: url('https://www.freepngimg.com/thumb/submit_button/25387-5-submit-button-clipart-thumb.png') no-repeat ;
+  background: url('../images/button.png') no-repeat ;
   align: center;
   vertical-align: middle;
   border-style: none;

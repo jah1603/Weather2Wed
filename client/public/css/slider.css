@@ -35,8 +35,8 @@ body {
   top: -20px;
   height: 120%;
   opacity: 0;
-  color: gold;
-  background-color: gold;
+  /* color: pink;
+  background-color: gold; */
 }
 #range::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -54,7 +54,7 @@ body {
 }
 
 #value {
-  font-family: sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: white;
   font-size: 20px;
 }
@@ -122,6 +122,6 @@ div#value{
 } */
 
 #ring {
-   stroke: white;
+   stroke: #8ad6d4;
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
