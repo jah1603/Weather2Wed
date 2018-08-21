@@ -36,9 +36,7 @@
     text-decoration: none;
     cursor: pointer;
 }
-
-/* ABIVE THIS LINE IS MODAL BOX  */
-
+/* ABOVE THIS LINE IS MODAL BOX  */
 
 
 
@@ -46,6 +44,14 @@ img {
     margin: auto;
     display: flex;
     align-items: center;
+}
+
+.modal-content img {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    height: 15vh;
+
 }
 
 #items-form {
@@ -74,8 +80,6 @@ flex-direction: column;
   height: 40px;
   text-align: center;
 } */
-
-
 
 
 #mapid {

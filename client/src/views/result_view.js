@@ -121,6 +121,7 @@ console.log(hour);
 return time;
 }
 
+
 // MODAL box
 // Get the modal
 var modal = document.getElementById('myModal');

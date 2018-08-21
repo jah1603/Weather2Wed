@@ -19,7 +19,7 @@ const map = document.querySelector('#mapid');
 const mapView = new MapView(map);
 mapView.bindEvents();
 
-const weather = document.querySelector('div#myModal')
+const weather = document.querySelector('.modal-content')
 const resultView = new ResultView(weather);
 resultView.bindEvents();
 
