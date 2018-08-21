@@ -50,6 +50,7 @@ ResultView.prototype.bindEvents = function () {
     modalBody.classList.add('modal-body');
     modalContent.appendChild(modalBody);
 
+    // CREATE TABLE ELEMENTS
     const resultsTable = document.createElement('table');
     const dailyAverage = document.createElement('tr');
     const dailyAverageIcon = document.createElement('td');
@@ -62,9 +63,7 @@ ResultView.prototype.bindEvents = function () {
     const averageDailyTemperature = document.createElement('td');
     dailyAverage.appendChild(dailyAverageIcon);
 
-
     // temperature for the afternoon
-    //const temperature = evt.detail.hourly.data[14]
     const temp = farenToCelsius(evt.detail.hourly.data[14].temperature);
 
     const temperature = document.createElement('p');
@@ -73,17 +72,22 @@ ResultView.prototype.bindEvents = function () {
     averageDailyTemperature.appendChild(temperature);
     dailyAverage.appendChild(averageDailyTemperature);
     resultsTable.appendChild(dailyAverage);
-    modalBody.appendChild(resultsTable);
 
-    const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
+    const rainRow = document.createElement('tr');
+    const rainIcon = document.createElement('td');
 
     const rainLogo = document.createElement('img');
     rainLogo.src = 'images/weather_icons/rain_chance.png';
-    modalBody.appendChild(rainLogo);
+    rainIcon.appendChild(rainLogo);
 
+    const rainPercentage = document.createElement('td');
+    const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
     const rain = document.createElement("p");
     rain.textContent = `${rainChance}%`
-    modalBody.appendChild(rain);
+    rainPercentage.appendChild(rain);
+    rainRow.appendChild(rainIcon);
+    rainRow.appendChild(rainPercentage);
+    resultsTable.appendChild(rainRow);
 
     const sunsetLogo = document.createElement('img');
     sunsetLogo.src = 'images/weather_icons/sunset.png';
@@ -95,6 +99,8 @@ ResultView.prototype.bindEvents = function () {
     const actualSunsetTime = document.createElement('p');
     actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
     modalBody.appendChild(actualSunsetTime)
+
+    modalBody.appendChild(resultsTable);
     // END CREATE MODAL BODY
 
     // CREATE MODAL FOOTER
