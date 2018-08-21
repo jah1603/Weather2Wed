@@ -75,13 +75,13 @@ MoreInformation.prototype.render = function() {
   sunriseIcon.appendChild(sunriseLogo);
 
   const sunriseDetail = document.createElement('td');
-  const sunriseTime = document.createElement('p');
-  sunriseTime.textContent = `Sunrise at ${this.weatherData.daily.data[0].sunriseTime}`;
-  sunriseDetail.appendChild(sunriseTime);
-
-  sunriseRow.appendChild(sunriseIcon);
-  sunriseRow.appendChild(sunriseTime);
-  this.container.appendChild(sunriseRow);
+  // const sunriseTime = document.createElement('p');
+  // sunriseTime.textContent = `Sunrise at ${this.weatherData.daily.data[0].sunriseTime}`;
+  // sunriseDetail.appendChild(sunriseTime);
+  //
+  // sunriseRow.appendChild(sunriseIcon);
+  // sunriseRow.appendChild(sunriseTime);
+  // this.container.appendChild(sunriseRow);
 
  const moonPhaseRow = document.createElement('tr');
  const moonIcon = document.createElement('td');

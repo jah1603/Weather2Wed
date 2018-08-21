@@ -100,10 +100,12 @@ ResultView.prototype.bindEvents = function () {
 
     const dailySunsetTime = document.createElement('td');
     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
+    const sunriseTime = evt.detail.daily.data[0].sunriseTime;
+    const betterSunriseTime = timeConverterToHours(sunriseTime);
     const betterSunsetTime = timeConverterToHours(sunsetTime);
 
     const actualSunsetTime = document.createElement('p');
-    actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
+    actualSunsetTime.textContent = `Sunrise: ${betterSunriseTime} Sunset: ${betterSunsetTime}`;
     dailySunsetTime.appendChild(actualSunsetTime);
     sunsetRow.appendChild(sunsetIcon);
     sunsetRow.appendChild(dailySunsetTime);
