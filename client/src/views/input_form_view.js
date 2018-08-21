@@ -19,6 +19,7 @@ InputFormView.prototype.handleSubmit = function (evt) {
   const location = evt.target.location.value;
   PubSub.publish('InputFormView:location-ready', location);
   const newSearch = this.createSearch(evt.target);
+  console.log(newSearch);
   PubSub.publish('InputFormView:search-submitted', newSearch);
   evt.target.reset();
 };
