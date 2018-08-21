@@ -13,8 +13,6 @@ MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
   newMoonPhaseMethods = new moonPhaseMethods();
   this.calculatedMoonPhase = newMoonPhaseMethods.calculateMoonPhase(this.weddingDate);
 
-  console.log(this.calculatedMoonPhase);
-
   if (this.calculatedMoonPhase == 0){
     var moonPhaseName = 'new_moon.jpg'
   }
