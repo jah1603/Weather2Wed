@@ -1,30 +1,39 @@
 const PubSub = require('../helpers/pub_sub.js');
+const moonPhaseMethods = require('../models/moon_phase.js');
 
-const MoreInformation = function(container, weatherData) {
+const MoreInformation = function(container, weatherData, weddingDate) {
   this.container = container;
   this.weatherData = weatherData;
+  this.weddingDate = weddingDate;
+  this.calculatedMoonPhase = null;
 };
 
 MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
-  if (this.weatherData.daily.data[0].moonPhase == 0){
+
+  newMoonPhaseMethods = new moonPhaseMethods();
+  this.calculatedMoonPhase = newMoonPhaseMethods.calculateMoonPhase(this.weddingDate);
+
+  console.log(this.calculatedMoonPhase);
+
+  if (this.calculatedMoonPhase == 0){
     var moonPhaseName = 'new_moon.jpg'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.167 && this.weatherData.daily.data[0].moonPhase > 0){
+  else if(this.calculatedMoonPhase <= 0.167 && this.calculatedMoonPhase > 0){
     var moonPhaseName = 'waxing_crescent.jpg'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.33 && this.weatherData.daily.data[0].moonPhase > 0.167){
+  else if(this.calculatedMoonPhase <= 0.33 && this.calculatedMoonPhase > 0.167){
     var moonPhaseName = 'first_quarter.jpg'
   }
-  else if(this.weatherData.daily.data[0].moonPhase == 0.50){
+  else if(this.calculatedMoonPhase == 0.50){
     var moonPhaseName = 'full_moon.jpg'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.667 && this.weatherData.daily.data[0].moonPhase > 0.50){
+  else if(this.calculatedMoonPhase <= 0.667 && this.calculatedMoonPhase > 0.50){
     var moonPhaseName = 'waxing_gibbous.jpg'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.833 && this.weatherData.daily.data[0].moonPhase > 0.667){
+  else if(this.calculatedMoonPhase <= 0.833 && this.calculatedMoonPhase > 0.667){
     var moonPhaseName = 'last_quarter.jpg'
   }
-  else if(this.weatherData.daily.data[0].moonPhase < 1 && this.weatherData.daily.data[0].moonPhase >= 0.833 ){
+  else if(this.calculatedMoonPhase < 1 && this.calculatedMoonPhase >= 0.833 ){
     var moonPhaseName = 'waning_gibbous.jpg'
   }
   else{
@@ -34,31 +43,32 @@ MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
 };
 
 MoreInformation.prototype.convertMoonPhaseNumberToName = function () {
-  if (this.weatherData.daily.data[0].moonPhase == 0){
+  if (this.calculatedMoonPhase == 0){
     var moonPhaseName = 'New moon'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.167 && this.weatherData.daily.data[0].moonPhase > 0){
+  else if(this.calculatedMoonPhase <= 0.167 && this.calculatedMoonPhase > 0){
     var moonPhaseName = 'Waxing crescent moon'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.33 && this.weatherData.daily.data[0].moonPhase > 0.167){
+  else if(this.calculatedMoonPhase <= 0.33 && this.calculatedMoonPhase > 0.167){
     var moonPhaseName = 'First quarter moon'
   }
-  else if(this.weatherData.daily.data[0].moonPhase == 0.50){
+  else if(this.calculatedMoonPhase == 0.50){
     var moonPhaseName = 'Full moon'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.667 && this.weatherData.daily.data[0].moonPhase > 0.50){
+  else if(this.calculatedMoonPhase <= 0.667 && this.calculatedMoonPhase > 0.50){
     var moonPhaseName = 'Waxing gibbous moon'
   }
-  else if(this.weatherData.daily.data[0].moonPhase <= 0.833 && this.weatherData.daily.data[0].moonPhase > 0.667){
+  else if(this.calculatedMoonPhase <= 0.833 && this.calculatedMoonPhase > 0.667){
     var moonPhaseName = 'Last quarter moon'
   }
-  else if(this.weatherData.daily.data[0].moonPhase < 1 && this.weatherData.daily.data[0].moonPhase >= 0.833 ){
+  else if(this.calculatedMoonPhase < 1 && this.calculatedMoonPhase >= 0.833 ){
     var moonPhaseName = 'Waning gibbous moon'
   }
   else{
     var moonPhaseName = 'Waning crescent moon'
   }
   return moonPhaseName;
+  console.log(moonPhaseName);
 };
 
 MoreInformation.prototype.render = function() {

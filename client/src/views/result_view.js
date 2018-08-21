@@ -177,7 +177,7 @@ ResultView.prototype.bindEvents = function () {
 
 
 // RESULTS OVERLAY PAGE
-    const moreInformation = new MoreInformation(resultsTable, evt.detail);
+    const moreInformation = new MoreInformation(resultsTable, evt.detail, evt.detail.daily.data[0].time);
     moreInformation.render();
 
 

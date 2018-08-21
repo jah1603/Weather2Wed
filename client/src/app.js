@@ -21,7 +21,7 @@ resultView.bindEvents();
 const darkSky = new DarkSky();
 darkSky.bindEvents();
 
-const fourSquare = new FourSquare();
-fourSquare.bindEvents();
+// const fourSquare = new FourSquare();
+// fourSquare.bindEvents();
 
 })

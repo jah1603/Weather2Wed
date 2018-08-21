@@ -1,21 +1,24 @@
 const moonPhaseMethods = function() {
+
   this.sunCoordinates = null;
   this.moonCoordinates = null;
   this.year1970InJulianCalendarDays = 2440588;
   this.radian = Math.PI / 180
   this.axialTiltOfEarthInRadians = this.radian * 23.4397;
+  this.moonPhase = null;
+
 };
 
 // Astronomical calculations are approximate, mainly based on material found at http://aa.quae.nl/
 
 moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function (date) {
 
-  var solarMeanAnomaly, M = this.radian * (357.5291 + 0.98560028 * date);
+  var solarMeanAnomaly = this.radian * (357.5291 + 0.98560028 * date);
 
 
-  var centreEquation = rad * (1.9148 * Math.sin(solarMeanAnomaly) + 0.02 * Math.sin(2 * solarMeanAnomaly) + 0.0003 * Math.sin(3 * solarMeanAnomaly)) //center of sun
+  var centreEquation = this.radian * (1.9148 * Math.sin(solarMeanAnomaly) + 0.02 * Math.sin(2 * solarMeanAnomaly) + 0.0003 * Math.sin(3 * solarMeanAnomaly)) // Finds the centre of the Sun
 
-  var perihelionOfEarth = this.radian * 102.9372; //Perihelion of Earth
+  var perihelionOfEarth = this.radian * 102.9372; //Perihelion of the Earth
 
   var eclipticLongitude = solarMeanAnomaly + perihelionOfEarth + centreEquation + Math.PI;
 
@@ -23,11 +26,9 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function (date) {
 
        declination:
 
-       Math.asin(Math.sin(0) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(0) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(eclipticLongitude))
+       Math.asin(Math.sin(0) * Math.cos(this.axialTiltOfEarthInRadians) + Math.cos(0) * Math.sin(this.axialTiltOfEarthInRadians) * Math.sin(eclipticLongitude)),
 
-       ,
-
-       rightAscension: Math.asin(Math.sin(0) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(0) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(eclipticLongitude))
+       rightAscension: Math.asin(Math.sin(0) * Math.cos(this.axialTiltOfEarthInRadians) + Math.cos(0) * Math.sin(this.axialTiltOfEarthInRadians) * Math.sin(eclipticLongitude))
 
    };
 
@@ -53,12 +54,12 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function (date) {
 
         rightAscension:
 
-        Math.atan2(Math.sin(longitude) * Math.cos(axialTiltOfEarthInRadians) - Math.tan(latitude) * Math.sin(axialTiltOfEarthInRadians), Math.cos(longitude)),
+        Math.atan2(Math.sin(longitude) * Math.cos(this.axialTiltOfEarthInRadians) - Math.tan(latitude) * Math.sin(this.axialTiltOfEarthInRadians), Math.cos(longitude)),
 
 
         declination:
 
-        Math.asin(Math.sin(latitude) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(latitude) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(longitude)),
+        Math.asin(Math.sin(latitude) * Math.cos(this.axialTiltOfEarthInRadians) + Math.cos(latitude) * Math.sin(this.axialTiltOfEarthInRadians) * Math.sin(longitude)),
 
         distance: distanceToMoonInKM
 
@@ -69,13 +70,14 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function (date) {
 moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
 
   const secondsPerAstronomicalYear = 31557600;
-  const currentDateInUnix = Date.now();
-  const currentDateAtMidnight = currentDateInUnix.setHours(0, 0 , 0, 0).getTime()/1000;
+  const currentDateInUnix = new Date();
+  const currentDateUnixMidnight = currentDateInUnix.setHours(0, 0, 0, 0);
+  const currentDateAtMidnight = currentDateUnixMidnight/1000;
 
   // Initialize a series of if statements to ensure that the date used in the moon phase calculations is a future date
 
-  if (weddingDate < currentDateAtMidnight){
-    var dateForCalculations = currentDateAtMidnight + 31557600;
+  if (userWeddingDate < currentDateAtMidnight){
+    var dateForCalculations = userWeddingDate + 31557600;
   }
   else {
     var dateForCalculations = userWeddingDate;
@@ -85,7 +87,7 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
 
   //The long term in brackets is the number of milliseconds in a day.
 
-  return (dateForCalculations.valueOf() / (1000*60*60*24) - 0.5 + this.year1970InJulianCalendarDays) - 2451545;
+  return (dateForCalculations.valueOf() / 1000*60*60*24 - 0.5 + this.year1970InJulianCalendarDays) - 2451545;
 
   // We must convert the date into calendar days since the year 2000, as this is the year that the data on planet positions was taken from.
 
@@ -94,27 +96,28 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
 
 moonPhaseMethods.prototype.calculateMoonPhase = function (date) {
 
-  this.calculateCoordinatesOfTheSun(date);
-  this.calculateCoordinatesOfTheMoon(date);
+    const weddingDateInDays = this.futureproofWeddingDate(date);
+
+  this.sunCoordinates = this.calculateCoordinatesOfTheSun(weddingDateInDays);
+
+  this.moonCoordinates = this.calculateCoordinatesOfTheMoon(weddingDateInDays);
 
   const avgSunEarthDistance = 149597870; //Measured in km
-  const weddingDate = this.futureproofWeddingDate(date);
+
   const sunCoordinates = this.sunCoordinates;
   const moonCoordinates = this.moonCoordinates;
 
-        var phi = Math.acos(Math.sin(sunCoordinates.dec) * Math.sin(m.dec) + Math.cos(sunCoordinates.dec) * Math.cos(m.dec) * Math.cos(sunCoordinates.ra - m.ra))
+        var phi = Math.acos(Math.sin(sunCoordinates.declination) * Math.sin(moonCoordinates.declination) + Math.cos(sunCoordinates.declination) * Math.cos(moonCoordinates.declination) * Math.cos(sunCoordinates.rightAscension - moonCoordinates.rightAscension))
 
-        var inc = Math.atan2(sdist * Math.sin(phi), moonCoordinates.dist - sdist * Math.cos(phi));
+        var inc = Math.atan2(avgSunEarthDistance * Math.sin(phi), moonCoordinates.distance - avgSunEarthDistance * Math.cos(phi));
 
-        var angle = Math.atan2(Math.cos(sunCoordinates.dec) * Math.sin(sunCoordinates.ra - moonCoordinates.ra), Math.sin(sunCoordinates.dec) * Math.cos(moonCoordinates.dec) - Math.cos(sunCoordinates.dec) * Math.sin(moonCoordinates.dec) * Math.cos(sunCoordinates.ra - moonCoordinates.ra));
+        var angle = Math.atan2(Math.cos(sunCoordinates.declination) * Math.sin(sunCoordinates.rightAscension - moonCoordinates.rightAscension), Math.sin(sunCoordinates.declination) * Math.cos(moonCoordinates.declination) - Math.cos(sunCoordinates.declination) * Math.sin(moonCoordinates.declination) * Math.cos(sunCoordinates.rightAscension - moonCoordinates.rightAscension));
 
 
-    return {
-        var phase = 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / Math.PI;
-    };
-};
+    return 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / Math.PI;
 
 
 };
+
 
 module.exports = moonPhaseMethods;
