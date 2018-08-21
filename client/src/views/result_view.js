@@ -245,9 +245,9 @@ if (min < 10){
   min = `0${min}`;
 }
 if (hour > 12){
-var time = hour-12 + ':' + min + 'pm'  ;
+var time = hour-12 + ':' + min + ' pm'  ;
 }else{
-var time = hour + ':' + min + 'am'  ;
+var time = hour + ':' + min + ' am'  ;
 }
 console.log(hour);
 return time;
