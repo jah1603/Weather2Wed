@@ -1,15 +1,16 @@
 const moonPhaseMethods = function() {
+  this.sunCoordinates = null;
 };
 
 moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function () {
 
 };
 
-moonPhaseMethods.prototype.methodName = function () {
+moonPhaseMethods.prototype.convertDateToNext = function () {
 
 };
 
-moonPhaseMethods.prototype.calculateVisiblePortionOfTheMoon = function () {
+moonPhaseMethods.prototype.calculateMoonPhase = function () {
 
 };
 
