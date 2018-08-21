@@ -75,10 +75,10 @@ MoreInformation.prototype.render = function() {
   moreInfoContainer.appendChild(sunriseTime);
 
   const moonPhaseLogo = document.createElement('img');
-  moonPhaseLogo.src = `images/weather_icons/${this.convertMoonPhaseNumberToImageName}`;
+  moonPhaseLogo.src = `images/weather_icons/${this.convertMoonPhaseNumberToImageName()}`;
   moreInfoContainer.appendChild(moonPhaseLogo);
   const moonPhase = document.createElement('p');
-  moonPhase.textContent = `the moon phase is ${this.weatherData.daily.data[0].moonPhase}`;
+  moonPhase.textContent = this.convertMoonPhaseNumberToName();
   moreInfoContainer.appendChild(moonPhase);
 
 
