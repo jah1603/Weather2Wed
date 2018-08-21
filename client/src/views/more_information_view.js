@@ -111,7 +111,7 @@ const tempHighAndLowIcon = document.createElement('td');
   const lowTime = this.weatherData.daily.data[0].temperatureLowTime;
   const tempHigh = this.weatherData.daily.data[0].temperatureHigh;
   const tempLow = this.weatherData.daily.data[0].temperatureLow;
-  tempSummary.textContent = `Low of ${tempLow}°C at ${lowTime}  High of ${tempHigh}°C at ${highTime}`
+  tempSummary.textContent = `Low: ${tempLow}°C at ${lowTime}  High: ${tempHigh}°C at ${highTime}`
   tempHighAndLowDetail.appendChild(tempSummary);
 
 

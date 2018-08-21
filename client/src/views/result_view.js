@@ -246,7 +246,14 @@ if (min < 10){
 }
 if (hour > 12){
 var time = hour-12 + ':' + min + ' pm'  ;
-}else{
+}
+else if (hour == 12){
+var time = hour + ':' + min + ' pm' + ' (midday)'  ;
+}
+else if (hour == 0){
+var time = 12 + ':' + min + ' pm' + ' (midnight)'  ;
+}
+else{
 var time = hour + ':' + min + ' am'  ;
 }
 console.log(hour);
