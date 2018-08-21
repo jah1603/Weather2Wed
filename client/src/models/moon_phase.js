@@ -29,8 +29,10 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function (date) {
     var distanceToMoonInKM = 385001 - 20905 * Math.cos(meanAnomaly);
 
     return {
-        ra: rightAscension(l, b),
-        dec: declination(l, b),
+        rightAscension: Math.atan2(Math.sin(longitude) * Math.cos(axialTiltOfEarthInRadians) - Math.tan(latitude) * Math.sin(axialTiltOfEarthInRadians), Math.cos(longitude)),
+
+        declination: Math.asin(Math.sin(latitude) * Math.cos(axialTiltOfEarthInRadians) + Math.cos(latitude) * Math.sin(axialTiltOfEarthInRadians) * Math.sin(longitude)),
+
         distance: distanceToMoonInKM
     };
 
