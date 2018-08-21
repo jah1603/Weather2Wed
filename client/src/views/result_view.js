@@ -50,19 +50,30 @@ ResultView.prototype.bindEvents = function () {
     modalBody.classList.add('modal-body');
     modalContent.appendChild(modalBody);
 
+    const resultsTable = document.createElement('table');
+    const dailyAverage = document.createElement('tr');
+    const dailyAverageIcon = document.createElement('td');
+
     const icon = evt.detail.daily.data[0].icon;
     const weatherIcon = document.createElement('img');
     weatherIcon.src = `images/weather_icons/${icon}.png`;
-    modalBody.appendChild(weatherIcon);
+    dailyAverageIcon.appendChild(weatherIcon);
+
+    const averageDailyTemperature = document.createElement('td');
+    dailyAverage.appendChild(dailyAverageIcon);
+
+
     // temperature for the afternoon
     //const temperature = evt.detail.hourly.data[14]
-
     const temp = farenToCelsius(evt.detail.hourly.data[14].temperature);
 
     const temperature = document.createElement('p');
     temperature.classList.add("temperature_day")
     temperature.textContent = `${temp}C`
-    modalBody.appendChild(temperature);
+    averageDailyTemperature.appendChild(temperature);
+    dailyAverage.appendChild(averageDailyTemperature);
+    resultsTable.appendChild(dailyAverage);
+    modalBody.appendChild(resultsTable);
 
     const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
 
@@ -120,9 +131,6 @@ ResultView.prototype.bindEvents = function () {
     function overlayHide() {
       document.getElementById("overlay").classList.remove("show");
     }
-
-
-
 
   })
 
