@@ -122,6 +122,31 @@ ResultView.prototype.bindEvents = function () {
     mapView.bindEvents();
     mapView.center(position);
     mapView.addMarker(position);
+    PubSub.publish("ResultView:map-request", (position));
+
+
+
+  PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
+
+
+      for (var i = 0; i < evt.detail.response.venues.length; i++){
+
+        const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
+        var hotelDetails = '';
+        const hotelName = evt.detail.response.venues[i].name;
+        hotelDetails += `${hotelName} `;
+         if (evt.detail.response.venues[i].location.address){
+         const hotelAddress = evt.detail.response.venues[i].location.address;
+         hotelDetails += `${hotelAddress} `;
+       }
+         if (evt.detail.response.venues[i].location.postalCode){
+         const hotelPostcode = evt.detail.response.venues[i].location.postalCode;
+         hotelDetails += `${hotelPostcode}`
+       }
+         mapView.fourSquare(hotelPosition, hotelDetails);
+       }
+     });
+
 
 
     // CREATE MODAL FOOTER

@@ -8,9 +8,10 @@ const FourSquare = function (){
 FourSquare.prototype.bindEvents = function () {
    PubSub.subscribe("Geocode:location-ready", (evt)=>{
      const position = evt.detail;
-     this.getEventData(position);
+     PubSub.subscribe("ResultView:map-request", (evt)=>{
+       this.getEventData(position);
+     })
    })
-
 };
 
 FourSquare.prototype.getEventData = function (location) {
