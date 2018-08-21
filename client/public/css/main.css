@@ -67,7 +67,8 @@ img {
     margin: auto;
     display: flex;
     align-items: center;
-    height: 15vh;
+    height: 10vh;
+    text-align: center
 
 }
 

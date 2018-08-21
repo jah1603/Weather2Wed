@@ -10,21 +10,50 @@ const ResultView = function (container) {
 // loads icons related to weather on that date
 // TODO: target results view, use grid & resize icons
 ResultView.prototype.bindEvents = function () {
-
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
-
-
     this.container.innerHTML = "";
 
-    const weatherReport = document.createElement("H3");
-    const date = timeConverter(evt.detail.daily.data[0].time);
-    const icon = evt.detail.daily.data[0].icon;
-    weatherReport.textContent = `Typically on ${date}, the weather at this location is ${evt.detail.daily.data[0].summary}`;
-    this.container.appendChild(weatherReport);
+    // CREATE MODAL
+    this.container.style.display = 'block';
+    this.container.addEventListener('click', (e) => {
+      if (e.target === this.container) {
+        this.container.style.display = "none";
+      }
+    });
+    // END CREATE MODAL
 
+    // CREATE MODAL CONTENT
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    this.container.appendChild(modalContent);
+
+    const modalHeader = document.createElement('div')
+    modalHeader.classList.add('modal-header');
+    modalContent.appendChild(modalHeader);
+
+    const span = document.createElement('span');
+    span.classList.add("close");
+    span.textContent = '\u00D7';
+    span.addEventListener('click', () => {
+        this.container.style.display = "none";
+    });
+    modalHeader.appendChild(span);
+
+    const header = document.createElement('h2');
+    const date = timeConverter(evt.detail.daily.data[0].time);
+    header.textContent = `Typically on ${date}, the weather at this location is ${evt.detail.daily.data[0].summary}`;
+    modalHeader.appendChild(header);
+    // END CREATE MODAL CONTENT
+
+    // CREATE MODAL BODY
+    const modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+    modalContent.appendChild(modalBody);
+
+    const icon = evt.detail.daily.data[0].icon;
     const weatherIcon = document.createElement('img');
     weatherIcon.src = `images/weather_icons/${icon}.png`;
-    this.container.appendChild(weatherIcon);
+    modalBody.appendChild(weatherIcon);
     // temperature for the afternoon
     //const temperature = evt.detail.hourly.data[14]
 
@@ -33,29 +62,39 @@ ResultView.prototype.bindEvents = function () {
     const temperature = document.createElement('p');
     temperature.classList.add("temperature_day")
     temperature.textContent = `${temp}C`
-    this.container.appendChild(temperature);
+    modalBody.appendChild(temperature);
 
     const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
 
-
     const rainLogo = document.createElement('img');
     rainLogo.src = 'images/weather_icons/rain_chance.png';
-    this.container.appendChild(rainLogo);
+    modalBody.appendChild(rainLogo);
 
     const rain = document.createElement("p");
     rain.textContent = `${rainChance}%`
-    this.container.appendChild(rain);
+    modalBody.appendChild(rain);
 
     const sunsetLogo = document.createElement('img');
     sunsetLogo.src = 'images/weather_icons/sunset.png';
-    this.container.appendChild(sunsetLogo);
+    modalBody.appendChild(sunsetLogo);
 
     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
     const betterSunsetTime = timeConverterToHours(sunsetTime);
 
     const actualSunsetTime = document.createElement('p');
     actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
-    this.container.appendChild(actualSunsetTime)
+    modalBody.appendChild(actualSunsetTime)
+    // END CREATE MODAL BODY
+
+    // CREATE MODAL FOOTER
+    const footer = document.createElement('div');
+    footer.classList.add('modal-footer');
+    modalContent.appendChild(footer);
+
+    const footerText = document.createElement('h3');
+    footerText.textContent = `I'm the footer :)`;
+    footer.appendChild(footerText);
+    // END CREATE MODAL FOOTER
 
     evt.detail.daily.data[0].sunriseTime = timeConverterToHours(evt.detail.daily.data[0].sunriseTime);
 
@@ -70,7 +109,7 @@ ResultView.prototype.bindEvents = function () {
 
 
 // RESULTS OVERLAY PAGE
-    const moreInformation = new MoreInformation(this.container, evt.detail);
+    const moreInformation = new MoreInformation(modalBody, evt.detail);
     moreInformation.render();
 
 
@@ -122,32 +161,7 @@ return time;
 }
 
 
-// MODAL box
-// Get the modal
-var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.querySelector(".button");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
 
 };
 
