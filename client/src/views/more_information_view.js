@@ -55,7 +55,7 @@ const tempHighAndLowIcon = document.createElement('td');
   const lowTime = this.weatherData.daily.data[0].temperatureLowTime;
   const tempHigh = this.weatherData.daily.data[0].temperatureHigh;
   const tempLow = this.weatherData.daily.data[0].temperatureLow;
-  tempSummary.textContent = `the day's lowest temperature is ${tempLow}C at ${lowTime} and the highest temperature will be ${tempHigh}C at ${highTime}`
+  tempSummary.textContent = `${tempLow}C at ${lowTime} and ${tempHigh}C at ${highTime}`
   tempHighAndLowDetail.appendChild(tempSummary);
 
 
