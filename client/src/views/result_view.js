@@ -1,16 +1,17 @@
 const PubSub = require('../helpers/pub_sub.js');
 const DarkSky = require('../models/dark_sky.js');
 const MoreInformation= require('./more_information_view.js');
+const MapView = require('./map_view.js');
 
 const ResultView = function (container) {
   this.container = container;
-  this.darkSky = new DarkSky();
 }
 
 // loads icons related to weather on that date
 // TODO: target results view, use grid & resize icons
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
+    console.log(evt.detail);
     this.container.innerHTML = "";
 
     // CREATE MODAL
@@ -108,6 +109,20 @@ ResultView.prototype.bindEvents = function () {
     resultsTable.appendChild(sunsetRow);
     modalBody.appendChild(resultsTable);
     // END CREATE MODAL BODY
+
+    // Map Nesting
+
+    const mapArea = document.createElement('div');
+    mapArea.setAttribute("id", "mapid")
+    modalBody.appendChild(mapArea);
+    const mapView = new MapView(mapArea);
+    const latitude = evt.detail.latitude;
+    const longitude = evt.detail.longitude;
+    const position = [latitude,longitude];
+    mapView.bindEvents();
+    mapView.center(position);
+    mapView.addMarker(position);
+
 
     // CREATE MODAL FOOTER
     const footer = document.createElement('div');
