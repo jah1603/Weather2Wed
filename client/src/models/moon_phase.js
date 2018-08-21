@@ -6,8 +6,8 @@ moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function () {
 
 };
 
-moonPhaseMethods.prototype.convertDateToNext = function () {
-
+moonPhaseMethods.prototype.convertDateEnteredByUserToNextInstanceOfThatDateInRealTime = function (date {
+  const currentDate
 };
 
 moonPhaseMethods.prototype.calculateMoonPhase = function () {
