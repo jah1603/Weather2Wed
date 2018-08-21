@@ -27,12 +27,12 @@ moonPhaseMethods.prototype.futureProofWeddingDate = function (userWeddingDate) {
 
   // If the user searches for a month of the year which comes before the current month, this method automatically converts into the equivalent month and day one year ahead. This means that the moon phase will always predict future data.
 
-
-
-
+  return dateForCalculations;
 };
 
 moonPhaseMethods.prototype.calculateMoonPhase = function () {
+
+  const distanceBetweenEarthAndSun = 149598000; //Measured in km
 
 };
 
