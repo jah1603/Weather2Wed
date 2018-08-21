@@ -89,17 +89,23 @@ ResultView.prototype.bindEvents = function () {
     rainRow.appendChild(rainPercentage);
     resultsTable.appendChild(rainRow);
 
+    const sunsetRow = document.createElement('tr');
+    const sunsetIcon = document.createElement('td');
+
     const sunsetLogo = document.createElement('img');
     sunsetLogo.src = 'images/weather_icons/sunset.png';
-    modalBody.appendChild(sunsetLogo);
+    sunsetIcon.appendChild(sunsetLogo);
 
+    const dailySunsetTime = document.createElement('td');
     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
     const betterSunsetTime = timeConverterToHours(sunsetTime);
 
     const actualSunsetTime = document.createElement('p');
     actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
-    modalBody.appendChild(actualSunsetTime)
-
+    dailySunsetTime.appendChild(actualSunsetTime);
+    sunsetRow.appendChild(sunsetIcon);
+    sunsetRow.appendChild(dailySunsetTime);
+    resultsTable.appendChild(sunsetRow);
     modalBody.appendChild(resultsTable);
     // END CREATE MODAL BODY
 
@@ -113,6 +119,8 @@ ResultView.prototype.bindEvents = function () {
     footer.appendChild(footerText);
     // END CREATE MODAL FOOTER
 
+
+    // Pass readable time to nested view
     evt.detail.daily.data[0].sunriseTime = timeConverterToHours(evt.detail.daily.data[0].sunriseTime);
 
     evt.detail.daily.data[0].temperatureHigh = farenToCelsius(evt.detail.daily.data[0].temperatureHigh);
