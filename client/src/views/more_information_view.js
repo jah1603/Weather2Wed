@@ -75,13 +75,13 @@ MoreInformation.prototype.render = function() {
   sunriseIcon.appendChild(sunriseLogo);
 
   const sunriseDetail = document.createElement('td');
-  const sunriseTime = document.createElement('p');
-  sunriseTime.textContent = `Sunrise at ${this.weatherData.daily.data[0].sunriseTime}`;
-  sunriseDetail.appendChild(sunriseTime);
-
-  sunriseRow.appendChild(sunriseIcon);
-  sunriseRow.appendChild(sunriseTime);
-  this.container.appendChild(sunriseRow);
+  // const sunriseTime = document.createElement('p');
+  // sunriseTime.textContent = `Sunrise at ${this.weatherData.daily.data[0].sunriseTime}`;
+  // sunriseDetail.appendChild(sunriseTime);
+  //
+  // sunriseRow.appendChild(sunriseIcon);
+  // sunriseRow.appendChild(sunriseTime);
+  // this.container.appendChild(sunriseRow);
 
  const moonPhaseRow = document.createElement('tr');
  const moonIcon = document.createElement('td');
@@ -111,7 +111,7 @@ const tempHighAndLowIcon = document.createElement('td');
   const lowTime = this.weatherData.daily.data[0].temperatureLowTime;
   const tempHigh = this.weatherData.daily.data[0].temperatureHigh;
   const tempLow = this.weatherData.daily.data[0].temperatureLow;
-  tempSummary.textContent = `${tempLow}°C at ${lowTime} and ${tempHigh}°C at ${highTime}`
+  tempSummary.textContent = `Low of ${tempLow}°C at ${lowTime}  High of ${tempHigh}°C at ${highTime}`
   tempHighAndLowDetail.appendChild(tempSummary);
 
 
@@ -124,12 +124,12 @@ const humidityRow = document.createElement('tr');
 const humidityIcon = document.createElement('td');
 
 const humidityLogo = document.createElement('img');
-humidityLogo.src = 'images/weather_icons/pine.png'
+humidityLogo.src = 'images/weather_icons/humidity.jpg'
 humidityIcon.appendChild(humidityLogo);
 
 const humidityDetail = document.createElement('td');
   const humidity = document.createElement('p');
-  humidity.textContent = `humidity: ${this.weatherData.daily.data[0].humidity}`;
+  humidity.textContent = `Humidity: ${this.weatherData.daily.data[0].humidity*100}%`;
   humidityDetail.appendChild(humidity);
 
   humidityRow.appendChild(humidityIcon);
@@ -160,7 +160,7 @@ const humidityDetail = document.createElement('td');
 
   const cloudDetail = document.createElement('td');
   const cloudCover = document.createElement('p');
-  cloudCover.textContent = `cloud cover: ${this.weatherData.daily.data[0].cloudCover*100}%`;
+  cloudCover.textContent = `Cloud cover: ${parseInt(this.weatherData.daily.data[0].cloudCover*100)}%`;
   cloudDetail.appendChild(cloudCover);
 
   cloudRow.appendChild(cloudIcon);

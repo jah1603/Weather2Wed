@@ -70,7 +70,7 @@ ResultView.prototype.bindEvents = function () {
 
     const temperature = document.createElement('p');
     temperature.classList.add("temperature_day")
-    temperature.textContent = `${temp}°C`
+    temperature.textContent = `Average temp: ${temp}°C`
     averageDailyTemperature.appendChild(temperature);
     dailyAverage.appendChild(averageDailyTemperature);
     resultsTable.appendChild(dailyAverage);
@@ -85,7 +85,7 @@ ResultView.prototype.bindEvents = function () {
     const rainPercentage = document.createElement('td');
     const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
     const rain = document.createElement("p");
-    rain.textContent = `${rainChance}%`
+    rain.textContent = `Chance of rain: ${rainChance}%`
     rainPercentage.appendChild(rain);
     rainRow.appendChild(rainIcon);
     rainRow.appendChild(rainPercentage);
@@ -100,10 +100,12 @@ ResultView.prototype.bindEvents = function () {
 
     const dailySunsetTime = document.createElement('td');
     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
+    const sunriseTime = evt.detail.daily.data[0].sunriseTime;
+    const betterSunriseTime = timeConverterToHours(sunriseTime);
     const betterSunsetTime = timeConverterToHours(sunsetTime);
 
     const actualSunsetTime = document.createElement('p');
-    actualSunsetTime.textContent = `Sunset at ${betterSunsetTime}`;
+    actualSunsetTime.textContent = `Sunrise: ${betterSunriseTime} Sunset: ${betterSunsetTime}`;
     dailySunsetTime.appendChild(actualSunsetTime);
     sunsetRow.appendChild(sunsetIcon);
     sunsetRow.appendChild(dailySunsetTime);
