@@ -11,7 +11,7 @@ const ResultView = function (container) {
 // TODO: target results view, use grid & resize icons
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
-    console.log(evt.detail);
+    
     this.container.innerHTML = "";
 
     // CREATE MODAL
@@ -249,7 +249,7 @@ var time = hour-12 + ':' + min + ' pm'  ;
 }else{
 var time = hour + ':' + min + ' am'  ;
 }
-console.log(hour);
+
 return time;
 }
 

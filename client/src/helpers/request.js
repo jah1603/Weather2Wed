@@ -4,7 +4,6 @@ const Request = function (url) {
   this.url = url;
 };
 
-//fetch(request, {mode: 'cors'});
 Request.prototype.get = function (onComplete) {
   return fetch(this.url)
     .then((response) => {

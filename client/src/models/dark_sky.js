@@ -7,8 +7,11 @@ const DarkSky = function (){
 
 // listens for the date input and location input
 DarkSky.prototype.bindEvents = function () {
+
   PubSub.subscribe("InputFormView:date-ready", (evt)=>{
+
     const date = evt.detail;
+    console.log("date going in to darksky:", date);
     PubSub.subscribe("Geocode:location-ready", (evt)=>{
       const position = evt.detail;
       this.getWeatherData(position, date);
@@ -21,11 +24,13 @@ DarkSky.prototype.bindEvents = function () {
 
 // gets weather data from api
 DarkSky.prototype.getWeatherData = function (location, seconds) {
+  console.log("date going into dark sky AGAIN:", seconds);
   const url = `http://localhost:8080/weather/${location}/${seconds}`
   const request = new Request (url);
   request.get()
   .then((data)=>{
   this.data = data;
+  console.log("date coming out of dark sky:",this.data.currently.time);
   PubSub.publish('DarkSky:weather-ready', this.data);
   })
 

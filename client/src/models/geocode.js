@@ -32,8 +32,7 @@ Geocode.prototype.getLocation = function (location) {
   const lat = parseFloat(data.items[0].lat);
   const long = parseFloat(data.items[0].long);
   const position = [lat,long];
-  //const position = `${data.items[0].lat},${data.items[0].long}`
-
+  
   PubSub.publish('Geocode:location-ready', position);
   })
 
