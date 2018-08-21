@@ -1,7 +1,10 @@
 const moonPhaseMethods = function() {
   this.sunCoordinates = null;
   this.moonCoordinates = null;
+  this.year1970InJulianCalendarDays = 2440588;
 };
+
+// Astronomical calculations are approximate, mainly based on material found at http://aa.quae.nl/
 
 moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function (date) {
 
@@ -26,9 +29,11 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
     var dateForCalculations = userWeddingDate;
   };
 
-  // If the user searches for a month of the year which comes before the current month, this method automatically converts into the equivalent month and day one year ahead. This means that the moon phase will always predict future data.
+  // If the user searches for a month of the year which comes before the current month in the calendar, this method automatically converts it into the same month and day one year ahead. This means that the moon phase will always predict future data, no matter when the app is used.
 
-  return dateForCalculations;
+  return dateForCalculations.valueOf() / (1000*60*60*24) - 0.5 + this.year1970InJulianCalendarDays;
+
+  // Must convert the date into calendar days since the year 2000, as this is the year that the data on planet positions was taken from.
 };
 
 moonPhaseMethods.prototype.calculateMoonPhase = function (date) {
