@@ -1,12 +1,13 @@
 const moonPhaseMethods = function() {
   this.sunCoordinates = null;
+  this.moonCoordinates = null;
 };
 
-moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function () {
+moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function (date) {
 
 };
 
-moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function () {
+moonPhaseMethods.prototype.calculateCoordinatesOfTheMoon = function (date) {
 
 };
 
@@ -30,9 +31,15 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
   return dateForCalculations;
 };
 
-moonPhaseMethods.prototype.calculateMoonPhase = function () {
+moonPhaseMethods.prototype.calculateMoonPhase = function (date) {
+
+  this.calculateCoordinatesOfTheSun(date);
+  this.calculateCoordinatesOfTheMoon(date);
 
   const avgSunEarthDistance = 149597870; //Measured in km
+  const weddingDate = this.futureproofWeddingDate(date);
+  const sunCoordinates = this.sunCoordinates;
+  const moonCoordinates = this.moonCoordinates;
 
         var phi = Math.acos(Math.sin(avgSunEarthDistance.dec) * Math.sin(m.dec) + Math.cos(avgSunEarthDistance.dec) * Math.cos(m.dec) * Math.cos(avgSunEarthDistance.ra - m.ra))
 
