@@ -140,11 +140,13 @@ body{
 
 h1{
 
-  font-size: 120px;
-  float: center;
+font-size: 120px;
+float: center;
 font-family: 'Raleway', sans-serif;
 color: #4aceb5;
-text-align: center;
+text-align: center;color: #fff;
+text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #4aceb5, 0 0 30px #4aceb5, 0 0 40px #4aceb5, 0 0 55px #4aceb5, 0 0 75px #4aceb5;
+
 }
 
 
@@ -175,10 +177,4 @@ text-align: center;
 }
 
 
-}
-
-.header img {
-  float: left;
-  width: 350px;
-  height: 350px;
 }
