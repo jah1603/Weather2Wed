@@ -185,3 +185,14 @@ text-align: center;
   width: 350px;
   height: 350px;
 }
+
+td{
+  padding-top:2vh;
+  padding-bottom:2vh;
+  padding-right:2vh;
+}
+
+td:first-child{
+  padding-left: 10vh;
+  padding-right: 10vh;
+}
