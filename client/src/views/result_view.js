@@ -15,20 +15,13 @@ const ResultView = function (container) {
 // TODO: target results view, use grid & resize icons
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
-
-
-
-
     this.container.innerHTML = "";
-
 
     // CREATE MODAL
     this.container.style.display = 'block';
-
     this.container.addEventListener('click', (e) => {
       if (e.target === this.container) {
         this.container.style.display = "none";
-
       }
     });
     // END CREATE MODAL
@@ -51,8 +44,6 @@ ResultView.prototype.bindEvents = function () {
     modalHeader.appendChild(span);
 
 
-
-
     const header = document.createElement('h2');
     const date = this.conversionMethods.timeConverter(evt.detail.daily.data[0].time);
 
@@ -65,16 +56,11 @@ ResultView.prototype.bindEvents = function () {
     console.log(this.modalBody);
     this.modalBody.classList.add('modal-body');
     modalContent.appendChild(this.modalBody);
+    // END CREATE MODAL BODY
+
+    //render results table
     this.renderTable(evt);
 
-
-
-
-
-
-
-
-    // END CREATE MODAL BODY
 
     // Map Nesting
 
@@ -88,10 +74,11 @@ ResultView.prototype.bindEvents = function () {
     mapView.bindEvents();
     mapView.center(position);
     mapView.addMarker(position);
+    // Page loaded and ready for map details
     PubSub.publish("ResultView:map-request", (position));
 
 
-
+    // Four square response
     PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
     let x = "Hello!";
 
@@ -115,19 +102,6 @@ ResultView.prototype.bindEvents = function () {
          mapView.fourSquare(hotelPosition, hotelDetails);
        }
      });
-
-
-
-    // CREATE MODAL FOOTER
-    // const footer = document.createElement('div');
-    // footer.classList.add('modal-footer');
-    // modalContent.appendChild(footer);
-    //
-    // const footerText = document.createElement('h3');
-    // footerText.textContent = `I'm the footer :)`;
-    // footer.appendChild(footerText);
-    // END CREATE MODAL FOOTER
-
 
 
 
