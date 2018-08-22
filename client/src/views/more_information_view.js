@@ -1,72 +1,12 @@
 const PubSub = require('../helpers/pub_sub.js');
-const moonPhaseMethods = require('../models/moon_phase.js');
+const MoonPhaseMethods = require('../models/moon_phase_equations.js');
+const ConversionMethods = require('../models/conversion_methods.js')
 
 const MoreInformation = function(container, weatherData, weddingDate) {
   this.container = container;
   this.weatherData = weatherData;
   this.weddingDate = weddingDate;
-  this.calculatedMoonPhase = null;
-};
-
-MoreInformation.prototype.convertMoonPhaseNumberToImageName = function () {
-
-  newMoonPhaseMethods = new moonPhaseMethods();
-  this.calculatedMoonPhase = newMoonPhaseMethods.calculateMoonPhase(this.weddingDate);
-
-  if (this.calculatedMoonPhase == 0){
-    var moonPhaseName = 'new_moon.jpg'
-  }
-  else if(this.calculatedMoonPhase <= 0.167 && this.calculatedMoonPhase > 0){
-    var moonPhaseName = 'waxing_crescent.jpg'
-  }
-  else if(this.calculatedMoonPhase <= 0.33 && this.calculatedMoonPhase > 0.167){
-    var moonPhaseName = 'first_quarter.jpg'
-  }
-  else if(this.calculatedMoonPhase >= 0.49 && this.calculatedMoonPhase <= 0.51){
-    var moonPhaseName = 'full_moon.jpg'
-  }
-  else if(this.calculatedMoonPhase <= 0.667 && this.calculatedMoonPhase > 0.51){
-    var moonPhaseName = 'waxing_gibbous.jpg'
-  }
-  else if(this.calculatedMoonPhase <= 0.833 && this.calculatedMoonPhase > 0.667){
-    var moonPhaseName = 'last_quarter.jpg'
-  }
-  else if(this.calculatedMoonPhase < 1 && this.calculatedMoonPhase >= 0.833 ){
-    var moonPhaseName = 'waning_gibbous.jpg'
-  }
-  else{
-    var moonPhaseName = 'waning_crescent.jpg'
-  }
-  return moonPhaseName;
-};
-
-MoreInformation.prototype.convertMoonPhaseNumberToName = function () {
-  if (this.calculatedMoonPhase == 0){
-    var moonPhaseName = 'New moon'
-  }
-  else if(this.calculatedMoonPhase <= 0.167 && this.calculatedMoonPhase > 0){
-    var moonPhaseName = 'Waxing crescent moon'
-  }
-  else if(this.calculatedMoonPhase <= 0.33 && this.calculatedMoonPhase > 0.167){
-    var moonPhaseName = 'First quarter moon'
-  }
-  else if(this.calculatedMoonPhase >= 0.49 && this.calculatedMoonPhase <= 0.51){
-    var moonPhaseName = 'Full moon'
-  }
-  else if(this.calculatedMoonPhase <= 0.667 && this.calculatedMoonPhase > 0.51){
-    var moonPhaseName = 'Waxing gibbous moon'
-  }
-  else if(this.calculatedMoonPhase <= 0.833 && this.calculatedMoonPhase > 0.667){
-    var moonPhaseName = 'Last quarter moon'
-  }
-  else if(this.calculatedMoonPhase < 1 && this.calculatedMoonPhase >= 0.833 ){
-    var moonPhaseName = 'Waning gibbous moon'
-  }
-  else{
-    var moonPhaseName = 'Waning crescent moon'
-  }
-  return moonPhaseName;
-  console.log(moonPhaseName);
+  this.conversionMethods = new ConversionMethods();
 };
 
 MoreInformation.prototype.render = function() {
@@ -75,6 +15,7 @@ MoreInformation.prototype.render = function() {
   // const this.container = document.createElement('table');
   // this.container.classList.add('more_information');
 
+  const moonPhaseMethods = new MoonPhaseMethods();
   const sunriseRow = document.createElement('tr');
 
   const sunriseIcon = document.createElement('td');
@@ -95,11 +36,11 @@ MoreInformation.prototype.render = function() {
  const moonIcon = document.createElement('td');
   const moonPhaseLogo = document.createElement('img');
 
-  moonPhaseLogo.src = `images/weather_icons/${this.convertMoonPhaseNumberToImageName()}`;
+  moonPhaseLogo.src = `images/weather_icons/${moonPhaseMethods.convertMoonPhaseNumberToImageName(this.weddingDate)}`;
   moonIcon.appendChild(moonPhaseLogo);
   const moonPhaseDescription = document.createElement('td');
   const moonPhase = document.createElement('p');
-  moonPhase.textContent = this.convertMoonPhaseNumberToName();
+  moonPhase.textContent = moonPhaseMethods.convertMoonPhaseNumberToName(this.weddingDate);
   moonPhaseDescription.appendChild(moonPhase);
   moonPhaseRow.appendChild(moonIcon);
   moonPhaseRow.appendChild(moonPhaseDescription);
@@ -115,11 +56,15 @@ const tempHighAndLowIcon = document.createElement('td');
 
   const tempHighAndLowDetail = document.createElement('td');
   const tempSummary = document.createElement('p');
-  const highTime = this.weatherData.daily.data[0].temperatureHighTime;
-  const lowTime = this.weatherData.daily.data[0].temperatureLowTime;
-  const tempHigh = this.weatherData.daily.data[0].temperatureHigh;
-  const tempLow = this.weatherData.daily.data[0].temperatureLow;
-  tempSummary.textContent = `Low: ${tempLow}°C at ${lowTime}  High: ${tempHigh}°C at ${highTime}`
+  const unixHighTempTime = this.weatherData.daily.data[0].temperatureHighTime;
+  const unixLowTempTime = this.weatherData.daily.data[0].temperatureLowTime;
+
+  const highTime = this.conversionMethods.timeConverterToHours(unixHighTempTime);
+  const lowTime = this.conversionMethods.timeConverterToHours(unixLowTempTime);
+
+  const tempHigh = this.conversionMethods.fahrenheitToCelsius(this.weatherData.daily.data[0].temperatureHigh);
+  const tempLow = this.conversionMethods.fahrenheitToCelsius(this.weatherData.daily.data[0].temperatureLow);
+  tempSummary.textContent = `Low: ${tempLow}°C at ${lowTime},  High: ${tempHigh}°C at ${highTime}`
   tempHighAndLowDetail.appendChild(tempSummary);
 
 
