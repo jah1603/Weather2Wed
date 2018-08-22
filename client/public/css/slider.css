@@ -6,7 +6,17 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
 
+@media only screen and (max-width: 800px) {
+  body {
+    background-color: #d8d8d8;
+    overflow-x:visible;
+    overflow-y:visible;
+    background-image: url('../images/rain_weather_cropped.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
 }
 
 *,
@@ -100,4 +110,14 @@ div#value{
    stroke: #24b599;
    /* color: ; */
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
+}
+
+@media only screen and (max-width: 500px) {
+  #ring {
+     stroke: #24b599;
+     radiusx: 3%;
+     ry: 5%;
+     /* color: ; */
+     animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
+  }
 }
