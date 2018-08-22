@@ -2,7 +2,7 @@
   "name": "weather",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "server.js",
   "scripts": {
     "build": "webpack -w",
     "start": "npm run build & node server.js",
