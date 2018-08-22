@@ -8,15 +8,25 @@ body {
   background-position: center;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 600px) {
   body {
     background-color: #d8d8d8;
+    height: 100%;
+    width: 100%;
     overflow-x:visible;
     overflow-y:visible;
     background-image: url('../images/rain_weather_cropped.jpeg');
-    background-repeat: no-repeat;
-    background-position: center;
+    background-position: relative;
 }
+}
+
+h1{
+
+  font-size: 7vw;
+  position: relative;
+  left: 25vw;
+font-family: 'Raleway', sans-serif;
+color: white;
 }
 
 *,
@@ -27,6 +37,8 @@ body {
 
 .wrap {
   margin: 0 auto;
+  position: relative;
+  left: 0vw;
   width: 68.359375vw;
   height: 14.749vh;
 }
@@ -34,6 +46,8 @@ body {
 .slider-container {
   width: 68.359375vw;
   height: 14.749vh;
+  position: relative;
+  left: 0vw;
   overflow-x: visible;
   overflow-y: visible;
   align: center;
@@ -73,6 +87,8 @@ body {
   color: #24b599;
   font-size: 3vw;
   font-weight: bold;
+  position: relative;
+  left: 0vw;
 }
 
 svg#slider{
@@ -106,6 +122,17 @@ div#value{
  }
 }
 
+#location {
+  text-align: center;
+  position: relative;
+  left: 49vw;
+  width: 45vw;
+  height: 5vh;
+  margin-left: -22.5vw;
+  font-size: 2vw;
+  font-family: 'Raleway', sans-serif;
+}
+
 #ring {
    stroke: #24b599;
    /* color: ; */
@@ -115,8 +142,28 @@ div#value{
 @media only screen and (max-width: 500px) {
   #ring {
      stroke: #24b599;
-     radiusx: 3%;
-     ry: 5%;
+     rx: 3%;
+     ry: 10%;
+     /* color: ; */
+     animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #ring {
+     stroke: #24b599;
+     rx: 3%;
+     ry: 16%;
+     /* color: ; */
+     animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #ring {
+     stroke: #24b599;
+     rx: 3%;
+     ry: 10%;
      /* color: ; */
      animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
   }
