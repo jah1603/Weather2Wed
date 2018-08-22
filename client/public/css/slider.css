@@ -46,14 +46,14 @@ body {
   -webkit-appearance: none;
   appearance: none;
   width: 9.765625vw;
-  height: 35.398vh;
+  height: 22.398vh;
   background: #ccc;
   cursor: pointer;
 }
 
 #range::-moz-range-thumb {
   width: 9.765625vw;
-  height: 35.398vh;
+  height: 22.398vh;
   background: #ccc;
   cursor: pointer;
 }
