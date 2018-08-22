@@ -9,7 +9,7 @@ MoreInformation.prototype.render = function() {
 
   const moreInfoContainer = document.createElement('div');
   moreInfoContainer.classList.add('more_information');
-  console.log("weatherData:", this.weatherData);
+  
 
   const sunriseLogo = document.createElement('img');
   sunriseLogo.src = 'images/weather_icons/sunset.png';
@@ -32,7 +32,7 @@ MoreInformation.prototype.render = function() {
 
   const tempSummary = document.createElement('p');
   const highTime = this.weatherData.daily.data[0].temperatureHighTime;
-  console.log(highTime);
+
   const lowTime = this.weatherData.daily.data[0].temperatureLowTime;
   const tempHigh = this.weatherData.daily.data[0].temperatureHigh;
   const tempLow = this.weatherData.daily.data[0].temperatureLow;

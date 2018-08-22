@@ -27,7 +27,7 @@ PubSub.subscribe("Geocode:location-ready", (evt)=>{
   var marker = L.marker(position).addTo(mymap);
 
 
-  console.log(position);
+
   var w2wIcon = L.icon({
     iconUrl: 'https://storage.needpix.com/thumbs/heart-47946_1280.png',
     shadowUrl: '',

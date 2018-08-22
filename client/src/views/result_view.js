@@ -14,6 +14,8 @@ ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
 
 
+
+
     this.container.innerHTML = "";
 
     const weatherReport = document.createElement("H3");
@@ -33,6 +35,7 @@ ResultView.prototype.bindEvents = function () {
     const temperature = document.createElement('p');
     temperature.classList.add("temperature_day")
     temperature.textContent = `${temp}C`
+    console.log("This code is running too many times!!");
     this.container.appendChild(temperature);
 
     const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
@@ -111,7 +114,7 @@ var time = hour-12 + ':' + min + ' pm'  ;
 }else{
 var time = hour + ':' + min + ' am'  ;
 }
-console.log(hour);
+
 return time;
 }
 

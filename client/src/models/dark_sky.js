@@ -30,7 +30,7 @@ DarkSky.prototype.getWeatherData = function (location, seconds) {
   .then((data)=>{
   this.data = data;
   // this.data.currently.pressure = precipProbArray;
-  console.log("ONE");
+  
   //this.data something add prob into
   PubSub.publish('DarkSky:weather-ready', this.data);
   })
