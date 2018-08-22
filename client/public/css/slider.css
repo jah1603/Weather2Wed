@@ -56,9 +56,10 @@ body {
 
 #value {
   font-family: 'Raleway', sans-serif;
-  color: white;
+  color: black;
   font-size: 30px;
   font-weight: bold;
+
 }
 
 svg#slider{
@@ -124,7 +125,7 @@ div#value{
 } */
 
 #ring {
-   stroke: #FF4D5C;
-   /* color: #24b599; */
+   stroke: #24b599;
+   /* color: ; */
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
