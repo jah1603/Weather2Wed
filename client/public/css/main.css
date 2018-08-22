@@ -180,3 +180,9 @@ text-align: center;
 
 
 }
+
+.header img {
+  float: left;
+  width: 350px;
+  height: 350px;
+}
