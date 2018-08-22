@@ -2,6 +2,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const DarkSky = require('../models/dark_sky.js');
 const MoreInformation= require('./more_information_view.js');
 const MapView = require('./map_view.js');
+const ConversionMethods = require('../models/conversion_methods.js');
 
 const ResultView = function (container) {
   this.container = container;
@@ -12,6 +13,7 @@ const ResultView = function (container) {
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
 
+    const conversionMethods = new ConversionMethods();
 
     this.container.innerHTML = "";
 
@@ -43,7 +45,7 @@ ResultView.prototype.bindEvents = function () {
     modalHeader.appendChild(span);
 
     const header = document.createElement('h2');
-    const date = timeConverter(evt.detail.daily.data[0].time);
+    const date = conversionMethods.timeConverter(evt.detail.daily.data[0].time);
 
     header.textContent = `Typical weather for ${date}: ${evt.detail.daily.data[0].summary}`;
     modalHeader.appendChild(header);
@@ -68,7 +70,7 @@ ResultView.prototype.bindEvents = function () {
     dailyAverage.appendChild(dailyAverageIcon);
 
     // temperature for the afternoon
-    const temp = farenToCelsius(evt.detail.hourly.data[14].temperature);
+    const temp = conversionMethods.fahrenheitToCelsius(evt.detail.hourly.data[14].temperature);
 
     const temperature = document.createElement('p');
     temperature.classList.add("temperature_day")
@@ -103,8 +105,8 @@ ResultView.prototype.bindEvents = function () {
     const dailySunsetTime = document.createElement('td');
     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
     const sunriseTime = evt.detail.daily.data[0].sunriseTime;
-    const betterSunriseTime = timeConverterToHours(sunriseTime);
-    const betterSunsetTime = timeConverterToHours(sunsetTime);
+    const betterSunriseTime = conversionMethods.timeConverterToHours(sunriseTime);
+    const betterSunsetTime = conversionMethods.timeConverterToHours(sunsetTime);
 
     const actualSunsetTime = document.createElement('p');
     actualSunsetTime.textContent = `Sunrise: ${betterSunriseTime} Sunset: ${betterSunsetTime}`;
@@ -169,16 +171,16 @@ ResultView.prototype.bindEvents = function () {
 
 
     // Pass readable time to nested view
-    evt.detail.daily.data[0].sunriseTime = timeConverterToHours(evt.detail.daily.data[0].sunriseTime);
+    evt.detail.daily.data[0].sunriseTime = conversionMethods.timeConverterToHours(evt.detail.daily.data[0].sunriseTime);
 
-    evt.detail.daily.data[0].temperatureHigh = farenToCelsius(evt.detail.daily.data[0].temperatureHigh);
+    evt.detail.daily.data[0].temperatureHigh = conversionMethods.fahrenheitToCelsius(evt.detail.daily.data[0].temperatureHigh);
 
-    evt.detail.daily.data[0].temperatureLow = farenToCelsius(evt.detail.daily.data[0].temperatureLow);
+    evt.detail.daily.data[0].temperatureLow = conversionMethods.fahrenheitToCelsius(evt.detail.daily.data[0].temperatureLow);
 
     evt.detail.daily.data[0].temperatureHighTime =
-   timeConverterToHours(evt.detail.daily.data[0].temperatureHighTime);
+   conversionMethods.timeConverterToHours(evt.detail.daily.data[0].temperatureHighTime);
 
-    evt.detail.daily.data[0].temperatureLowTime = timeConverterToHours(evt.detail.daily.data[0].temperatureLowTime);
+    evt.detail.daily.data[0].temperatureLowTime = conversionMethods.timeConverterToHours(evt.detail.daily.data[0].temperatureLowTime);
 
 
 // RESULTS OVERLAY PAGE
@@ -195,78 +197,6 @@ ResultView.prototype.bindEvents = function () {
     }
 
   })
-
-
-// should time converter, farenToCelsius & timeConverter be in their own js file?
-  function timeConverter(UNIX_timestamp){
-  var a = new Date(UNIX_timestamp * 1000);
-  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-
-  if (date == 3) {
-   var formattedDate = `${date}rd`
-} else if (date == 2) {
-   var formattedDate = `${date}nd`
-}
-else if (date == 1) {
-   var formattedDate = `${date}st`
-}
-else if (date == 21) {
-   var formattedDate = `${date}st`
-}
-else if (date == 31) {
-   var formattedDate = `${date}st`
-}
-else if (date == 22) {
-   var formattedDate = `${date}nd`
-}
-else if (date == 23) {
-   var formattedDate = `${date}rd`
-}
- else {
-   var formattedDate = `${date}th`
-}
-
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var time = 'the ' + formattedDate + ' of ' + month  ;
-  return time;
-}
-
-function farenToCelsius(faren){
-  const celsius = Math.round(((faren - 32)/1.8));
-  return celsius;
-}
-
-
-
-function timeConverterToHours(UNIX_timestamp){
-var a = new Date(UNIX_timestamp * 1000);
-
-var hour = a.getHours(); // makes time easier to read (presumes wedding is pm!)
-var min = a.getMinutes();
-if (min < 10){
-  min = `0${min}`;
-}
-if (hour > 12){
-var time = hour-12 + ':' + min + ' pm'  ;
-}
-else if (hour == 12){
-var time = hour + ':' + min + ' pm' + ' (midday)'  ;
-}
-else if (hour == 0){
-var time = 12 + ':' + min + ' pm' + ' (midnight)'  ;
-}
-else{
-var time = hour + ':' + min + ' am'  ;
-}
-
-return time;
-}
-
-
-
 
 };
 
