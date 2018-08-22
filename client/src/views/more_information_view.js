@@ -50,10 +50,10 @@ MoreInformation.prototype.convertMoonPhaseNumberToName = function () {
   else if(this.calculatedMoonPhase <= 0.33 && this.calculatedMoonPhase > 0.167){
     var moonPhaseName = 'First quarter moon'
   }
-  else if(this.calculatedMoonPhase == 0.50){
+  else if(this.calculatedMoonPhase >= 0.49 && this.calculatedMoonPhase <= 0.51){
     var moonPhaseName = 'Full moon'
   }
-  else if(this.calculatedMoonPhase <= 0.667 && this.calculatedMoonPhase > 0.50){
+  else if(this.calculatedMoonPhase <= 0.667 && this.calculatedMoonPhase > 0.51){
     var moonPhaseName = 'Waxing gibbous moon'
   }
   else if(this.calculatedMoonPhase <= 0.833 && this.calculatedMoonPhase > 0.667){
