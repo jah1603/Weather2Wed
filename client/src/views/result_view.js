@@ -132,20 +132,9 @@ ResultView.prototype.renderTable = function (evt) {
   this.renderSunTimes(evt);
   const moreInformation = new MoreInformation(this.resultsTable, evt.detail, evt.detail.daily.data[0].time);
   moreInformation.render();
-  // this.renderMoonPhase(evt);
-  // this.renderHighAndLow(evt);
-  // this.renderHumidity(evt);
-  // this.renderWindSpeed(evt);
-  // this.renderCloudCover(evt);
   this.modalBody.appendChild(this.resultsTable);
 
 };
-
-
-
-
-
-
 
 // CREATE TABLE ELEMENTS: Daily Average
 ResultView.prototype.renderDailyAverage = function (evt) {
