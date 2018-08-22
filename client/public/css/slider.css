@@ -12,13 +12,13 @@ body {
 
 .wrap {
   margin: 0 auto;
-  width: 700px;
-  height: 100px;
+  width: 68.359375vw;
+  height: 13.02083vh;
 }
 
 .slider-container {
-  width: 700px;
-  height: 100px;
+  width: 68.359375vw;
+  height: 13.02083vh;
   overflow-x: visible;
   overflow-y: visible;
   align: center;
@@ -30,9 +30,9 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  left: -70px;
+  left: -6.8359375vw;
   width: 120%;
-  top: -20px;
+  top: -2.604167vh;
   height: 120%;
   opacity: 0;
   /* color: pink;
