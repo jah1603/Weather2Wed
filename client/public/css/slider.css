@@ -122,7 +122,7 @@ div#value{
 } */
 
 #ring {
-   stroke: #91d4ff;
+   stroke: #4aceb5;
    /* color: #24b599; */
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
