@@ -1,5 +1,5 @@
 body {
-  background-color: #8e8f91;
+  background-color: #FF4D5C;
   overflow-x:visible;
   overflow-y:visible;
 }
@@ -122,7 +122,7 @@ div#value{
 } */
 
 #ring {
-   stroke: #4aceb5;
+   stroke: #91d4ff;
    /* color: #24b599; */
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }
