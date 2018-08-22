@@ -96,6 +96,7 @@ img {
   margin-left: -250px;
   font-size: 20px;
   font-family: 'Raleway', sans-serif;
+  outline: none;
 }
 
 /* .slide-bar{
@@ -160,7 +161,7 @@ text-align: center;
   vertical-align: middle;
   border-style: none;
   background-size: 10vw;
-
+  outline: none;
 }
 
 .button {
@@ -171,7 +172,6 @@ text-align: center;
   position: relative;
   left: 50%;
   margin-left: -65px;
-
 }
 
 #save:hover{
