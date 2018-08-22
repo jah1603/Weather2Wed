@@ -4,9 +4,9 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
+    "build": "webpack -w",
     "start": "npm run build & node server.js",
     "server:dev": "nodemon server.js",
-    "build": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
     "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;"
