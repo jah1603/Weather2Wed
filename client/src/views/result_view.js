@@ -49,6 +49,7 @@ ResultView.prototype.bindEvents = function () {
 
     header.textContent = `Typical weather for ${date}: ${evt.detail.daily.data[0].summary}`;
     modalHeader.appendChild(header);
+
     // END CREATE MODAL CONTENT
 
     // CREATE MODAL BODY
