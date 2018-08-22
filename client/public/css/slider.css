@@ -1,5 +1,5 @@
 body {
-  background-color: #FF4D5C;
+  background-color: #d8d8d8;
   overflow-x:visible;
   overflow-y:visible;
 }
@@ -55,7 +55,7 @@ body {
 
 #value {
   font-family: 'Raleway', sans-serif;
-  color: white;
+  color: black;
   font-size: 20px;
 }
 

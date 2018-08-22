@@ -43,7 +43,7 @@
 
 .modal-header {
    padding: 2px 16px;
-   background-color: #4aceb5;
+   background-color:#4aceb5;
    color: white;
 }
 
@@ -94,9 +94,6 @@ img {
   font-family: 'Raleway', sans-serif;
 }
 
-/* font-family: 'Oxygen', sans-serif; */
-/* font-family: 'Comfortaa', cursive;
-font-family: 'Do Hyeon', sans-serif; */
 
 /* .slide-bar{
   position: absolute;
@@ -143,11 +140,10 @@ body{
 
 h1{
 
-  font-size: 55px;
+  font-size: 120px;
   float: center;
-/* font-family: 'Futura'; */
-color: #191970;
-text-shadow: 0 0 5px #191970, 0 0 10px #191970, 0 0 20px #ccc, 0 0 30px #ccc, 0 0 40px #ccc, 0 0 55px #ccc, 0 0 75px #ccc;
+font-family: 'Raleway', sans-serif;
+color: #4aceb5;
 text-align: center;
 }
 
