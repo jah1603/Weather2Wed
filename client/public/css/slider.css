@@ -8,7 +8,7 @@ body {
   background-position: center;
 }
 
-@media only screen and (max-width: 870px) {
+@media only screen and (max-width: 500px) {
   body {
     background-color: #d8d8d8;
     height: 100%;
@@ -16,6 +16,18 @@ body {
     overflow-x:visible;
     overflow-y:visible;
     background-image: url('../images/rain_weather_cropped.jpeg');
+    background-position: relative;
+}
+}
+
+@media only screen and (max-width: 870px) {
+  body {
+    background-color: #d8d8d8;
+    height: 100%;
+    width: 100%;
+    overflow-x:visible;
+    overflow-y:visible;
+    background-image: url('../images/rain_weather_ipad.jpeg');
     background-position: relative;
 }
 }
