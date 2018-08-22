@@ -1,7 +1,8 @@
 body {
-  background-color: #8e8f91;
+  background-color: #d8d8d8;
   overflow-x:visible;
   overflow-y:visible;
+  background-image: url('../images/rain_weather.jpeg')
 }
 
 *,
@@ -35,9 +36,8 @@ body {
   top: -2.94985vh;
   height: 120%;
   opacity: 0;
-  /* color: pink;
-  background-color: gold; */
 }
+
 #range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -46,6 +46,7 @@ body {
   background: #ccc;
   cursor: pointer;
 }
+
 #range::-moz-range-thumb {
   width: 9.765625vw;
   height: 35.398vh;
@@ -55,8 +56,9 @@ body {
 
 #value {
   font-family: 'Raleway', sans-serif;
-  color: white;
+  color: black;
   font-size: 3vw;
+  font-weight: bold;
 }
 
 svg#slider{
@@ -75,7 +77,6 @@ div#value{
   text-align: center;
 }
 
-
 @keyframes bounce {
  0%, 20%, 60%, 100% {
    -webkit-transform: translateY(0);
@@ -90,39 +91,9 @@ div#value{
    transform: translateY(-1.5px);
  }
 }
-/* @keyframes shine{
- 10% {
-   opacity: 0.8;
-   top: -30%;
-   left: -30%;
-   transition-property: left, top, opacity;
-   transition-duration: 0.7s, 0.7s, 1s;
-   transition-timing-function: ease;
- }
- 100% {
-   opacity: 0.6;
-   top: -30%;
-   left: -30%;
-   transition-property: left, top, opacity;
- }
-} */
-
-/* @-webkit-keyframes sparkle
-{
-  0%   { stroke: #ffd710; }
-  30%  { stroke: #ffd720; }
-  40%  { stroke: #ffd680; }
-  60%  { stroke: #ffd740; }
-  100% { stroke: #ffd780; }
-} */
-
-/* @keyframes rotate {
-    0% {transform:rotate(0deg);}
-    100% {transform:rotate(360deg);}
-} */
 
 #ring {
-   stroke: #4aceb5;
-   /* color: #24b599; */
+   stroke: #24b599;
+   /* color: ; */
    animation: bounce 2s infinite, shine 2s infinite, sparkle 1s infinite, rotate 2s infinite;
 }

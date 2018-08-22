@@ -1,3 +1,20 @@
+body{
+  background-color: #8e8f91;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+}
+
+
+h1{
+
+  font-size: 70vw;
+  float: center;
+font-family: 'Raleway', sans-serif;
+color: white;
+text-align: center;
+}
+
 /* The Modal (resuts view) */
 .modal {
     display: none; /* Hidden by default */
@@ -36,14 +53,15 @@
 
 .close:hover,
 .close:focus {
-    color: red;
+    color: white;
     text-decoration: none;
     cursor: pointer;
 }
 
+
 .modal-header {
    padding: 2px 16px;
-   background-color: #4aceb5;
+   background-color: #24b599;
    color: white;
 }
 
@@ -51,16 +69,13 @@
 
 .modal-footer {
    padding: 2px 16px;
-   background-color:  #4aceb5;
+   background-color: #FF4D5C;
    color: white;
    overflow: auto;
 }
 /* ABOVE THIS LINE IS MODAL BOX  */
 
-img#logo {
- width: 80vw;
 
-}
 
 
 
@@ -99,63 +114,12 @@ img {
   font-family: 'Raleway', sans-serif;
 }
 
-/* font-family: 'Oxygen', sans-serif; */
-/* font-family: 'Comfortaa', cursive;
-font-family: 'Do Hyeon', sans-serif; */
-
-/* .slide-bar{
-  position: absolute;
-  top:50%;
-  left:50%;
-  margin-left: -65px;
-  margin-top: -20px;
-  width: 130px;
-  height: 40px;
-  text-align: center;
-} */
-
-
 #mapid {
     width: 40vw;
     height: 100vh;
-    /* border-radius: 200px;
-    position: relative; */
     z-index: 500;
     float: right;
-
   }
-
-table {
-float: left;
-font-size: 2em;
-width: 45vh;
-}
-  /* height: 70vw ; } */
-
-body{
-  background-color: #8e8f91;
- -moz-background-size: cover;
- -o-background-size: cover;
- background-size: cover;
-
-}
-
-
-
-/* img {
-  width: 10vw;
-} */
-
-h1{
-
-  font-size: 55px;
-  float: center;
-/* font-family: 'Futura'; */
-color: #191970;
-text-shadow: 0 0 5px #191970, 0 0 10px #191970, 0 0 20px #ccc, 0 0 30px #ccc, 0 0 40px #ccc, 0 0 55px #ccc, 0 0 75px #ccc;
-text-align: center;
-}
-
 
 #save{
   width: 10vw;
@@ -165,7 +129,7 @@ text-align: center;
   vertical-align: middle;
   border-style: none;
   background-size: 10vw;
-
+  outline: none;
 }
 
 .button {
@@ -176,12 +140,21 @@ text-align: center;
   position: relative;
   left: 50%;
   margin-left: -65px;
-
 }
 
-#save:hover{
-  /* border-color: #4aceb5; */
+table {
+float: left;
+font-size: 2em;
+width: 45vh;
 }
 
+td{
+  padding-top:2vh;
+  padding-bottom:2vh;
+  padding-right:2vh;
+}
 
+td:first-child{
+  padding-left: 10vh;
+  padding-right: 10vh;
 }
