@@ -132,7 +132,7 @@ ResultView.prototype.bindEvents = function () {
 
 
   PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
-    let x = Date.now();
+    let x = "Hello!";
 
       console.log("Ran at these times:", x);
 
