@@ -13,7 +13,7 @@ const moonPhaseMethods = function() {
 
 moonPhaseMethods.prototype.calculateCoordinatesOfTheSun = function (date) {
 
-  var solarMeanAnomaly = this.radian * (357.5291 + 0.98560028 * date);
+  var solarMeanAnomaly = this.radian * (357.529 + 0.98560028 * date);
 
 
   var centreEquation = this.radian * (1.9148 * Math.sin(solarMeanAnomaly) + 0.02 * Math.sin(2 * solarMeanAnomaly) + 0.0003 * Math.sin(3 * solarMeanAnomaly)) // Finds the centre of the Sun
@@ -74,10 +74,17 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
   const currentDateUnixMidnight = currentDateInUnix.setHours(0, 0, 0, 0);
   const currentDateAtMidnight = currentDateUnixMidnight/1000;
 
+  const userWeddingDateYear = new Date(userWeddingDate * 1000).getFullYear();
+  const currentDateYear = new Date( currentDateUnixMidnight).getFullYear();
+
+  const yearDifferential = currentDateYear - userWeddingDateYear;
+
+  console.log(yearDifferential);
+
   // Initialize a series of if statements to ensure that the date used in the moon phase calculations is a future date
 
   if (userWeddingDate < currentDateAtMidnight){
-    var dateForCalculations = userWeddingDate + 31557600;
+    var dateForCalculations = userWeddingDate + 31557600 + (yearDifferential * 31557600);
   }
   else {
     var dateForCalculations = userWeddingDate;
