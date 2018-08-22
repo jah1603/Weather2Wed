@@ -6,6 +6,9 @@ const ConversionMethods = require('../models/conversion_methods.js');
 
 const ResultView = function (container) {
   this.container = container;
+  this.conversionMethods = new ConversionMethods();
+  this.resultsTable = null;
+  this.modalBody = null;
 }
 
 // loads icons related to weather on that date
@@ -13,12 +16,15 @@ const ResultView = function (container) {
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
 
-    const conversionMethods = new ConversionMethods();
+
+
 
     this.container.innerHTML = "";
 
+
     // CREATE MODAL
     this.container.style.display = 'block';
+
     this.container.addEventListener('click', (e) => {
       if (e.target === this.container) {
         this.container.style.display = "none";
@@ -48,105 +54,23 @@ ResultView.prototype.bindEvents = function () {
 
 
     const header = document.createElement('h2');
-    const date = conversionMethods.timeConverter(evt.detail.daily.data[0].time);
+    const date = this.conversionMethods.timeConverter(evt.detail.daily.data[0].time);
 
     header.textContent = `Typical weather for ${date}: ${evt.detail.daily.data[0].summary}`;
     modalHeader.appendChild(header);
     // END CREATE MODAL CONTENT
 
     // CREATE MODAL BODY
-    const modalBody = document.createElement('div');
-    modalBody.classList.add('modal-body');
-    modalContent.appendChild(modalBody);
-
-    //TODO: Render results TABLE
-    // rendertable()
-    //append table
+    this.modalBody = document.createElement('div');
+    console.log(this.modalBody);
+    this.modalBody.classList.add('modal-body');
+    modalContent.appendChild(this.modalBody);
+    this.renderTable(evt);
 
 
-    ResultView.prototype.renderTable = function () {
-      const resultsTable = document.createElement('table');
-      this.renderDailyAverage();
-      this.renderRain();
-      this.renderSunTimes();
-      this.renderMoonPhase();
-      this.renderHighAndLow();
-      this.renderHumidity();
-      this.renderWindSpeed();
-      this.renderCloudCover();
-      modalBody.appendChild(resultsTable);
-    };
 
-    // CREATE TABLE ELEMENTS: Daily Average
-    ResultView.prototype.renderDailyAverage = function () {
-      const dailyAverage = document.createElement('tr');
-      const dailyAverageIcon = document.createElement('td');
 
-      const icon = evt.detail.daily.data[0].icon;
-      const weatherIcon = document.createElement('img');
-      weatherIcon.src = `images/weather_icons/${icon}.png`;
-      dailyAverageIcon.appendChild(weatherIcon);
 
-      const averageDailyTemperature = document.createElement('td');
-      dailyAverage.appendChild(dailyAverageIcon);
-      const dailyAverage = document.createElement('tr');
-      const dailyAverageIcon = document.createElement('td');
-
-      const icon = evt.detail.daily.data[0].icon;
-      const weatherIcon = document.createElement('img');
-      weatherIcon.src = `images/weather_icons/${icon}.png`;
-      dailyAverageIcon.appendChild(weatherIcon);
-
-      const averageDailyTemperature = document.createElement('td');
-      dailyAverage.appendChild(dailyAverageIcon);
-      resultsTable.appendChild(dailyAverage);
-
-    };
-
-    // CREATE TABLE ELEMENTS: Rain
-    ResultView.prototype.renderRain = function () {
-      const rainRow = document.createElement('tr');
-      const rainIcon = document.createElement('td');
-
-      const rainLogo = document.createElement('img');
-      rainLogo.src = 'images/weather_icons/rain_chance.png';
-      rainIcon.appendChild(rainLogo);
-
-      const rainPercentage = document.createElement('td');
-      const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
-      const rain = document.createElement("p");
-      rain.textContent = `Chance of rain: ${rainChance}%`
-      rainPercentage.appendChild(rain);
-      rainRow.appendChild(rainIcon);
-      rainRow.appendChild(rainPercentage);
-      resultsTable.appendChild(rainRow);
-
-    };
-
-      // CREATE TABLE ELEMENTS: Sunrise and Sunset
-
-   ResultView.prototype.methodName = function () {
-     const sunsetRow = document.createElement('tr');
-     const sunsetIcon = document.createElement('td');
-
-     const sunsetLogo = document.createElement('img');
-     sunsetLogo.src = 'images/weather_icons/sunset.png';
-     sunsetIcon.appendChild(sunsetLogo);
-
-     const dailySunsetTime = document.createElement('td');
-     const sunsetTime = evt.detail.daily.data[0].sunsetTime;
-     const sunriseTime = evt.detail.daily.data[0].sunriseTime;
-     const betterSunriseTime = conversionMethods.timeConverterToHours(sunriseTime);
-     const betterSunsetTime = conversionMethods.timeConverterToHours(sunsetTime);
-
-     const actualSunsetTime = document.createElement('p');
-     actualSunsetTime.textContent = `Sunrise: ${betterSunriseTime} Sunset: ${betterSunsetTime}`;
-     dailySunsetTime.appendChild(actualSunsetTime);
-     sunsetRow.appendChild(sunsetIcon);
-     sunsetRow.appendChild(dailySunsetTime);
-     resultsTable.appendChild(sunsetRow);
-
-};
 
 
 
@@ -156,7 +80,7 @@ ResultView.prototype.bindEvents = function () {
 
     const mapArea = document.createElement('div');
     mapArea.setAttribute("id", "mapid")
-    modalBody.appendChild(mapArea);
+    this.modalBody.appendChild(mapArea);
     const mapView = new MapView(mapArea);
     const latitude = evt.detail.latitude;
     const longitude = evt.detail.longitude;
@@ -168,7 +92,7 @@ ResultView.prototype.bindEvents = function () {
 
 
 
-  PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
+    PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
     let x = "Hello!";
 
       console.log("Ran at these times:", x);
@@ -205,22 +129,12 @@ ResultView.prototype.bindEvents = function () {
     // END CREATE MODAL FOOTER
 
 
-    // Pass readable time to nested view
 
 
-    evt.detail.daily.data[0].temperatureHigh = conversionMethods.fahrenheitToCelsius(evt.detail.daily.data[0].temperatureHigh);
-
-    evt.detail.daily.data[0].temperatureLow = conversionMethods.fahrenheitToCelsius(evt.detail.daily.data[0].temperatureLow);
-
-    evt.detail.daily.data[0].temperatureHighTime =
-   conversionMethods.timeConverterToHours(evt.detail.daily.data[0].temperatureHighTime);
-
-    evt.detail.daily.data[0].temperatureLowTime = conversionMethods.timeConverterToHours(evt.detail.daily.data[0].temperatureLowTime);
 
 
 // RESULTS OVERLAY PAGE
-    const moreInformation = new MoreInformation(resultsTable, evt.detail, evt.detail.daily.data[0].time);
-    moreInformation.render();
+
 
 
     function overlayShow() {
@@ -234,5 +148,94 @@ ResultView.prototype.bindEvents = function () {
   })
 
 };
+
+// Render results TABLE
+ResultView.prototype.renderTable = function (evt) {
+
+  this.resultsTable = document.createElement('table');
+  this.renderDailyAverage(evt);
+  this.renderRain(evt);
+  this.renderSunTimes(evt);
+  const moreInformation = new MoreInformation(this.resultsTable, evt.detail, evt.detail.daily.data[0].time);
+  moreInformation.render();
+  // this.renderMoonPhase(evt);
+  // this.renderHighAndLow(evt);
+  // this.renderHumidity(evt);
+  // this.renderWindSpeed(evt);
+  // this.renderCloudCover(evt);
+  this.modalBody.appendChild(this.resultsTable);
+
+};
+
+
+
+
+
+
+
+// CREATE TABLE ELEMENTS: Daily Average
+ResultView.prototype.renderDailyAverage = function (evt) {
+  const dailyAverage = document.createElement('tr');
+  const dailyAverageIcon = document.createElement('td');
+
+  const icon = evt.detail.daily.data[0].icon;
+  const weatherIcon = document.createElement('img');
+  weatherIcon.src = `images/weather_icons/${icon}.png`;
+  dailyAverageIcon.appendChild(weatherIcon);
+
+  const averageDailyTemperature = document.createElement('td');
+const temp = this.conversionMethods.fahrenheitToCelsius(evt.detail.hourly.data[14].temperature);
+  averageDailyTemperature.textContent = `Average temp: ${temp}°C`;
+  dailyAverage.appendChild(dailyAverageIcon);
+  dailyAverage.appendChild(averageDailyTemperature);
+  this.resultsTable.appendChild(dailyAverage);
+
+};
+
+// CREATE TABLE ELEMENTS: Rain
+ResultView.prototype.renderRain = function (evt) {
+  const rainRow = document.createElement('tr');
+  const rainIcon = document.createElement('td');
+
+  const rainLogo = document.createElement('img');
+  rainLogo.src = 'images/weather_icons/rain_chance.png';
+  rainIcon.appendChild(rainLogo);
+
+  const rainPercentage = document.createElement('td');
+  const rainChance = Math.round(evt.detail.daily.data[0].precipProbability*100);
+  const rain = document.createElement("p");
+  rain.textContent = `Chance of rain: ${rainChance}%`
+  rainPercentage.appendChild(rain);
+  rainRow.appendChild(rainIcon);
+  rainRow.appendChild(rainPercentage);
+  this.resultsTable.appendChild(rainRow);
+
+};
+
+  // CREATE TABLE ELEMENTS: Sunrise and Sunset
+
+ResultView.prototype.renderSunTimes = function (evt) {
+ const sunsetRow = document.createElement('tr');
+ const sunsetIcon = document.createElement('td');
+
+ const sunsetLogo = document.createElement('img');
+ sunsetLogo.src = 'images/weather_icons/sunset.png';
+ sunsetIcon.appendChild(sunsetLogo);
+
+ const dailySunsetTime = document.createElement('td');
+ const sunsetTime = evt.detail.daily.data[0].sunsetTime;
+ const sunriseTime = evt.detail.daily.data[0].sunriseTime;
+ const betterSunriseTime = this.conversionMethods.timeConverterToHours(sunriseTime);
+ const betterSunsetTime = this.conversionMethods.timeConverterToHours(sunsetTime);
+
+ const actualSunsetTime = document.createElement('p');
+ actualSunsetTime.textContent = `Sunrise: ${betterSunriseTime} Sunset: ${betterSunsetTime}`;
+ dailySunsetTime.appendChild(actualSunsetTime);
+ sunsetRow.appendChild(sunsetIcon);
+ sunsetRow.appendChild(dailySunsetTime);
+ this.resultsTable.appendChild(sunsetRow);
+
+};
+
 
 module.exports = ResultView;

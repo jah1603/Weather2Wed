@@ -1,10 +1,12 @@
 const PubSub = require('../helpers/pub_sub.js');
 const MoonPhaseMethods = require('../models/moon_phase.js');
+const ConversionMethods = require('../models/conversion_methods.js')
 
 const MoreInformation = function(container, weatherData, weddingDate) {
   this.container = container;
   this.weatherData = weatherData;
   this.weddingDate = weddingDate;
+  this.conversionMethods = new ConversionMethods();
 };
 
 MoreInformation.prototype.render = function() {
@@ -54,11 +56,15 @@ const tempHighAndLowIcon = document.createElement('td');
 
   const tempHighAndLowDetail = document.createElement('td');
   const tempSummary = document.createElement('p');
-  const highTime = this.weatherData.daily.data[0].temperatureHighTime;
-  const lowTime = this.weatherData.daily.data[0].temperatureLowTime;
-  const tempHigh = this.weatherData.daily.data[0].temperatureHigh;
-  const tempLow = this.weatherData.daily.data[0].temperatureLow;
-  tempSummary.textContent = `Low: ${tempLow}°C at ${lowTime}  High: ${tempHigh}°C at ${highTime}`
+  const unixHighTempTime = this.weatherData.daily.data[0].temperatureHighTime;
+  const unixLowTempTime = this.weatherData.daily.data[0].temperatureLowTime;
+
+  const highTime = this.conversionMethods.timeConverterToHours(unixHighTempTime);
+  const lowTime = this.conversionMethods.timeConverterToHours(unixLowTempTime);
+
+  const tempHigh = this.conversionMethods.fahrenheitToCelsius(this.weatherData.daily.data[0].temperatureHigh);
+  const tempLow = this.conversionMethods.fahrenheitToCelsius(this.weatherData.daily.data[0].temperatureLow);
+  tempSummary.textContent = `Low: ${tempLow}°C at ${lowTime},  High: ${tempHigh}°C at ${highTime}`
   tempHighAndLowDetail.appendChild(tempSummary);
 
 
