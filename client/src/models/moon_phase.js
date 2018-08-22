@@ -96,7 +96,7 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
 
   else {
 
-    var dateForCalculations = userWeddingDate (yearDifferential * 31557600);
+    var dateForCalculations = userWeddingDate + (yearDifferential * 31557600);
 
   };
 
