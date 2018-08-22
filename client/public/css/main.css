@@ -43,7 +43,7 @@
 
 .modal-header {
    padding: 2px 16px;
-   background-color:#4aceb5;
+   background-color: #FF4D5C;
    color: white;
 }
 
@@ -51,13 +51,16 @@
 
 .modal-footer {
    padding: 2px 16px;
-   background-color:  #4aceb5;
+   background-color: #FF4D5C;
    color: white;
    overflow: auto;
 }
 /* ABOVE THIS LINE IS MODAL BOX  */
 
-
+.header img {
+  width:100vw;
+  height: 20vh;
+}
 
 img {
     margin: auto;
@@ -140,12 +143,11 @@ body{
 
 h1{
 
-font-size: 120px;
-float: center;
+  font-size: 120px;
+  float: center;
 font-family: 'Raleway', sans-serif;
-color: #4aceb5;
-text-align: center;color: #fff;
-text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #4aceb5, 0 0 30px #4aceb5, 0 0 40px #4aceb5, 0 0 55px #4aceb5, 0 0 75px #4aceb5;
+color: white;
+text-align: center;
 
 }
 
@@ -153,7 +155,7 @@ text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #4aceb5, 0 0 30px #4aceb5, 0 
 #save{
   width: 10vw;
   height: 10vw;
-  background: url('../images/button.png') no-repeat ;
+  background: url('../images/happy_cloud.png') no-repeat ;
   align: center;
   vertical-align: middle;
   border-style: none;
@@ -177,4 +179,10 @@ text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #4aceb5, 0 0 30px #4aceb5, 0 
 }
 
 
+}
+
+.header img {
+  float: left;
+  width: 350px;
+  height: 350px;
 }
