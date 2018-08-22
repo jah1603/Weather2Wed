@@ -22,6 +22,7 @@ FourSquare.prototype.getEventData = function (location) {
   const request = new Request (url);
    request.get()
    .then((data)=>{
+     console.log("test string");
    this.data = data;
    PubSub.publish('FourSquare:hotel-ready', this.data);
    })
