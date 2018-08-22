@@ -8,7 +8,7 @@ body {
   background-position: center;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 870px) {
   body {
     background-color: #d8d8d8;
     height: 100%;
