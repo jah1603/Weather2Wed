@@ -5,8 +5,69 @@ const moonPhaseMethods = function() {
   this.year1970InJulianCalendarDays = 2440588;
   this.radian = Math.PI / 180
   this.axialTiltOfEarthInRadians = this.radian * 23.4397;
-  this.moonPhase = null;
 
+};
+
+moonPhaseMethods.prototype.convertMoonPhaseNumberToImageName = function (weddingDate) {
+
+  var moonPhaseNumber = this.calculateMoonPhase(weddingDate);
+
+  if (moonPhaseNumber == 0){
+    var moonPhaseName = 'new_moon.jpg'
+  }
+  else if(moonPhaseNumber <= 0.167 && moonPhaseNumber > 0){
+    var moonPhaseName = 'waxing_crescent.jpg'
+  }
+  else if(moonPhaseNumber <= 0.33 && moonPhaseNumber > 0.167){
+    var moonPhaseName = 'first_quarter.jpg'
+  }
+  else if(moonPhaseNumber >= 0.49 && moonPhaseNumber <= 0.51){
+    var moonPhaseName = 'full_moon.jpg'
+  }
+  else if(moonPhaseNumber <= 0.667 && moonPhaseNumber > 0.51){
+    var moonPhaseName = 'waxing_gibbous.jpg'
+  }
+  else if(moonPhaseNumber <= 0.833 && moonPhaseNumber > 0.667){
+    var moonPhaseName = 'last_quarter.jpg'
+  }
+  else if(moonPhaseNumber < 1 && moonPhaseNumber >= 0.833 ){
+    var moonPhaseName = 'waning_gibbous.jpg'
+  }
+  else{
+    var moonPhaseName = 'waning_crescent.jpg'
+  }
+  return moonPhaseName;
+};
+
+moonPhaseMethods.prototype.convertMoonPhaseNumberToName = function (weddingDate) {
+
+  var moonPhaseNumber = this.calculateMoonPhase(weddingDate);
+
+  if (moonPhaseNumber == 0){
+    var moonPhaseName = 'New moon'
+  }
+  else if(moonPhaseNumber <= 0.167 && moonPhaseNumber > 0){
+    var moonPhaseName = 'Waxing crescent moon'
+  }
+  else if(moonPhaseNumber <= 0.33 && moonPhaseNumber > 0.167){
+    var moonPhaseName = 'First quarter moon'
+  }
+  else if(moonPhaseNumber >= 0.49 && moonPhaseNumber <= 0.51){
+    var moonPhaseName = 'Full moon'
+  }
+  else if(moonPhaseNumber <= 0.667 && moonPhaseNumber > 0.51){
+    var moonPhaseName = 'Waxing gibbous moon'
+  }
+  else if(moonPhaseNumber <= 0.833 && moonPhaseNumber > 0.667){
+    var moonPhaseName = 'Last quarter moon'
+  }
+  else if(moonPhaseNumber < 1 && moonPhaseNumber >= 0.833 ){
+    var moonPhaseName = 'Waning gibbous moon'
+  }
+  else{
+    var moonPhaseName = 'Waning crescent moon'
+  }
+  return moonPhaseName;
 };
 
 // Astronomical calculations are approximate, mainly based on material found at http://aa.quae.nl/
