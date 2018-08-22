@@ -11,7 +11,8 @@ const ResultView = function (container) {
 // TODO: target results view, use grid & resize icons
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('DarkSky:weather-ready', (evt)=>{
-    console.log(evt.detail);
+
+
     this.container.innerHTML = "";
 
     // CREATE MODAL
@@ -19,6 +20,7 @@ ResultView.prototype.bindEvents = function () {
     this.container.addEventListener('click', (e) => {
       if (e.target === this.container) {
         this.container.style.display = "none";
+
       }
     });
     // END CREATE MODAL
@@ -130,6 +132,9 @@ ResultView.prototype.bindEvents = function () {
 
 
   PubSub.subscribe("FourSquare:hotel-ready", (evt)=> {
+    let x = "Hello!";
+
+      console.log("Ran at these times:", x);
 
 
       for (var i = 0; i < evt.detail.response.venues.length; i++){
@@ -256,7 +261,7 @@ var time = 12 + ':' + min + ' pm' + ' (midnight)'  ;
 else{
 var time = hour + ':' + min + ' am'  ;
 }
-console.log(hour);
+
 return time;
 }
 

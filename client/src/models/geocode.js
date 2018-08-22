@@ -8,8 +8,9 @@ const Geocode = function (){
 // listens for input
 Geocode.prototype.bindEvents = function () {
   PubSub.subscribe('InputFormView:location-ready', (evt) => {
-    const longLat = evt.detail;
-    this.getLocation(longLat);
+
+
+    this.getLocationAndDate(evt.detail);
   });
 };
 
@@ -24,17 +25,19 @@ Geocode.prototype.bindEvents = function () {
 //   })
 
 //gets location from api
-Geocode.prototype.getLocation = function (location) {
-  const url = `http://localhost:8080/longlat/${location}`
+Geocode.prototype.getLocationAndDate = function (locationAndDate) {
+  const url = `http://localhost:8080/longlat/${locationAndDate[0]}`
   const request = new Request (url);
   request.get()
   .then((data)=>{
   const lat = parseFloat(data.items[0].lat);
   const long = parseFloat(data.items[0].long);
   const position = [lat,long];
-  //const position = `${data.items[0].lat},${data.items[0].long}`
+  const date = locationAndDate[1];
+  const positionAndDate = [position, date];
 
-  PubSub.publish('Geocode:location-ready', position);
+
+  PubSub.publish('Geocode:location-ready', positionAndDate);
   })
 
 };
