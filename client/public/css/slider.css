@@ -2,7 +2,11 @@ body {
   background-color: #d8d8d8;
   overflow-x:visible;
   overflow-y:visible;
-  background-image: url('../images/rain_weather.jpeg')
+  background-image: url('../images/rain_weather.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
 *,
@@ -56,7 +60,7 @@ body {
 
 #value {
   font-family: 'Raleway', sans-serif;
-  color: black;
+  color: #24b599;
   font-size: 3vw;
   font-weight: bold;
 }
