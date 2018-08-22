@@ -1,5 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
-const MoonPhaseMethods = require('../models/moon_phase.js');
+const MoonPhaseMethods = require('../models/moon_phase_equations.js');
 const ConversionMethods = require('../models/conversion_methods.js')
 
 const MoreInformation = function(container, weatherData, weddingDate) {
