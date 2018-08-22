@@ -79,15 +79,25 @@ moonPhaseMethods.prototype.futureproofWeddingDate = function (userWeddingDate) {
 
   const yearDifferential = currentDateYear - userWeddingDateYear;
 
-  console.log(yearDifferential);
 
   // Initialize a series of if statements to ensure that the date used in the moon phase calculations is a future date
 
-  if (userWeddingDate < currentDateAtMidnight){
-    var dateForCalculations = userWeddingDate + 31557600 + (yearDifferential * 31557600);
+  if (
+
+    (new Date(userWeddingDate * 1000).getMonth() + 1) < new Date(currentDateUnixMidnight).getMonth()
+
+  &&
+
+  (new Date(userWeddingDate * 1000).getDate()) < new Date(currentDateUnixMidnight).getDate() )
+
+  {
+    var dateForCalculations = userWeddingDate + (yearDifferential * 31557600);
   }
+
   else {
+
     var dateForCalculations = userWeddingDate;
+
   };
 
   // If the user searches for a month of the year which comes before the current month in the calendar, this method automatically converts it into the same month and day one year ahead. This means that the moon phase will always predict future data, no matter when the app is used.
