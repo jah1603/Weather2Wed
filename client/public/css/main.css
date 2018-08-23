@@ -5,16 +5,6 @@ body{
  background-size: cover;
 }
 
-
-h1{
-
-  font-size: 7vw;
-  float: center;
-font-family: 'Raleway', sans-serif;
-color: white;
-text-align: center;
-}
-
 /* The Modal (resuts view) */
 .modal {
     display: none; /* Hidden by default */
@@ -63,6 +53,9 @@ text-align: center;
    padding: 2px 16px;
    background-color: #24b599;
    color: white;
+   font-size: 1.3em;
+   position: relative;
+   left: 0vw;
 }
 
 .modal-body {padding: 2px 16px;}
@@ -103,17 +96,6 @@ img {
   flex-direction: column;
 }
 
-#location {
-  text-align: center;
-  position: relative;
-  left: 50vw;
-  width: 45vw;
-  height: 5vh;
-  margin-left: -25vw;
-  font-size: 2vw;
-  font-family: 'Raleway', sans-serif;
-}
-
 #mapid {
     width: 40vw;
     height: 100vh;
@@ -133,18 +115,17 @@ img {
 }
 
 .button {
-  left: 50%;
-  width: 130px;
-  height: 40px;
+  width: 12.695vw;
+  height: 5.8997vh;
   text-align: center;
   position: relative;
-  left: 50%;
-  margin-left: -65px;
+  left: 44vw;
+  top: 3vh;
 }
 
 table {
 float: left;
-font-size: 2em;
+font-size: 1.85em;
 width: 45vh;
 }
 
