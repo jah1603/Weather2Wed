@@ -88,7 +88,7 @@ ResultView.prototype.bindEvents = function () {
 
 
       for (var i = 0; i < evt.detail.response.venues.length; i++){
-
+         console.log(evt.detail.response.venues[i]);
         const hotelPosition = [evt.detail.response.venues[i].location.lat, evt.detail.response.venues[i].location.lng];
         var hotelDetails = '';
         const hotelName = evt.detail.response.venues[i].name;
